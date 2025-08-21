@@ -7,6 +7,10 @@ node_modules/
 dist/
 build/
 dist-ssr/
+.next
+.nuxt
+out
+.storybook-out
 *.tsbuildinfo
 
 # Environment variables
@@ -32,10 +36,11 @@ pids
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# Coverage and testing
 coverage/
 *.lcov
 .nyc_output/
+.jest/
 
 # Dependency directories
 jspm_packages/
@@ -58,27 +63,14 @@ jspm_packages/
 # Optional REPL history
 .node_repl_history
 
-# Output of 'npm pack'
+# Package outputs
 *.tgz
-
-# Yarn Integrity file
+*.tar.gz
 .yarn-integrity
 
-# parcel-bundler cache (https://parceljs.org/)
+# Cache directories
 .cache
 .parcel-cache
-
-# Next.js build output
-.next
-out
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Storybook build outputs
-.out
-.storybook-out
 
 # Temporary folders
 tmp/
@@ -116,12 +108,3 @@ prisma/migrations/
 # Generated files
 generated/
 *.generated.*
-
-# Testing
-coverage/
-.nyc_output/
-.jest/
-
-# Misc
-*.tgz
-*.tar.gz
