@@ -16,9 +16,15 @@ app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
+
       const hostname = new URL(origin).hostname;
 
-      const allowed = origins.some((origin) => hostname.endsWith(origin));
+      console.log('hostname', hostname);
+      console.log('origins', origins);
+
+      const allowed = origins.some((allowedOrigin) => hostname.endsWith(allowedOrigin));
+
+      console.log('allowed', allowed);
 
       if (allowed) {
         callback(null, true);
