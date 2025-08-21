@@ -1,0 +1,42 @@
+.button {
+  background-color: var(--primary-red);
+  color: var(--text-primary);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-base);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.button:hover {
+  background-color: var(--primary-red-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  background-color: var(--primary-red-active);
+  transform: translateY(0);
+}
+
+.button:focus {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  background-color: var(--text-disabled);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button.stretch {
+  width: 100%;
+}
