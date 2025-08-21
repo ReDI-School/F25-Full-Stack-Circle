@@ -13,6 +13,11 @@ interface ButtonProps {
    * Whether the button should stretch to the width of its container
    */
   stretch?: boolean;
+
+  /**
+   * Whether the button should be disabled
+   */
+  disabled?: boolean;
 }
 
 export type { ButtonProps };

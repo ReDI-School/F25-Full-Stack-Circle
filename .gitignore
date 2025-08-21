@@ -108,3 +108,5 @@ prisma/migrations/
 # Generated files
 generated/
 *.generated.*
+*storybook.log
+storybook-static

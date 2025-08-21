@@ -10,21 +10,14 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const origins = process.env.CORS_ORIGIN?.split(',').map((o) => o.trim()) || [];
-
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
 
+      const origins = process.env.CORS_ORIGIN?.split(',').map((o) => o.trim()) || [];
       const hostname = new URL(origin).hostname;
-
-      console.log('hostname', hostname);
-      console.log('origins', origins);
-
       const allowed = origins.some((allowedOrigin) => hostname.endsWith(allowedOrigin));
-
-      console.log('allowed', allowed);
 
       if (allowed) {
         callback(null, true);
