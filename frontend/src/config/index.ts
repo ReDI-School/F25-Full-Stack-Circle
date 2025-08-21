@@ -6,7 +6,16 @@ const buildApiUrl = (): string => {
     const branchUrl = import.meta.env.VITE_VERCEL_BRANCH_URL;
 
     if (branchUrl) {
-      return `https://${branchUrl.replace('rediflix', 'rediflix-api')}`;
+      const urlParts = branchUrl.split('-git-');
+
+      if (urlParts.length > 1) {
+        const branchPart = urlParts[1];
+        const domainPart = branchUrl.split('.vercel.app')[0];
+        const projectPart = domainPart.split('-git-')[0];
+
+        // Construct the API URL with the correct branch
+        return `https://${projectPart}-api-git-${branchPart}.vercel.app`;
+      }
     }
   }
 
