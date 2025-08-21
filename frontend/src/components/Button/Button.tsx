@@ -14,7 +14,12 @@ const styledButton = cva(styles.button, {
 
 const Button = ({ children, onClick, stretch = false }: ButtonProps) => {
   return (
-    <button className={styledButton({ stretch: stretch })} onClick={onClick}>
+    <button
+      className={styledButton({
+        stretch,
+      })}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
