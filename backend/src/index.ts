@@ -21,6 +21,8 @@ app.use(
   })
 );
 
+console.log(process.env.CORS_ORIGIN);
+
 // Routes
 app.use('/users', userRouter);
 
