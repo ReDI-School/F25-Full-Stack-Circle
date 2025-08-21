@@ -21,7 +21,7 @@ const getApiUrl = async (): Promise<string> => {
 
       const data = await response.json();
 
-      return data.deployments[0].url;
+      return `https://${data.deployments[0].url}`;
     } catch (error) {
       console.error(error);
 
@@ -32,10 +32,12 @@ const getApiUrl = async (): Promise<string> => {
   return API_URL;
 };
 
-export const config = async (): Promise<{
+export interface ConfigData {
   environment: string;
   apiUrl: string;
-}> => {
+}
+
+export const config = async (): Promise<ConfigData> => {
   return {
     environment: ENVIRONMENT,
     apiUrl: await getApiUrl(),
