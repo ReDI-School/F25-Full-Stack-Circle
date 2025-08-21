@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: '*',
+    origin: process.env.NODE_ENV === 'production' ? process.env.CORS_ORIGIN?.split(',') || [] : '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Content-Length', 'X-Kuma-Revision'],
@@ -20,8 +20,6 @@ app.use(
     credentials: true,
   })
 );
-
-console.log(process.env.CORS_ORIGIN);
 
 // Routes
 app.use('/users', userRouter);
