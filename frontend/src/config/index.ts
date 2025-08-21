@@ -1,8 +1,8 @@
 const ENVIRONMENT = import.meta.env.VITE_VERCEL_ENV || 'development';
 const API_PROJECT_ID = import.meta.env.VITE_API_PROJECT_ID;
-const COMMIT_SHA = import.meta.env.VERCEL_GIT_COMMIT_SHA;
+const COMMIT_SHA = import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA;
+const VERCEL_TOKEN = import.meta.env.VITE_VERCEL_TOKEN;
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
-const VERCEL_TOKEN = import.meta.env.VERCEL_TOKEN;
 
 // Build API URL dynamically based on Vercel environment
 // If the environment is preview (PR scoped), we need to get the API URL from the Vercel API otherwise use the local .env file
