@@ -3,6 +3,7 @@ import Button from '../../components/Button/Button';
 import { config } from '../../config';
 import styles from './Home.module.css';
 import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +12,14 @@ const Home = () => {
     navigate('/signin');
   };
 
-  console.log({ config });
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const { environment, apiUrl } = await config();
+      console.log(environment, apiUrl);
+    };
+
+    fetchConfig();
+  }, []);
 
   return (
     <div className={styles.home}>

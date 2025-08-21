@@ -1,28 +1,43 @@
-const environment = import.meta.env.VITE_VERCEL_ENV || 'development';
+const ENVIRONMENT = import.meta.env.VITE_VERCEL_ENV || 'development';
+const API_PROJECT_ID = import.meta.env.VITE_API_PROJECT_ID;
+const COMMIT_SHA = import.meta.env.VERCEL_GIT_COMMIT_SHA;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const VERCEL_TOKEN = import.meta.env.VERCEL_TOKEN;
 
 // Build API URL dynamically based on Vercel environment
-const buildApiUrl = (): string => {
-  if (environment === 'preview') {
-    const branchUrl = import.meta.env.VITE_VERCEL_BRANCH_URL;
+// If the environment is preview (PR scoped), we need to get the API URL from the Vercel API otherwise use the local .env file
+const getApiUrl = async (): Promise<string> => {
+  if (ENVIRONMENT === 'preview') {
+    try {
+      const response = await fetch(
+        `https://api.vercel.com/v6/deployments?projectId=${API_PROJECT_ID}&target=preview&sha=${COMMIT_SHA}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${VERCEL_TOKEN}`,
+          },
+        }
+      );
 
-    if (branchUrl) {
-      const urlParts = branchUrl.split('-git-');
+      const data = await response.json();
 
-      if (urlParts.length > 1) {
-        const branchPart = urlParts[1];
-        const domainPart = branchUrl.split('.vercel.app')[0];
-        const projectPart = domainPart.split('-git-')[0];
+      return data.deployments[0].url;
+    } catch (error) {
+      console.error(error);
 
-        // Construct the API URL with the correct branch
-        return `https://${projectPart}-api-git-${branchPart}.vercel.app`;
-      }
+      return API_URL;
     }
   }
 
-  return import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  return API_URL;
 };
 
-export const config = {
-  environment,
-  apiUrl: buildApiUrl(),
+export const config = async (): Promise<{
+  environment: string;
+  apiUrl: string;
+}> => {
+  return {
+    environment: ENVIRONMENT,
+    apiUrl: await getApiUrl(),
+  };
 };
