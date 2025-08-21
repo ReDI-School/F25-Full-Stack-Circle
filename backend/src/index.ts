@@ -10,7 +10,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-console.log('process.env.CORS_ORIGIN', process.env.CORS_ORIGIN);
+console.log('process.env.CORS_ORIGIN', process.env.CORS_ORIGIN?.split(','));
 
 app.use(
   cors({
