@@ -10,9 +10,31 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const origins = process.env.CORS_ORIGIN?.split(',').map((o) => o.trim()) || [];
+
 app.use(
   cors({
-    origin: process.env.NODE_ENV === 'production' ? process.env.CORS_ORIGIN?.split(',') || [] : '*',
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      const hostname = new URL(origin).hostname;
+
+      console.log('hostname', hostname);
+      console.log('origins', origins);
+
+      const allowed = origins.some((allowedOrigin) => hostname.endsWith(allowedOrigin));
+
+      console.log('allowed', allowed);
+
+      if (allowed) {
+        callback(null, true);
+      } else if (process.env.NODE_ENV !== 'production') {
+        // in dev, allow everything
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Content-Length', 'X-Kuma-Revision'],
