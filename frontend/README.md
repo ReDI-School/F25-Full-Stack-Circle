@@ -187,7 +187,7 @@ const Home = () => {
 
       {/* Conditional rendering based on loading state */}
       {loadingUsers ? (
-        <div>Under construction...</div>
+        <div>Loading users...</div>
       ) : (
         <>
           {/* Conditional rendering based on data */}
