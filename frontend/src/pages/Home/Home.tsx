@@ -41,7 +41,7 @@ const Home = () => {
       <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loadingUsers ? (
-          <div>Loading users...</div>
+          <div>Redi team</div>
         ) : (
           <>
             {users.length > 0 ? (
