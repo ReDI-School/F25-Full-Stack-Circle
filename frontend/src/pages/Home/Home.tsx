@@ -47,7 +47,7 @@ const Home = () => {
             {users.length > 0 ? (
               users.map((user) => <div key={user.id}>{user.email}</div>)
             ) : (
-              <div>No users found</div>
+              <div>Finally</div>
             )}
           </>
         )}
