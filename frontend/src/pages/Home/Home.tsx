@@ -8,12 +8,18 @@ import { useConfig } from '../../hooks';
 import { useEffect, useState } from 'react';
 
 interface User {
-  id: string;
+  name: string;
   email: string;
 }
 
 const Home = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([
+    {
+      name: 'Fabio',
+      email: 'test@fabio.com',
+    },
+    // add your name
+  ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
   const { config, loadingConfig } = useConfig();
 
@@ -45,7 +51,7 @@ const Home = () => {
         ) : (
           <>
             {users.length > 0 ? (
-              users.map((user) => <div key={user.id}>{user.email}</div>)
+              users.map((user) => <div key={user.name}>{user.email}</div>)
             ) : (
               <div>Finally</div>
             )}
