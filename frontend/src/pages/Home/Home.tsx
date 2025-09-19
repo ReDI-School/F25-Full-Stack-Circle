@@ -15,8 +15,8 @@ interface User {
 const Home = () => {
   const [users, setUsers] = useState<User[]>([
     {
-      name: 'Fabio',
-      email: 'test@fabio.com',
+      name: 'Nikita',
+      email: 'test@nikita.com',
     },
     // add your name
   ]);
