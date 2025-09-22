@@ -18,7 +18,12 @@ const Home = () => {
       name: 'Fabio',
       email: 'test@fabio.com',
     },
-    // add your name
+      
+    {
+      name: 'Ahmad',
+      email: 'ahmadov@FS5.tsx',
+    },
+
   ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
   const { config, loadingConfig } = useConfig();
