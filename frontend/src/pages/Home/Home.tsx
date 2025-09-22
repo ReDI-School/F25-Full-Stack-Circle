@@ -19,6 +19,10 @@ const Home = () => {
       email: 'test@fabio.com',
     },
     // add your name
+    {
+      name: "Arman Hossain",
+      email: "priyoarman1996@gmail.com"
+    },
   ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
   const { config, loadingConfig } = useConfig();
@@ -51,7 +55,8 @@ const Home = () => {
         ) : (
           <>
             {users.length > 0 ? (
-              users.map((user) => <div key={user.name}>{user.email}</div>)
+              users.map((user) => <div key={user.name}>
+                {user.name} {user.email}</div>)
             ) : (
               <div>Finally</div>
             )}
