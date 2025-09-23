@@ -22,6 +22,22 @@ const Home = () => {
       name: 'Nikita',
       email: 'test@nikita.com',
     },
+    {
+      name: 'Perial',
+      email: 'dperial44@gmail.com',
+    },
+    {
+      name: 'Christheo',
+      email: 'christheo.guipo@gmail.com',
+    },
+    {
+      name: 'Marina',
+      email: 'maryna.seidel@yahoo.de',
+    },
+    {
+      name: 'Lyubomir',
+      email: 'lakovski@gmail.com',
+    },
     // add your name
   ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
