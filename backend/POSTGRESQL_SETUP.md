@@ -215,6 +215,13 @@ This will open a web interface at `http://localhost:5555` where you can browse y
    - Ensure the user has proper privileges
    - For local installations, you might need to run as the postgres user
 
+5. **psql Not Recognized (Windows)**
+   - Make sure PostgreSQL is installed.  
+   - Add PostgreSQL’s **bin** folder (e.g. `C:\Program Files\PostgreSQL\<version>\bin`) to the Windows **PATH** environment variable:  
+     1. Open **System Properties → Advanced → Environment Variables**.  
+     2. Edit the **Path** variable under *User* or *System* variables.  
+     3. Add the full path to the `bin` directory (for example `C:\Program Files\PostgreSQL\15\bin`).
+
 ### Reset Database
 
 If you need to start fresh:
