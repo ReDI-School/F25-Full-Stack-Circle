@@ -28,7 +28,7 @@ const Home = () => {
     },
     {
       name: 'Marina',
-      email: 'maryna.seidel@yahoo.de'
+      email: 'maryna.seidel@yahoo.de',
     }
     // add your name
   ]);
