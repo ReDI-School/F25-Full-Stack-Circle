@@ -10,10 +10,17 @@ import { useEffect, useState } from 'react';
 interface User {
   id: string;
   email: string;
+  name: string;
 }
 
 const Home = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([
+    {
+      id:'ha',
+      name: 'Hanin',
+      email: 'test@hanin.com',
+    },
+  ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
   const { config, loadingConfig } = useConfig();
 
@@ -45,7 +52,7 @@ const Home = () => {
         ) : (
           <>
             {users.length > 0 ? (
-              users.map((user) => <div key={user.id}>{user.email}</div>)
+              users.map((user) => <div key={user.name}>{user.email}</div>)
             ) : (
               <div>No users found</div>
             )}
