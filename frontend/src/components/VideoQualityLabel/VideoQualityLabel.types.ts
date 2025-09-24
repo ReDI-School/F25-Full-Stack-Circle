@@ -3,7 +3,6 @@ interface VideoQualityLabelProps {
      * It can be one of the following values: 'DolbyVision', 'HDR', '4K', 'HD', 'UltraHD4K'
     */
     type?: 'DolbyVision' | 'HDR' | '4K' | 'HD' | 'UltraHD4K';
-    className?: string;
 }
 
 export type { VideoQualityLabelProps };
