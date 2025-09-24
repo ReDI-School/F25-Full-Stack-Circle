@@ -1,0 +1,30 @@
+.container {
+    /* Flexbox layout with center alignment */
+    border-radius: var(--radius-base);
+    color: var(--grey-10);
+    font-weight: var(--font-regular);
+    transition: all var(--transition-base);
+    border: 1px solid var(--grey-10);
+    font-family: var(--font-family);
+    font-size: 11px;
+    width: fit-content;
+    padding: 10px 6.5px;
+}
+
+.borderOverlay {
+  /* Absolute positioned border */
+}
+
+.textContent {
+  /* Text styling and positioning */
+
+
+}
+
+.dolbyContainer {
+  /* DolbyVision specific container */
+}
+
+.dolbyImage {
+  /* DolbyVision image styling */
+}
