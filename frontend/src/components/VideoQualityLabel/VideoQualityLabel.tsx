@@ -1,5 +1,8 @@
+//Vendor imports
 import type { VideoQualityLabelProps } from './VideoQualityLabel.types';
+// Styles
 import styles from './VideoQualityLabel.module.css';
+// Assets
 import dolbyVector from '../../assets/images/dolbyVector.svg';
 
 

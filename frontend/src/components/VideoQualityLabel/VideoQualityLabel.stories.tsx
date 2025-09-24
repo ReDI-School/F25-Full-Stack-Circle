@@ -10,6 +10,7 @@ const meta: Meta<typeof VideoQualityLabel> = {
 
 export default meta;
 type Story = StoryObj<typeof VideoQualityLabel>;
+
 export const Default: Story = {
   args: {
     type: 'HD',
