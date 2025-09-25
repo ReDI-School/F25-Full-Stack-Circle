@@ -1,34 +1,35 @@
-import accountIcon from './accountIcon.png';
-import arrowDownIcon from './arrowDownIcon.png';
-import arrowLeftIcon from './arrowLeftIcon.png';
-import arrowRightIcon from './arrowRightIcon.png';
-import arrowRightNarrowIcon from './arrowRightNarrowIcon.png';
-import arrowUpIcon from './arrowUpIcon.png';
-import circleErrorIcon from './circleErrorIcon.png';
-import crossIcon from './crossIcon.png';
-import facebookIcon from './facebookIcon.png';
-import flagIcon from './flagIcon.png';
-import infoIcon from './infoIcon.png';
-import instagramIcon from './instagramIcon.png';
-import notificationIcon from './notificationIcon.png';
-import pencilIcon from './pencilIcon.png';
-import personIcon from './personIcon.png';
-import playIcon from './playIcon.png';
-import plusThinIcon from './plusThinIcon.png';
-import plusWideIcon from './plusWideIcon.png';
-import questionIcon from './questionIcon.png';
-import searchIcon from './searchIcon.png';
-import thumbDownIcon from './thumbDownIcon.png';
-import thumbUpIcon from './thumbUpIcon.png';
-import twitterIcon from './twitterIcon.png';
-import youTubeIcon from './youTubeIcon.png';
+import accountIcon from './accountIcon.svg';
+import arrowDownIcon from './arrowDownIcon.svg';
+import backIcon from './backIcon.svg';
+import chevronIcon from './chevronIcon.svg';
+import chevronNarrowIcon from './chevronNarrowIcon.svg';
+import arrowUpIcon from './arrowUpIcon.svg';
+import circleErrorIcon from './circleErrorIcon.svg';
+import crossIcon from './crossIcon.svg';
+import facebookIcon from './facebookIcon.svg';
+import flagIcon from './flagIcon.svg';
+import infoIcon from './infoIcon.svg';
+import instagramIcon from './instagramIcon.svg';
+import notificationIcon from './notificationIcon.svg';
+import pencilIcon from './pencilIcon.svg';
+import personIcon from './personIcon.svg';
+import playIcon from './playIcon.svg';
+import playIconBlack from './playIconBlack.svg';
+import plusThinIcon from './plusThinIcon.svg';
+import plusWideIcon from './plusWideIcon.svg';
+import questionIcon from './questionIcon.svg';
+import searchIcon from './searchIcon.svg';
+import thumbDownIcon from './thumbDownIcon.svg';
+import thumbUpIcon from './thumbUpIcon.svg';
+import twitterIcon from './twitterIcon.svg';
+import youTubeIcon from './youTubeIcon.svg';
 
 export const ICONS: Record<string, string> = {
   account: accountIcon,
   arrowDown: arrowDownIcon,
-  back: arrowLeftIcon,
-  chevron: arrowRightIcon,
-  chevronNarrow: arrowRightNarrowIcon,
+  back: backIcon,
+  chevron: chevronIcon,
+  chevronNarrow: chevronNarrowIcon,
   arrowUp: arrowUpIcon,
   circleError: circleErrorIcon,
   close: crossIcon,
@@ -40,6 +41,7 @@ export const ICONS: Record<string, string> = {
   pencil: pencilIcon,
   person: personIcon,
   play: playIcon,
+  playBlack: playIconBlack,
   plusThin: plusThinIcon,
   plusWide: plusWideIcon,
   question: questionIcon,
