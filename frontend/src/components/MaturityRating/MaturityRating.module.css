@@ -1,5 +1,12 @@
 div {
-  width: 340px;
-  height: 256px;
-  border: red;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  font-size: var(--text-base);
+  font-family: var(--font-family);
+  color: var(--grey-50);
+  border: 1px solid var(--grey-50);
+  padding: var(--space-2) var(--space-5);
+  gap: var(--space-2) var(--space-5);
+  align-items: start;
+  width: fit-content;
 }

@@ -64,7 +64,3 @@ export const RatingTVY7: Story = {
     rating: 'TV-Y7',
   },
 };
-
-//npx storybook --version
-//npx storybook@latest init
-//error message: npm error Missing script: "storybook"
