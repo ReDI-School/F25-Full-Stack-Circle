@@ -26,9 +26,9 @@ import youTubeIcon from './youTubeIcon.png';
 export const ICONS: Record<string, string> = {
   account: accountIcon,
   arrowDown: arrowDownIcon,
-  arrowLeft: arrowLeftIcon,
-  arrowRight: arrowRightIcon,
-  arrowRightNarrow: arrowRightNarrowIcon,
+  back: arrowLeftIcon,
+  chevron: arrowRightIcon,
+  chevronNarrow: arrowRightNarrowIcon,
   arrowUp: arrowUpIcon,
   circleError: circleErrorIcon,
   close: crossIcon,
