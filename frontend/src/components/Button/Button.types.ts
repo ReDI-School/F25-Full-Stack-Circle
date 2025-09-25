@@ -21,11 +21,12 @@ interface ButtonProps {
 
   variant?: 'primary' | 'secondary' | 'white' | 'outlined';
   size?: 'medium' | 'large';
-  icon?: React.ReactNode;
+  icon?: string | React.ReactNode;
   iconPosition?: 'before' | 'after';
   iconOnly?: boolean;
   fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  'aria-label'?: string;
 }
 
 export type { ButtonProps };
