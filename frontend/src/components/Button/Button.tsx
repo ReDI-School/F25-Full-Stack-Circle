@@ -46,6 +46,7 @@ const Button = ({
   fullWidth = false,
   type = 'button',
   'aria-label': ariaLabel,
+  ...rest
 }: ButtonProps) => {
   const renderedIcon =
     typeof icon === 'string'
@@ -64,9 +65,8 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       type={type}
-      aria-label={
-        iconOnly ? ariaLabel || (typeof children === 'string' ? children : undefined) : undefined
-      }
+      aria-label={ariaLabel}
+      {...rest}
     >
       {iconOnly ? (
         typeof renderedIcon === 'string' ? (
