@@ -2,7 +2,7 @@ interface ButtonProps {
   /**
    * The label of the button
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /**
    * The function to be called when the button is clicked
