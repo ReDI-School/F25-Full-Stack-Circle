@@ -34,6 +34,10 @@ const Home = () => {
       name: 'Lyubomir',
       email: 'lakovski@gmail.com',
     },
+    {
+      name: 'Yuri',
+      email: 'kravets.yuri.v@gmail.com',
+    },
     // add your name
   ]);
   const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
