@@ -18,6 +18,14 @@ interface ButtonProps {
    * Whether the button should be disabled
    */
   disabled?: boolean;
+
+  variant?: 'primary' | 'secondary' | 'white' | 'outlined';
+  size?: 'medium' | 'large';
+  icon?: React.ReactNode;
+  iconPosition?: 'before' | 'after';
+  iconOnly?: boolean;
+  fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export type { ButtonProps };
