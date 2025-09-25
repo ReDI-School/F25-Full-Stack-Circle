@@ -13,7 +13,7 @@
   height: 40px;
   width: fit-content;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* changed from column to accomodate icon and label */
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
@@ -33,4 +33,119 @@
 
 .button.stretch {
   width: 100%;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--primary-red);
+  color: var(--text-primary);
+  border: none;
+}
+.primary:hover:not(:disabled) {
+  background-color: var(--secondary-red-200);
+}
+.primary:disabled {
+  background-color: var(--grey-100);
+  color: var(--grey-200);
+}
+
+/* Secondary variant (solid neutral) */
+.secondary {
+  background-color: var(--secondary-bg, #374151);
+  color: var(--text-on-secondary, var(--text-primary));
+  border: none;
+}
+.secondary:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+.secondary:disabled {
+  background-color: var(--grey-100);
+  color: var(--grey-200);
+}
+
+/* White variant */
+.white {
+  background-color: var(--white, #fff);
+  color: var(--text-primary);
+  border: 1px solid var(--border, #e5e7eb);
+}
+.white:hover:not(:disabled) {
+  background-color: var(--white-hover, #f9fafb);
+}
+.white:disabled {
+  background-color: var(--grey-100);
+  color: var(--grey-200);
+}
+
+/* Outlined variant */
+.outlined {
+  background: transparent;
+  color: var(--primary-red);
+  border: 1px solid var(--primary-red);
+}
+.outlined:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+.outlined:disabled {
+  border-color: var(--grey-100);
+  color: var(--grey-200);
+}
+
+/* Sizes */
+.sizeMedium {
+  height: 40px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+}
+
+.sizeLarge {
+  height: 48px;
+  padding: var(--space-3) calc(var(--space-6) + 4px);
+  font-size: calc(var(--text-base) + 2px);
+}
+
+/* Icon and labels */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  line-height: 0;
+}
+
+.label {
+  display: inline-block;
+}
+
+/* Icon-only (square) */
+.iconOnly {
+  padding: 0;
+  width: 40px; /* default square for medium */
+  height: 40px;
+  justify-content: center;
+}
+.iconOnly.sizeLarge {
+  width: 48px;
+  height: 48px;
+}
+
+/* fullWidth alias kept for compatibility: reuse .stretch behavior */
+.fullWidth {
+  width: 100%;
+}
+
+/* Focus visible for accessibility */
+.button:focus-visible,
+.primary:focus-visible,
+.secondary:focus-visible,
+.white:focus-visible,
+.outlined:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* small active press */
+.button:active:not(:disabled) {
+  transform: translateY(1px);
 }
