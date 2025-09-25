@@ -51,11 +51,12 @@
 
 /* Secondary variant (solid neutral) */
 .secondary {
-  background-color: var(--secondary-bg, #374151);
+  background-color: var(--grey-350);
   color: var(--text-on-secondary, var(--text-primary));
   border: none;
 }
 .secondary:hover:not(:disabled) {
+  background-color: var(--grey-400);
   filter: brightness(0.95);
 }
 .secondary:disabled {
@@ -66,11 +67,11 @@
 /* White variant */
 .white {
   background-color: var(--white, #fff);
-  color: var(--text-primary);
+  color: var(--text-inverse);
   border: 1px solid var(--border, #e5e7eb);
 }
 .white:hover:not(:disabled) {
-  background-color: var(--white-hover, #f9fafb);
+  background-color: var(--grey-20, #dcdcdc);
 }
 .white:disabled {
   background-color: var(--grey-100);
@@ -80,11 +81,14 @@
 /* Outlined variant */
 .outlined {
   background: transparent;
-  color: var(--primary-red);
-  border: 1px solid var(--primary-red);
+  color: var(--grey-350);
+  border: 1px solid var(--grey-350);
+  border-radius: 0;
 }
 .outlined:hover:not(:disabled) {
   background-color: rgba(0, 0, 0, 0.03);
+  color: var(--white, #fff);
+  border: 1px solid var(--white, #fff);
 }
 .outlined:disabled {
   border-color: var(--grey-100);
@@ -109,8 +113,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   line-height: 0;
 }
 
