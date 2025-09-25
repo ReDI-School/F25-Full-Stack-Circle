@@ -49,7 +49,7 @@ const Button = ({
 }: ButtonProps) => {
   const renderedIcon =
     typeof icon === 'string'
-      ? ICONS[icon] // URL string for PNG
+      ? ICONS[icon] // URL string for SVG
       : icon; // React node
 
   return (
