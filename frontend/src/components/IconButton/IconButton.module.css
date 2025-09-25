@@ -1,0 +1,94 @@
+.iconButton {
+  /* Base button styles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  border: 2px solid var(--primary-white);
+  border-radius: var(--radius-circle);
+  background-color: var(--primary-white);
+ 
+  transition: var(--transition-base);
+}
+
+/* Filled + Primary */
+.iconButton--filled.iconButton--primary {
+  background: var(--primary-white);
+  border: none;
+}
+
+/* Filled + Secondary */
+.iconButton--filled.iconButton--secondary {
+  background: var(--grey-50);
+  border: none;
+}
+
+/* Outlined + Primary */
+.iconButton--outlined.iconButton--primary {
+  background: transparent;
+  border-color: var(--grey-500);
+}
+
+/* Outlined + Secondary */
+.iconButton--outlined.iconButton--secondary {
+  background: transparent;
+  border-color: var(--primary-white);
+}
+
+.iconButton--disabled {
+  /* Disabled state styles */
+  opacity: 70%;
+  border: 2px solid var(--grey-350);
+}
+
+.iconButton--selected {
+  /* Selected state styles */
+  background-color: var(--grey-500);
+}
+
+.iconButton--small {
+  /* Small size styles */
+  height: var(--text-3xl);
+  width: var(--text-3xl);
+}
+
+.iconButton--medium {
+  /* Medium size styles */
+  height: var(--text-4xl);
+  width: var(--text-4xl);
+}
+
+.iconButton--large {
+  /* Large size styles */
+  height: var(--text-5xl);
+  width: var(--text-5xl);
+}
+
+.iconButton:hover {
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.icon {
+  color: var(--primary-black);
+}
+
+.icon--filled.icon--primary {
+  /* Filled variant styles */
+  color: var(--primary-black);
+}
+
+.icon--filled.icon--secondary {
+  /* Filled variant styles */
+  color: var(--grey-500);
+}
+
+.icon--outlined.icon--primary {
+  /* Filled variant styles */
+  color: var(--primary-white);
+}
+
+.icon--outlined.icon--secondary {
+  /* Filled variant styles */
+  color: var(--grey-500);
+}
