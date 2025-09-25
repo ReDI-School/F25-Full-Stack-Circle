@@ -9,9 +9,20 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+// Transforms SVGs to React Component
+// More info at: https://github.com/pd4d10/vite-plugin-svgr
+import svgr from 'vite-plugin-svgr';
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr({
+      svgrOptions: {
+        replaceAttrValues: {
+          '#2A2A2A': 'currentColor',
+          'white': 'currentColor',
+        },
+      },
+    })],
   test: {
     projects: [
       {
