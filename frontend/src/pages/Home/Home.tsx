@@ -19,6 +19,10 @@ const Home = () => {
       email: 'test@fabio.com',
     },
     {
+      name: 'Nikita',
+      email: 'test@nikita.com',
+    },
+    {
       name: 'Perial',
       email: 'dperial44@gmail.com',
     },
