@@ -35,6 +35,11 @@ const styledIconButton = cva(styles.iconButton, {
 
 const styledIcon = cva(styles.icon, {
   variants: {
+    size: {
+      small: styles['icon--small'],
+      medium: styles['icon--medium'],
+      large: styles['icon--large'],
+    },
     theme: {
       primary: styles['icon--primary'],
       secondary: styles['icon--secondary'],
@@ -76,7 +81,7 @@ const IconButton = ({
       onClick={() => onClick}
       className={styledIconButton({ disabled, selected, size, theme, variant, className })}
     >
-      <Icon className={styledIcon({ theme, variant, className })} />
+      <Icon className={styledIcon({ theme, variant, size, className })} />
     </button>
   );
 };
