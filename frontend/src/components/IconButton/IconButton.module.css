@@ -3,24 +3,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
-  border: 2px solid var(--primary-white);
   border-radius: var(--radius-circle);
-  background-color: var(--primary-white);
- 
+  border: 2px solid var(--grey-500);
   transition: var(--transition-base);
 }
 
 /* Filled + Primary */
 .iconButton--filled.iconButton--primary {
   background: var(--primary-white);
-  border: none;
+  border-color: transparent;
 }
 
 /* Filled + Secondary */
 .iconButton--filled.iconButton--secondary {
   background: var(--grey-50);
-  border: none;
+  border-color: transparent;
 }
 
 /* Outlined + Primary */
@@ -38,7 +35,19 @@
 .iconButton--disabled {
   /* Disabled state styles */
   opacity: 70%;
-  border: 2px solid var(--grey-350);
+  border-color: var(--grey-350);
+}
+ 
+.iconButton:hover {
+  /* Hovered state styles */
+  cursor: pointer;
+  opacity: 90%;
+  transform: scale(1.02);
+}
+
+.iconButton:active {
+  /* Active state styles */
+  transform: scale(.9);
 }
 
 .iconButton--selected {
@@ -55,22 +64,38 @@
 .iconButton--medium {
   /* Medium size styles */
   height: var(--text-4xl);
-  width: var(--text-4xl);
+  width: var(--text-4xl); 
 }
 
 .iconButton--large {
   /* Large size styles */
   height: var(--text-5xl);
-  width: var(--text-5xl);
-}
-
-.iconButton:hover {
-  cursor: pointer;
-  opacity: 90%;
+  width: var(--text-5xl); 
 }
 
 .icon {
+  /* Base SVG Icon styles */
   color: var(--primary-black);
+  max-width: var(--text-3xl);
+  max-height: var(--text-3xl);
+} 
+
+.icon--small {
+  /* Small SVG size styles */
+  width: var(--text-l);
+  height: var(--text-l);
+}
+
+.icon--medium {
+  /* Medium SVG size styles */
+  width: var(--text-xl);
+  height: var(--text-xl);
+}
+
+.icon--large {
+  /* Large SVG size styles */
+  width: var(--text-2xl);
+  height: var(--text-2xl);
 }
 
 .icon--filled.icon--primary {
