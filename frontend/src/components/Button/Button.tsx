@@ -48,10 +48,18 @@ const Button = ({
   'aria-label': ariaLabel,
   ...rest
 }: ButtonProps) => {
-  const renderedIcon =
-    typeof icon === 'string'
-      ? ICONS[icon] // URL string for SVG
-      : icon; // React node
+  const renderIcon = (icon: string | React.ReactNode, ariaLabel?: string) => {
+    if (!icon) return null;
+
+    // if string, get from ICONS first
+    if (typeof icon === 'string') {
+      const src = ICONS[icon];
+      return <img src={src} alt={ariaLabel ?? ''} className={styles.icon} />;
+    }
+
+    // if not, treat as React node
+    return <span className={styles.icon}>{icon}</span>;
+  };
 
   return (
     <button
@@ -69,28 +77,12 @@ const Button = ({
       {...rest}
     >
       {iconOnly ? (
-        typeof renderedIcon === 'string' ? (
-          <img src={renderedIcon} alt={ariaLabel} className={styles.icon} />
-        ) : (
-          <span className={styles.icon}>{renderedIcon}</span>
-        )
+        renderIcon(icon, ariaLabel)
       ) : (
         <>
-          {renderedIcon &&
-            iconPosition === 'before' &&
-            (typeof renderedIcon === 'string' ? (
-              <img src={renderedIcon} alt="" className={styles.icon} />
-            ) : (
-              <span className={styles.icon}>{renderedIcon}</span>
-            ))}
+          {iconPosition === 'before' && renderIcon(icon)}
           <span className={styles.label}>{children}</span>
-          {renderedIcon &&
-            iconPosition === 'after' &&
-            (typeof renderedIcon === 'string' ? (
-              <img src={renderedIcon} alt="" className={styles.icon} />
-            ) : (
-              <span className={styles.icon}>{renderedIcon}</span>
-            ))}
+          {iconPosition === 'after' && renderIcon(icon)}
         </>
       )}
     </button>

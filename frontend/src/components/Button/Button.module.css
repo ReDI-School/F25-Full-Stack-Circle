@@ -41,9 +41,11 @@
   color: var(--text-primary);
   border: none;
 }
+
 .primary:hover:not(:disabled) {
   background-color: var(--secondary-red-200);
 }
+
 .primary:disabled {
   background-color: var(--grey-100);
   color: var(--grey-200);
@@ -55,10 +57,12 @@
   color: var(--text-on-secondary, var(--text-primary));
   border: none;
 }
+
 .secondary:hover:not(:disabled) {
   background-color: var(--grey-400);
   filter: brightness(0.95);
 }
+
 .secondary:disabled {
   background-color: var(--grey-100);
   color: var(--grey-200);
@@ -70,9 +74,11 @@
   color: var(--text-inverse);
   border: 1px solid var(--border, #e5e7eb);
 }
+
 .white:hover:not(:disabled) {
   background-color: var(--grey-20, #dcdcdc);
 }
+
 .white:disabled {
   background-color: var(--grey-100);
   color: var(--grey-200);
@@ -85,11 +91,13 @@
   border: 1px solid var(--grey-350);
   border-radius: 0;
 }
+
 .outlined:hover:not(:disabled) {
   background-color: rgba(0, 0, 0, 0.03);
   color: var(--white, #fff);
   border: 1px solid var(--white, #fff);
 }
+
 .outlined:disabled {
   border-color: var(--grey-100);
   color: var(--grey-200);
@@ -129,6 +137,7 @@
   height: 40px;
   justify-content: center;
 }
+
 .iconOnly.sizeLarge {
   width: 48px;
   height: 48px;
