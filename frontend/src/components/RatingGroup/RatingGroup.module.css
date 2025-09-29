@@ -1,0 +1,10 @@
+.ratingGroup {
+  /* Base rating group styles */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  gap: var(--space-2);
+  border-radius: var(--radius-pill);
+  background-color: var(--grey-650);
+}
