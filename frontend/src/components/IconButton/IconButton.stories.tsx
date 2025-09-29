@@ -62,7 +62,7 @@ export const PrimaryTheme: Story = {
 export const SecondaryTheme: Story = {
   args: {
     icon: 'play',
-    theme: 'primary',
+    theme: 'secondary',
   },
 };
 
