@@ -21,8 +21,9 @@ interface IconButtonProps {
 
   /**
    * Whether the button is in a selected state
+   * Set to 'undefined' if not used inside RatingGroup to apply correct styling.
    */
-  selected?: boolean;
+  selected?: boolean | undefined;
 
   /**
    * The function to be called when the button is clicked
