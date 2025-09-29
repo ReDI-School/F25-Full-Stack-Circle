@@ -6,53 +6,61 @@
   border-radius: var(--radius-circle);
   border: 2px solid var(--grey-500);
   transition: var(--transition-base);
+  cursor: pointer;
 }
 
 /* Filled + Primary */
 .iconButton--filled.iconButton--primary {
-  background: var(--primary-white);
+  background-color: var(--primary-white);
   border-color: transparent;
 }
 
 /* Filled + Secondary */
 .iconButton--filled.iconButton--secondary {
-  background: var(--grey-50);
+  background-color: var(--grey-500);
   border-color: transparent;
 }
 
 /* Outlined + Primary */
 .iconButton--outlined.iconButton--primary {
-  background: transparent;
-  border-color: var(--grey-500);
+  background-color: transparent;
+  border-color: var(--grey-100);
 }
 
 /* Outlined + Secondary */
 .iconButton--outlined.iconButton--secondary {
-  background: transparent;
+  background-color: transparent;
   border-color: var(--primary-white);
 }
 
-.iconButton--disabled {
+.iconButton.iconButton--selected {
+  /* Selected state styles */
+  background-color: var(--grey-450);
+  border-color: var(--primary-white);
+}
+
+.iconButton.iconButton--unselected {
+  /* Selected state styles */
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.iconButton:disabled {
   /* Disabled state styles */
+  cursor: not-allowed;
   opacity: 70%;
   border-color: var(--grey-350);
 }
  
-.iconButton:hover {
+.iconButton:not(:disabled):hover {
   /* Hovered state styles */
-  cursor: pointer;
   opacity: 90%;
   transform: scale(1.02);
 }
 
-.iconButton:active {
+.iconButton:not(:disabled):active {
   /* Active state styles */
   transform: scale(.9);
-}
-
-.iconButton--selected {
-  /* Selected state styles */
-  background-color: var(--grey-500);
 }
 
 .iconButton--small {
@@ -105,7 +113,7 @@
 
 .icon--filled.icon--secondary {
   /* Filled variant styles */
-  color: var(--grey-500);
+  color: var(--grey-100);
 }
 
 .icon--outlined.icon--primary {
@@ -115,5 +123,5 @@
 
 .icon--outlined.icon--secondary {
   /* Filled variant styles */
-  color: var(--grey-500);
+    color: var(--grey-100);
 }
