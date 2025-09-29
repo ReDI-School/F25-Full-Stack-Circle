@@ -123,6 +123,7 @@
   /* Spacing Scale */
   --space-0: 0;
   --space-1: 0.25rem;    /* 4px */
+  --space-1-5: 0.38rem;    /* 6px */
   --space-2: 0.5rem;     /* 8px */
   --space-2-5: 0.625rem; /* 10px */
   --space-3: 0.75rem;    /* 12px */
@@ -146,6 +147,10 @@
   --radius-xl: 0.75rem;   /* 12px */
   --radius-2xl: 1rem;     /* 16px */
   --radius-full: 9999px;
+  --radius-circle: 50%;
+  --radius-pill-sm: 20px;
+  --radius-pill-md: 25px;
+  --radius-pill-lg: 30px;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
