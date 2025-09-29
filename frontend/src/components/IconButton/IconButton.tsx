@@ -16,6 +16,7 @@ const styledIconButton = cva(styles.iconButton, {
     },
     selected: {
       true: styles['iconButton--selected'],
+      false: styles['iconButton--unselected'],
     },
     size: {
       small: styles['iconButton--small'],
@@ -67,7 +68,7 @@ const IconButton = ({
   className,
   disabled = false,
   onClick,
-  selected = false,
+  selected = undefined,
   size = 'medium',
   theme = 'primary',
   variant = 'filled',
@@ -78,8 +79,8 @@ const IconButton = ({
     <button
       aria-label={ariaLabel}
       disabled={disabled}
-      onClick={() => onClick}
-      className={styledIconButton({ disabled, selected, size, theme, variant, className })}
+      onClick={onClick}
+      className={styledIconButton({ selected, size, theme, variant, className })}
     >
       <Icon className={styledIcon({ theme, variant, size, className })} />
     </button>
