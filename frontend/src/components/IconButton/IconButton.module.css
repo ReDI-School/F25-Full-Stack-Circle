@@ -1,0 +1,127 @@
+.iconButton {
+  /* Base button styles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-circle);
+  border:solid var(--grey-500);
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+/* Filled + Primary */
+.iconButton--filled.iconButton--primary {
+  background-color: var(--primary-white);
+  border-color: transparent;
+}
+
+/* Filled + Secondary */
+.iconButton--filled.iconButton--secondary {
+  background-color: var(--grey-500);
+  border-color: transparent;
+}
+
+/* Outlined + Primary */
+.iconButton--outlined.iconButton--primary {
+  background-color: transparent;
+  border-color: var(--grey-100);
+}
+
+/* Outlined + Secondary */
+.iconButton--outlined.iconButton--secondary {
+  background-color: transparent;
+  border-color: var(--primary-white);
+}
+
+.iconButton.iconButton--selected {
+  /* Selected state styles */
+  background-color: var(--grey-450);
+  border-color: var(--primary-white);
+}
+
+.iconButton.iconButton--unselected {
+  /* Selected state styles */
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.iconButton:disabled {
+  /* Disabled state styles */
+  cursor: not-allowed;
+  opacity: 70%;
+  border-color: var(--grey-350);
+}
+ 
+.iconButton:not(:disabled):hover {
+  /* Hovered state styles */
+  opacity: 90%;
+  transform: scale(1.02);
+}
+
+.iconButton:not(:disabled):active {
+  /* Active state styles */
+  transform: scale(.9);
+}
+
+.iconButton--small {
+  /* Small size styles */
+  height: var(--text-3xl);
+  width: var(--text-3xl);
+}
+
+.iconButton--medium {
+  /* Medium size styles */
+  height: var(--text-4xl);
+  width: var(--text-4xl); 
+}
+
+.iconButton--large {
+  /* Large size styles */
+  height: var(--text-5xl);
+  width: var(--text-5xl); 
+}
+
+.icon {
+  /* Base SVG Icon styles */
+  color: var(--primary-black);
+  max-width: var(--text-3xl);
+  max-height: var(--text-3xl);
+} 
+
+.icon--small {
+  /* Small SVG size styles */
+  width: var(--text-l);
+  height: var(--text-l);
+}
+
+.icon--medium {
+  /* Medium SVG size styles */
+  width: var(--text-xl);
+  height: var(--text-xl);
+}
+
+.icon--large {
+  /* Large SVG size styles */
+  width: var(--text-2xl);
+  height: var(--text-2xl);
+}
+
+.icon--filled.icon--primary {
+  /* Filled variant styles */
+  color: var(--primary-black);
+}
+
+.icon--filled.icon--secondary {
+  /* Filled variant styles */
+  color: var(--grey-100);
+}
+
+.icon--outlined.icon--primary {
+  /* Filled variant styles */
+  color: var(--primary-white);
+}
+
+.icon--outlined.icon--secondary {
+  /* Filled variant styles */
+    color: var(--grey-100);
+}
