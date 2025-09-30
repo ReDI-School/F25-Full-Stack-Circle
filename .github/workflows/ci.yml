@@ -6,8 +6,8 @@ jobs:
     name: build
     steps:
         - uses: actions/checkout@v5
-        - run: cd frontend
-        - run: npm install
-        - run: npm run build
-        - run: npx prettier src/ -c
-
+        - run: |
+            cd frontend
+            npm install
+            npm run build
+            npx prettier src/ -c
