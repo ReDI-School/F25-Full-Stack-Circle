@@ -1,6 +1,21 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { cva } from "class-variance-authority";
 import styles from "./InputField.module.css";
 import type { InputFieldProps } from "./InputField.types";
+
+const styledContainer = cva(styles.container);
+const styledInputWrapper = cva(styles.inputWrapper, {
+  variants: {
+    error: { true: styles.error },
+    focused: { true: styles.focused },
+  },
+});
+const styledInputField = cva(styles.input, {
+  variants: {
+    size: { Medium: styles.medium, Large: styles.large },
+    filled: { true: styles.filled },
+  },
+});
 
 const placeholderForType = (type?: InputFieldProps["type"]) => {
   if (type === "Email") return "Email address";
@@ -22,8 +37,7 @@ const InputField: React.FC<InputFieldProps> = ({
   disabled = false,
   required = false,
 }) => {
-  const [focused, setFocused] = useState(false);
-  const isFocused = focused || state === "Focused";
+  const isFocused = state === "Focused";
   const isError = state === "Error";
 
   const [internalValue, setInternalValue] = useState<string>(value ?? "");
@@ -41,17 +55,10 @@ const InputField: React.FC<InputFieldProps> = ({
         : "Please enter a valid email or phone number"
       : "");
 
-  const errorId = useMemo(() => `input-error-${Math.random().toString(36).slice(2, 9)}`, []);
-
-  const handleFocus = () => {
-    setFocused(true);
-    onFocus?.();
-  };
-
-  const handleBlur = () => {
-    setFocused(false);
-    onBlur?.();
-  };
+  const errorId = useMemo(
+    () => `input-error-${Math.random().toString(36).slice(2, 9)}`,
+    []
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const next = e.target.value;
@@ -60,19 +67,20 @@ const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <div className={`${styles.container} ${isFocused ? styles.focused : ""}`}>
+    <div className={styledContainer()}>
       <div
-        className={`${styles.inputWrapper} ${isFocused ? styles.focused : ""} ${
-          isError ? styles.error : ""
-        }`}
+        className={styledInputWrapper({
+          focused: isFocused,
+          error: isError,
+        })}
       >
         <input
-          className={`${styles.input} ${styles[size]} ${internalValue ? styles.filled : ""}`}
+          className={styledInputField({ size, filled: !!internalValue })}
           type={type === "Password" ? "password" : "text"}
           value={internalValue}
           onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={onFocus}
+          onBlur={onBlur}
           disabled={disabled}
           required={required}
           aria-invalid={isError}
@@ -80,7 +88,6 @@ const InputField: React.FC<InputFieldProps> = ({
           aria-label={resolvedLabel}
         />
         <label className={styles.label}>{resolvedLabel}</label>
-
         <span className={styles.divider} aria-hidden="true" />
       </div>
 
