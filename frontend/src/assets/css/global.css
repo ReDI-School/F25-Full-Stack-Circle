@@ -69,7 +69,7 @@
   --transparent-white-70: #ffffff;
   --transparent-black-30: #000000;
   --transparent-black-60: #000000;
-  --transparent-black-90: #000000;
+  --transparent-black-90: rgba(0, 0, 0, 0.9);
 
   /* Semantic Colors */
   --success: #28a745;
@@ -157,7 +157,7 @@
   --radius-pill-sm: 20px;
   --radius-pill-md: 25px;
   --radius-pill-lg: 30px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);

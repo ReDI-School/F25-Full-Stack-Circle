@@ -1,0 +1,89 @@
+.select {
+  position: relative;
+  max-width: 178px;
+  width: 100%;
+  height: 27px;
+  font: var(--text-primary) var(--text-sm) var(--font-normal);
+  &.expanded {
+    .selectInput {
+      background-color: var(--grey-700);
+    }
+  }
+  &.large {
+    max-width: 240px;
+  }
+}
+
+.selectInput {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-2-5) var(--space-1);
+  border: 1px solid var(--primary-white);
+  background-color: var(--bg-primary);
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  &::placeholder {
+    color: var(--text-primary);
+  }
+}
+
+.selectArrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+  &:focus {
+    & + .selectInput {
+      background-color: var(--grey-700);
+    }
+  }
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.selectDropdown {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-dropdown);
+  overflow: hidden scroll;
+  min-height: 118px;
+  max-height: 544px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--grey-700);
+  background-color: var(--transparent-black-90);
+  transform: translateY(100%);
+}
+
+.selectOption {
+  width: 100%;
+  margin-top: var(--space-2);
+  padding: var(--space-1) var(--space-2-5);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-none);
+  text-align: left;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-none);
+  &.selected {
+    background-color: var(--grey-200);
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--grey-100);
+  }
+  &:focus {
+    outline: none;
+  }
+}
