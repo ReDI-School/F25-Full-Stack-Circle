@@ -1,0 +1,7 @@
+.checkboxInput {
+  cursor: pointer;
+}
+.label {
+  background-color: black; /*test*/
+  color: var(--text-primary);
+}
