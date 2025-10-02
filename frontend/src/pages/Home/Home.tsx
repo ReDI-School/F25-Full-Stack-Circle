@@ -6,12 +6,19 @@ import { useNavigate } from 'react-router';
 
 import { useConfig } from '../../hooks';
 import { useEffect, useState } from 'react';
+import { NavigationMenu, type NavItem } from '../../components/NavigationMenu';
 
 interface User {
   name: string;
   email: string;
 }
-
+const items: NavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'TV Shows', href: '/tv' },
+  { label: 'News & Popular', href: '/news' },
+  { label: 'My List', href: '/list' },
+  { label: 'Browse By Language', href: '/language' },
+];
 const Home = () => {
   const [users, setUsers] = useState<User[]>([
     {
@@ -60,6 +67,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
+      <NavigationMenu navItems={items}></NavigationMenu>
       <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loadingUsers ? (
