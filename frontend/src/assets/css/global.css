@@ -170,6 +170,25 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-toast: 1080;
+  --progressBarThumb-z-index: 20;
+
+  /* Hover Sizes */
+  --progressBarThumb-hover-width: 18px;
+  --progressBarThumb-hover-height: 18px;
+  --progressBar-hover-height: 10px;
+
+  /* Widths */
+  --progressBarLabel-min-width: 56px;
+  --progressBarThumb-width: 16px;
+  --normalize-width: 100%;
+
+  /* Heights */
+  --progressBarThumb-height: 16px;
+  --progressBar-height: 8px;
+  --normalize-height: 100%;
+
+  /* Focus Offsets */
+  --progressBarThumb-focus-offset: 2px;
 }
 
 *, 
