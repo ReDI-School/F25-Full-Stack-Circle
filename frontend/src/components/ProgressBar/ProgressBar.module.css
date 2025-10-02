@@ -45,7 +45,7 @@
   width: 16px;
   height: 16px;
   background: var(--primary-red);
-  border-radius: 50%; /* Ellipse-ähnlich */
+  border-radius: var(--radius-circle);
   cursor: pointer;
   transition: background var(--transition-base), box-shadow var(--transition-base);
   z-index: 20;
