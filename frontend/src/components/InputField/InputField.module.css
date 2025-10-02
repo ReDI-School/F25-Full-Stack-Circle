@@ -1,0 +1,121 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-family);
+}
+
+.inputWrapper {
+  position: relative;
+  padding: var(--space-2);
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--grey-50);
+  padding: var(--space-3);
+  height: 56px;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+  box-shadow: none;
+}
+
+.input.medium {
+  height: 56px;
+  width: 314px;
+}
+
+.input.large {
+  height: 64px;
+  width: 372px;
+}
+
+.input.filled,
+.input:focus {
+  border: 2px solid var(--primary-white);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  padding-top: var(--space-5);
+}
+
+.label {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--grey-50);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 var(--space-2);
+  transition: all var(--transition-base);
+  z-index: 2;
+  border-radius: var(--radius-sm);
+}
+
+.input.filled + .label,
+.input:focus + .label {
+  top: var(--space-4);
+  font-size: var(--text-xs);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  transform: none;
+}
+
+.input::placeholder {
+  color: transparent;
+}
+
+.divider {
+  display: none;
+}
+
+.error .input {
+  border: 1px solid var(--error);
+  box-shadow: none;
+}
+
+.error .label {
+  color: var(--error);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.errorText {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-top: var(--space-2);
+  color: var(--error);
+  font-size: var(--text-xs);
+}
+
+.errorIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--error);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  color: var(--error);
+  background: transparent;
+}
+
+@media (max-width: 420px) {
+  .input.medium,
+  .input.large {
+    width: 100%;
+  }
+}
