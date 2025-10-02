@@ -10,15 +10,14 @@ interface Episode {
 interface EpisodeListProps {
   episodes?: Episode[];
   onEpisodeClick?: (episode: Episode) => void;
+  currentEpisodeId?: string | number;
   className?: string;
 }
 
 interface EpisodeListCardProps {
   episode: Episode;
   onClick?: (episode: Episode) => void;
+  isCurrent?: boolean;
 }
 
 export type { Episode, EpisodeListProps, EpisodeListCardProps };
-
-
-
