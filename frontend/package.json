@@ -51,7 +51,12 @@
     "storybook": "^9.1.10",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
+<<<<<<< HEAD
     "vite": "^7.1.8",
+=======
+    "vite": "^7.1.2",
+    "vite-plugin-svgr": "^4.5.0",
+>>>>>>> main
     "vitest": "^3.2.4"
   }
 }
