@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import NavigationMenu from './NavigationMenu';
-import type { NavItem } from './NavigationMenu.types';
+import { NavigationMenu } from './index';
+import type { NavItem } from './index';
 
 const items: NavItem[] = [
   { label: 'Home', href: '/' },
