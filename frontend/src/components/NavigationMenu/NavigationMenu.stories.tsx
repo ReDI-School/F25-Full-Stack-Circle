@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import NavigationMenu from './NavigationMenu';
 import type { NavItem } from './NavigationMenu.types';
 
