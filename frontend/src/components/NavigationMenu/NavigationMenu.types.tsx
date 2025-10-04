@@ -1,6 +1,6 @@
 interface NavItem {
   label: string;
-  href?: string;
+  href: string;
   onClick?: () => void;
 }
 interface NavigationMenuProps {

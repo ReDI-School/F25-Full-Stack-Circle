@@ -1,5 +1,6 @@
 import type { NavigationMenuProps } from './NavigationMenu.types';
 import styles from './NavigationMenu.module.css';
+import { Link } from 'react-router';
 
 const NavigationMenu = ({ navItems }: NavigationMenuProps) => {
   return (
@@ -7,9 +8,9 @@ const NavigationMenu = ({ navItems }: NavigationMenuProps) => {
       <ul className={styles.items}>
         {navItems.map((item) => (
           <li className={styles.list} key={item.label}>
-            <a href="{item.href}" onClick={item.onClick} className={styles.link}>
+            <Link to={item.href} onClick={item.onClick} className={styles.link}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
