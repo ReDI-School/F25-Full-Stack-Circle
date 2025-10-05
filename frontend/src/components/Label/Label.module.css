@@ -1,0 +1,73 @@
+.rankingContainer {
+    /* Flexbox layout for ranking labels */
+    /*background-color: --netflix-red (#E50914) for background colors*/
+    /*background-color: var(--netflix-red, #E50914);*/
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top10Icon {
+    /* TOP 10 flag styling */
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*background-color: var(--primary-red);*/
+    /*border-radius:  var(--radius-sm, 0.125rem);*/
+    /*margin-right: 10px;*/
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--netflix-red);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+
+}
+
+.topText {
+    /* "TOP" text styling */
+    font-size: 12px;
+    font-weight: var(--font-bold);
+    font-family: var(--font-family);
+    color: var(--text-primary);
+}
+
+.tenText {
+    /* "10" text styling */
+    font-size: 18px;
+    font-weight: var(--font-bold);
+    font-family: var(--font-family);
+    color: var(--text-primary);
+}
+
+.rankingText {
+    /* Ranking text styling */
+    font-size: 14px;
+    font-weight: var(--font-bold);
+    font-family: var(--font-family);
+    color: var(--text-primary);
+}
+
+.top10Container {
+    /* Standalone TOP 10 container */
+}
+
+.statusContainer {
+    /* Status label container */
+    display: flex;
+    border-radius:  var(--radius-sm, 0.125rem);
+
+}
+.statusLabel {
+    background-color: var(--primary-red);
+    border-radius:  var(--radius-sm, 0.125rem);
+    padding: 5px 8px;
+
+}
+
+.statusText {
+    /* Status text styling */
+}

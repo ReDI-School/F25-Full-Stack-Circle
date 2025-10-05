@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 
 import { useConfig } from '../../hooks';
 import { useEffect, useState } from 'react';
+import Label from '../../components/Label/Label';
 
 interface User {
   name: string;
@@ -61,6 +62,23 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <img src={logo} alt="Rediflix Logo" width={500} />
+      {/*<Label*/}
+      {/*    type="ranking"*/}
+      {/*    variant='new-season'*/}
+      {/*/>*/}
+      {/*<Label*/}
+      {/*    type="status"*/}
+      {/*    ranking={2}*/}
+      {/*    category="TV Shows Today"*/}
+      {/*/>*/}
+      <Label type="ranking" ranking={2} category="TV Shows Today" />
+      <Label type="ranking" ranking={1} category="TV Shows Today" />
+
+      <Label type="status" variant="New Season" />
+      <Label type="status" variant="Recently Added" />
+      <Label type="status" variant="Leaving Soon" />
+
+      <Label type="top10-icon" />
       <div>
         {loadingUsers ? (
           <div>Redi team</div>
@@ -75,6 +93,7 @@ const Home = () => {
         )}
       </div>
       <Button onClick={handleSignIn}>Sign In</Button>
+
     </div>
   );
 };
