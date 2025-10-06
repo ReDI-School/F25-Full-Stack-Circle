@@ -14,10 +14,4 @@ interface EpisodeListProps {
   className?: string;
 }
 
-interface EpisodeListCardProps {
-  episode: Episode;
-  onClick?: (episode: Episode) => void;
-  isCurrent?: boolean;
-}
-
-export type { Episode, EpisodeListProps, EpisodeListCardProps };
+export type { Episode, EpisodeListProps };

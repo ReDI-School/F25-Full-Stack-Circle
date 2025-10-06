@@ -1,0 +1,76 @@
+.alertMessage {
+  font-size: var(--text-base);
+  text-align: center;
+  margin: 2.5rem;
+}
+
+.episodeListContainer {
+  margin: 0;
+  padding: 1.25rem;
+  background-color: var(--bg-tertiary);
+}
+
+.episodeListContainer h3 {
+  margin-bottom: 1.25rem;
+}
+
+.episodeListWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px dashed var(--secondary-red-100);
+  background-color: var(--bg-secondary);
+  margin: 1.25rem; /* 20px */
+  padding: 2rem; /* 16px */
+}
+
+.episodeList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.episodeItem {
+  transition: transform var(--transition-base);
+}
+
+.episodeItem:hover {
+  transform: translateY(-2px);
+}
+
+.currentEpisode {
+  background-color: var(--bg-tertiary);
+}
+
+.listLine {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grey-300T40);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alertMessage {
+    font-size: var(--text-sm);
+    margin: 1.5rem;
+  }
+
+  .episodeListWrapper {
+    margin: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .episodeListContainer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .alertMessage {
+    font-size: var(--text-xs);
+    margin: 1rem;
+  }
+
+  .episodeListWrapper {
+    padding: 0.5rem;
+  }
+}

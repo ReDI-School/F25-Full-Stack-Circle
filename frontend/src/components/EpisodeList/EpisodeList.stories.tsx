@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { EpisodeList } from './index';
+import { EpisodeList } from './index.ts';
 import type { Episode, EpisodeListProps } from './EpisodeList.types';
 
 const meta: Meta<typeof EpisodeList> = {
@@ -18,17 +18,19 @@ const placeholderEpisodes: Episode[] = [
   {
     id: 1,
     number: 1,
-    thumbnail: 'thumbnail@1.png',
+    thumbnail: 'https://placehold.co/600x400',
     title: 'The Offer',
-    description: 'While Haru Tawara develops a crush on a mysterious young woman...',
+    description:
+      "While Haru Tawara develops a crush on a mysterious young woman at work, an unusual opportunity arises at his father's financially struggling brewery.",
     duration: '55m',
   },
   {
     id: 2,
     number: 2,
-    thumbnail: 'thumbnail@2.png',
+    thumbnail: 'https://placehold.co/600x400',
     title: 'The Trail',
-    description: 'Haru accompanies Karen...',
+    description:
+      "Haru accompanies Karen to investigate a whistleblower's apartment. Meanwhile, several other Tawaras are tempted to step out of their ordinary lives.",
     duration: '52m',
   },
 ];
