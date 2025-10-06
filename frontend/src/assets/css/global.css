@@ -199,6 +199,36 @@
 
   /* Focus Offsets */
   --progressBarThumb-focus-offset: 2px;
+
+  /* Volume Slider Specific */--volume-bg: #181818;
+  --volume-container-width: 70px;
+  --volume-container-height: 200px;
+  --volume-container-padding-top: 70px;
+  --volume-container-gap: 58px;
+
+  --volume-slider-bg: #262626;
+  --volume-slider-container-width: 150px;
+  --volume-slider-container-radius: 2px;
+
+  --volume-slider-width: 110px;
+  --volume-slider-height: 30px;
+  --volume-slider-accent: #FF002E;
+
+  --volume-track-height: 10px;
+  --volume-track-height-firefox: 20px;
+  --volume-track-height-ie: 20px;
+  --volume-track-bg: #808080;
+  --volume-track-fill: #FF002E;
+
+  --volume-thumb-size: 20px;
+  --volume-thumb-bg: #FF002E;
+  --volume-thumb-border: #FF002E;
+  --volume-thumb-margin-high: 1px;
+  --volume-thumb-margin-medium: -3px;
+  --volume-thumb-margin-mute: -6px;
+  --volume-thumb-margin-top: -5px;
+
+  --volume-icon-size: 40px;
 }
 
 *,
@@ -253,3 +283,5 @@ h5 {
 h6 {
   font-size: var(--text-lg);
 }
+
+/* VolumeSlider Styles */

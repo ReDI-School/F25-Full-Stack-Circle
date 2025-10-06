@@ -1,0 +1,128 @@
+.volumeSliderContainer {
+  background: var(--volume-bg, #181818);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: var(--volume-container-width, 70px);
+  height: var(--volume-container-height, 200px);
+  box-sizing: border-box;
+  padding-top: var(--volume-container-padding-top, 70px);
+  position: relative;
+  gap: var(--volume-container-gap, 58px);
+}
+
+.sliderContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--volume-slider-bg, #262626);
+  transform: rotate(-90deg);
+  width: var(--volume-slider-container-width, 150px);
+  border-radius: var(--volume-slider-container-radius, 2px);
+}
+
+.volumeSlider {
+  width: var(--volume-slider-width, 110px);
+  height: var(--volume-slider-height, 30px);
+  transform: rotate(-360deg);
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  outline: none;
+  padding: 0;
+  border-radius: 0 !important;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  accent-color: var(--volume-slider-accent, #FF002E);
+  overflow: visible;
+}
+
+/* Track für Chrome, Edge, Safari */
+.volumeSlider::-webkit-slider-runnable-track {
+  height: var(--volume-track-height, 10px);
+  background: linear-gradient(
+    to right,
+    var(--volume-track-fill, #FF002E) 0%,
+    var(--volume-track-fill, #FF002E) calc(var(--value, 50) * 1%),
+    var(--volume-track-bg, #808080) calc(var(--value, 50) * 1%),
+    var(--volume-track-bg, #808080) 100%
+  );
+  border-radius: 0px;
+}
+
+/* Track für Firefox */
+.volumeSlider::-moz-range-track {
+  height: var(--volume-track-height-firefox, 20px);
+  background: var(--volume-track-bg, #808080);
+  border-radius: 0px;
+}
+
+/* Track für IE/Edge */
+.volumeSlider::-ms-fill-lower,
+.volumeSlider::-ms-fill-upper {
+  height: var(--volume-track-height-ie, 20px);
+  background: var(--volume-track-bg, #808080);
+  border-radius: 0px;
+}
+
+/* Gefüllter Bereich für Firefox */
+.volumeSlider::-moz-range-progress {
+  background-color: var(--volume-track-fill, #FF002E);
+  height: var(--volume-track-height, 10px);
+  border-radius: 0px;
+}
+
+/* Gefüllter Bereich für IE/Edge */
+.volumeSlider::-ms-fill-lower {
+  background-color: var(--volume-track-fill, #FF002E);
+  height: var(--volume-track-height-ie, 20px);
+  border-radius: 0px;
+}
+.volumeSlider::-ms-fill-upper {
+  background-color: var(--volume-track-bg, #808080);
+  height: var(--volume-track-height-ie, 20px);
+  border-radius: 0px;
+}
+
+/* Thumb */
+.volumeSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--volume-thumb-size, 20px);
+  height: var(--volume-thumb-size, 20px);
+  background: var(--volume-thumb-bg, #FF002E);
+  border-radius: var(--radius-circle, 50%);
+  border: 1px solid var(--volume-thumb-border, #FF002E);
+  cursor: pointer;
+  z-index: 3;
+}
+/* Thumb für high */
+.volumeSliderHigh::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-high, 1px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+/* Thumb für medium */
+.volumeSliderMedium::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-medium, -3px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+/* Thumb für mute */
+.volumeSliderMute::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-mute, -6px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+
+.volumeSlider:focus {
+  outline: none;
+}
+
+.iconContainer {
+  width: var(--volume-icon-size, 40px);
+  height: var(--volume-icon-size, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 2;
+}
