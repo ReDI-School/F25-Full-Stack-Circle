@@ -1,14 +1,10 @@
 interface NavItem {
   label: string;
-  href: string;
+  href: string | (() => string);
   onClick?: () => void;
 }
 interface NavigationMenuProps {
-  navItems: NavItem[];
-
-  children?: React.ReactNode;
-
-  onClick?: () => void;
+  navItems?: NavItem[];
 }
 
 export type { NavigationMenuProps, NavItem };
