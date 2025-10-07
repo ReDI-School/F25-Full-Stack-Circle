@@ -7,7 +7,7 @@ export const routePaths = {
 };
 
 export const routeLabels: Record<keyof typeof routePaths, string> = {
-  home: 'home',
+  home: 'Home',
   shows: 'TV Shows',
   news: 'News & Popular',
   myList: 'My List',
