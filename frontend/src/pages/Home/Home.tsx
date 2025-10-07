@@ -1,12 +1,11 @@
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
 
-import styles from './Home.module.css';
 import { useNavigate } from 'react-router';
+import styles from './Home.module.css';
 
-import { useConfig } from '../../hooks';
 import { useEffect, useState } from 'react';
-import { NavigationMenu, type NavItem } from '../../components/NavigationMenu';
+import { useConfig } from '../../hooks';
 
 interface User {
   name: string;
