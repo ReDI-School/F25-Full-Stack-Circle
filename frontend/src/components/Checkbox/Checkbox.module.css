@@ -1,7 +1,70 @@
-.checkboxInput {
+.checkboxContainer {
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
-}
-.label {
-  background-color: black; /*test*/
+  gap: var(--space-3);
+  position: relative;
+  user-select: none;
+  border: none;
+  background-color: transparent;
   color: var(--text-primary);
+  font-size: var(--text-base);
+  font-family: var(--font-family);
+  font-weight: var(--font-normal);
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  background-color: transparent;
+  border: 1px solid var(--transparent-white-35);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.label {
+  display: inline-block;
+}
+
+/*unchecked und hover*/
+.checkboxContainer:hover .checkboxInput:not(:checked) ~ .checkmark {
+  border: 1px solid var(--primary-white);
+}
+/*checked*/
+.checkboxInput:checked ~ .checkmark {
+  background-color: var(--primary-white);
+}
+/*checked und hover*/
+.checkboxContainer:hover .checkboxInput:checked ~ .checkmark {
+  background-color: var(--transparent-white-70);
+}
+
+/* checkmark icon*/
+.checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+  top: 5px;
+  left: 4px;
+  width: 11px;
+  height: 8px;
+  border: solid var(--transparent-black-90);
+  border-width: 0 2px 2px 0;
+  transform: scaleX(-1) rotate(45deg);
+}
+
+/* Show checkmark when checked */
+.checkboxInput:checked ~ .checkmark::after {
+  display: block;
 }

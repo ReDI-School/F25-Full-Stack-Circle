@@ -8,24 +8,21 @@ const Checkbox = ({
   'aria-label': ariaLabel,
 }: CheckboxProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e.target.checked);
-    }
+    onChange?.(e.target.checked);
   };
 
   return (
-    <div>
-      <label className={styles.label}>
-        <input
-          type="checkbox"
-          checked={checked}
-          aria-label={ariaLabel || label}
-          onChange={handleChange}
-          className={styles.checkboxInput}
-        />
-        <span>{label}</span>
-      </label>
-    </div>
+    <label className={styles.checkboxContainer}>
+      <input
+        type="checkbox"
+        checked={checked}
+        aria-label={ariaLabel || label}
+        onChange={handleChange}
+        className={styles.checkboxInput}
+      />
+      <span className={styles.checkmark}></span>
+      {label && <span className={styles.label}>{label}</span>}
+    </label>
   );
 };
 
