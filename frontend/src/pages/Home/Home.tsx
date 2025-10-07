@@ -1,11 +1,11 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
-
-import { useNavigate } from 'react-router';
-import styles from './Home.module.css';
-
-import { useEffect, useState } from 'react';
 import { useConfig } from '../../hooks';
+
+import styles from './Home.module.css';
 
 interface User {
   name: string;

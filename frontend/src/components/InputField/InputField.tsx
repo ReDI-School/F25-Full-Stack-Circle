@@ -1,7 +1,7 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { cva } from "class-variance-authority";
-import styles from "./InputField.module.css";
-import type { InputFieldProps } from "./InputField.types";
+import React, { useMemo, useState, useEffect } from 'react';
+import { cva } from 'class-variance-authority';
+import styles from './InputField.module.css';
+import type { InputFieldProps } from './InputField.types';
 
 const styledContainer = cva(styles.container);
 const styledInputWrapper = cva(styles.inputWrapper, {
@@ -17,17 +17,17 @@ const styledInputField = cva(styles.input, {
   },
 });
 
-const placeholderForType = (type?: InputFieldProps["type"]) => {
-  if (type === "Email") return "Email address";
-  if (type === "EmailorPhone") return "Email or phone number";
-  if (type === "Password") return "Password";
-  return "";
+const placeholderForType = (type?: InputFieldProps['type']) => {
+  if (type === 'Email') return 'Email address';
+  if (type === 'EmailorPhone') return 'Email or phone number';
+  if (type === 'Password') return 'Password';
+  return '';
 };
 
 const InputField: React.FC<InputFieldProps> = ({
-  size = "Medium",
-  type = "Email",
-  state = "Default",
+  size = 'Medium',
+  type = 'Email',
+  state = 'Default',
   value,
   placeholder,
   errorMessage,
@@ -37,10 +37,10 @@ const InputField: React.FC<InputFieldProps> = ({
   disabled = false,
   required = false,
 }) => {
-  const isFocused = state === "Focused";
-  const isError = state === "Error";
+  const isFocused = state === 'Focused';
+  const isError = state === 'Error';
 
-  const [internalValue, setInternalValue] = useState<string>(value ?? "");
+  const [internalValue, setInternalValue] = useState<string>(value ?? '');
   useEffect(() => {
     if (value !== undefined && value !== internalValue) setInternalValue(value);
   }, [value]);
@@ -50,15 +50,12 @@ const InputField: React.FC<InputFieldProps> = ({
   const resolvedErrorMessage =
     errorMessage ??
     (isError
-      ? type === "Password"
-        ? "Your password must contain between 4 and 60 characters"
-        : "Please enter a valid email or phone number"
-      : "");
+      ? type === 'Password'
+        ? 'Your password must contain between 4 and 60 characters'
+        : 'Please enter a valid email or phone number'
+      : '');
 
-  const errorId = useMemo(
-    () => `input-error-${Math.random().toString(36).slice(2, 9)}`,
-    []
-  );
+  const errorId = useMemo(() => `input-error-${Math.random().toString(36).slice(2, 9)}`, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const next = e.target.value;
@@ -76,7 +73,7 @@ const InputField: React.FC<InputFieldProps> = ({
       >
         <input
           className={styledInputField({ size, filled: !!internalValue })}
-          type={type === "Password" ? "password" : "text"}
+          type={type === 'Password' ? 'password' : 'text'}
           value={internalValue}
           onChange={handleChange}
           onFocus={onFocus}
