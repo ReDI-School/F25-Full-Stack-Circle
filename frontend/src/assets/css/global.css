@@ -200,7 +200,8 @@
   /* Focus Offsets */
   --progressBarThumb-focus-offset: 2px;
 
-  /* Volume Slider Specific */--volume-bg: #181818;
+  /* Volume Slider Styles */
+  --volume-bg: #181818;
   --volume-container-width: 70px;
   --volume-container-height: 200px;
   --volume-container-padding-top: 70px;
@@ -283,5 +284,3 @@ h5 {
 h6 {
   font-size: var(--text-lg);
 }
-
-/* VolumeSlider Styles */
