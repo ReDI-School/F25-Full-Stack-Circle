@@ -6,6 +6,7 @@ interface LabelProps {
     ranking?: number;
     category?: string;
     classname?: string;
+    size?: 'small' | 'large';
 }
 
 export default function  Label({
@@ -13,13 +14,15 @@ export default function  Label({
     variant,
     ranking,
     category,
-    classname
+    classname,
+    size = 'small'
 }: LabelProps) {
 
     if (type === 'ranking') {
         return (
             <div className={`${styles.rankingContainer} ${classname || ''}`}>
-                <div className={styles.top10Icon}>
+                {/*<div className={styles.top10Icon}>*/}
+                <div className={`${styles.rankingBox} ${styles[size]}`}>
                     <span className={styles.topText}>TOP</span>
                     <span className={styles.tenText}>10</span>
                 </div>
@@ -45,8 +48,9 @@ export default function  Label({
     if (type === 'top10-icon') {
         return (
             <div className={`${styles.top10Container} ${classname || ''}`}>
-                <div className={styles.top10Icon}>
-                    <span className={styles.topText }>TOP</span>
+                {/*<div className={styles.top10Icon}>*/}
+                <div className={`${styles.top10Icon} `}>
+                    <span className={styles.topText}>TOP</span>
                     <span className={styles.tenText}>10</span>
                 </div>
             </div>
@@ -55,22 +59,4 @@ export default function  Label({
 
     return null;
 
-    // return (
-    //     <>
-    //         <div className={styles.rankingContainer}>
-    //             <div className={styles.top10Icon}>
-    //                 <span className="top-text">TOP</span>
-    //                 <span className="ten-text">10</span>
-    //             </div>
-    //             <span className="ranking-text">#{ranking} in {category}</span>
-    //         </div>
-    //
-    //         <div className="status-container">
-    //             <div className={styles.statusLabel}>
-    //                 <span className="status-text">{variant}</span>
-    //             </div>
-    //
-    //         </div>
-    //     </>
-    // )
 }

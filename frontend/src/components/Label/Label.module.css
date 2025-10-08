@@ -1,65 +1,124 @@
 .rankingContainer {
     /* Flexbox layout for ranking labels */
-    /*background-color: --netflix-red (#E50914) for background colors*/
-    /*background-color: var(--netflix-red, #E50914);*/
     display: flex;
     align-items: center;
     gap: 8px;
 }
-
+/* ---------- TOP10 ICON (со срезом) ---------- */
 .top10Icon {
     /* TOP 10 flag styling */
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*background-color: var(--primary-red);*/
-    /*border-radius:  var(--radius-sm, 0.125rem);*/
-    /*margin-right: 10px;*/
-    /*padding-left: 5px;*/
-    /*padding-right: 5px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+    width: 42px;
+    height: auto;
+    aspect-ratio: 1 / 3;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    transition: transform var(--transition-base, 0.2s ease-in-out);
+
+    background-color: var(--netflix-red);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    padding: 4px;
+
+}
+/* ---------- RANKING BOX (без среза) ---------- */
+.rankingBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     background-color: var(--netflix-red);
-    border-radius: var(--radius-sm);
-    padding: 4px;
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    aspect-ratio: 1 / 1;
+    transition: transform var(--transition-base, 0.2s ease-in-out);
+}
 
+.small {
+    width: 48px;
+    height: 48px;
+    font-size: 14px;
+    /*padding: 8px;*/
+}
+.large {
+    width: 72px;
+    height: 72px;
+    font-size: 14px;
 }
 
 .topText {
     /* "TOP" text styling */
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: var(--font-bold);
     font-family: var(--font-family);
     color: var(--text-primary);
+
+    line-height: 1;
+    letter-spacing: 0.5px;
 }
 
 .tenText {
     /* "10" text styling */
-    font-size: 18px;
+    font-size: 2rem;
     font-weight: var(--font-bold);
     font-family: var(--font-family);
     color: var(--text-primary);
+}
+
+.topText,
+.tenText {
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 }
 
 .rankingText {
     /* Ranking text styling */
-    font-size: 14px;
-    font-weight: var(--font-bold);
+    font-size: 3rem;
     font-family: var(--font-family);
     color: var(--text-primary);
 }
 
+.rankingBox.small .topText {
+    font-size: 0.8rem;
+}
+.rankingBox.small .tenText {
+    font-size: 1.4rem;
+}
+
+.rankingBox.large .topText {
+    font-size: 1rem;
+}
+.rankingBox.large .tenText {
+    font-size: 1.9rem;
+}
+
+.rankingBox.small + .rankingText {
+    font-size: 1.5rem;
+}
+
+.rankingBox.large + .rankingText {
+    font-size: 2.5rem;
+}
+
 .top10Container {
     /* Standalone TOP 10 container */
+    display: block;     /* гарантируем блочное поведение */
+    width: auto;        /* пусть ширина подстраивается под содержимое */
+    height: auto;       /* и высота тоже */
+    flex: 0 0 auto;     /* если родитель — flex, не растягивать */
+    overflow: visible;
 }
 
 .statusContainer {
     /* Status label container */
     display: flex;
     border-radius:  var(--radius-sm, 0.125rem);
-
 }
 .statusLabel {
     background-color: var(--primary-red);
@@ -70,4 +129,10 @@
 
 .statusText {
     /* Status text styling */
+    color: var(--text-primary);
+    font-weight: var(--font-bold);
+    font-size: 14px;
+}
+.rankingBox:hover {
+    transform: scale(1.05);
 }
