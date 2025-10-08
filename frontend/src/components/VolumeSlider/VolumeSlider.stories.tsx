@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VolumeSlider } from './index';
-import styles from './VolumeSlider.module.css';
+import MuteIcon from '../../assets/icons/muteVolume.svg?react';
+import HighIcon from '../../assets/icons/highVolume.svg?react';
+import MiddleIcon from '../../assets/icons/middleVolume.svg?react';
 
 const meta: Meta<typeof VolumeSlider> = {
   title: 'Components/VolumeSlider',
@@ -11,56 +14,41 @@ const meta: Meta<typeof VolumeSlider> = {
 export default meta;
 type Story = StoryObj<typeof VolumeSlider>;
 
+const getIconComponent = (iconType: 'Mute' | 'Middle' | 'High') => {
+  if (iconType === 'Mute') return MuteIcon;
+  if (iconType === 'High') return HighIcon;
+  return MiddleIcon;
+};
+
+const InteractiveVolumeSlider = ({ initialValue = 50 }) => {
+  const [value, setValue] = useState(initialValue);
+
+  let iconType: 'Mute' | 'Middle' | 'High' = 'Middle';
+  if (value === 0) iconType = 'Mute';
+  else if (value >= 90) iconType = 'High';
+
+  const IconComponent = getIconComponent(iconType);
+
+  return (
+    <VolumeSlider
+      value={value}
+      iconType={iconType}
+      onChange={setValue}
+      IconComponent={IconComponent}
+    />
+  );
+};
+
 export const Default: Story = {
-  args: {
-    value: 50,
-    onChange: (value: number) => {
-      console.log('Volume changed to:', value);
-    },
-  },
-};
-
-export const Muted: Story = {
-  args: {
-    value: 0,
-    iconType: 'mute',
-    onChange: (value: number) => {
-      console.log('Volume changed to:', value);
-    },
-  },
-};
-
-export const MaxVolume: Story = {
-  args: {
-    value: 100,
-    iconType: 'high',
-    onChange: (value: number) => {
-      console.log('Volume changed to:', value);
-    },
-  },
+  render: () => <InteractiveVolumeSlider initialValue={50} />,
 };
 
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex' }}>
-      <VolumeSlider
-        className={styles.volumeSliderMute}
-        value={0}
-        iconType="mute"
-        onChange={() => {}}
-      />
-      <VolumeSlider
-        className={styles.volumeSliderMedium}
-        value={50}
-        iconType="middle"
-        onChange={() => {}}
-      />
-      <VolumeSlider
-        className={styles.volumeSliderHigh}
-        value={100}
-        iconType="high"
-        onChange={() => {}}
-      />
+      <InteractiveVolumeSlider initialValue={0} />
+      <InteractiveVolumeSlider initialValue={50} />
+      <InteractiveVolumeSlider initialValue={100} />
     </div>
   ),
 };

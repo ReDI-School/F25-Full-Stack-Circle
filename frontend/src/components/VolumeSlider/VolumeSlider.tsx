@@ -1,15 +1,13 @@
 import React, { useMemo } from 'react';
 import styles from './VolumeSlider.module.css';
 import type { VolumeSliderProps } from './VolumeSlider.types';
-import VolumeHighIcon from './VolumeHighIcon';
-import VolumeMediumIcon from './VolumeMediumIcon';
-import VolumeMuteIcon from './VolumeMuteIcon';
 
 const VolumeSlider: React.FC<VolumeSliderProps> = ({
   value,
   onChange,
   className = '',
-  iconType = 'high',
+  iconType = 'High',
+  IconComponent,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Math.max(0, Math.min(100, Number(e.target.value)));
@@ -17,15 +15,11 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
       onChange(newValue);
     }
   };
-  /* Choosing the correct icon and slider style based on iconType prop */
-  const { IconComponent, sliderTypeClass } = useMemo(() => {
-    if (iconType === 'middle') {
-      return { IconComponent: VolumeMediumIcon, sliderTypeClass: styles.volumeSliderMedium };
-    }
-    if (iconType === 'mute') {
-      return { IconComponent: VolumeMuteIcon, sliderTypeClass: styles.volumeSliderMute };
-    }
-    return { IconComponent: VolumeHighIcon, sliderTypeClass: styles.volumeSliderHigh };
+
+  const sliderTypeClass = useMemo(() => {
+    if (iconType === 'Middle') return styles.volumeSliderMedium;
+    if (iconType === 'Mute') return styles.volumeSliderMute;
+    return styles.volumeSliderHigh;
   }, [iconType]);
 
   return (
@@ -45,9 +39,7 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
           aria-label="Volume control"
         />
       </div>
-      <div className={styles.iconContainer}>
-        <IconComponent />
-      </div>
+      <div className={styles.iconContainer}>{IconComponent && <IconComponent />}</div>
     </div>
   );
 };

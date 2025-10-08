@@ -1,3 +1,5 @@
+import type { FC, SVGProps } from 'react';
+
 export interface VolumeSliderProps {
   /** Lautstärke in Prozent (0-100) */
   value: number;
@@ -8,5 +10,6 @@ export interface VolumeSliderProps {
   /** Optional: Farbe für den Slider */
   color?: string;
   /** Icon für den Slider */
-  iconType?: 'high' | 'middle' | 'mute';
+  iconType?: 'High' | 'Middle' | 'Mute';
+  IconComponent: FC<SVGProps<SVGSVGElement>>;
 }
