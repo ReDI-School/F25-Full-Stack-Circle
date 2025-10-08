@@ -40,50 +40,50 @@
   overflow: visible;
 }
 
-/* Track für Chrome, Edge, Safari */
+/* Track for Chrome, Edge, Safari */
 .volumeSlider::-webkit-slider-runnable-track {
   height: var(--volume-track-height, 10px);
+  border-radius: 0px;
   background: linear-gradient(
     to right,
-    var(--volume-track-fill, #FF002E) 0%,
-    var(--volume-track-fill, #FF002E) calc(var(--value, 50) * 1%),
-    var(--volume-track-bg, #808080) calc(var(--value, 50) * 1%),
-    var(--volume-track-bg, #808080) 100%
+    #FF002E 0%,
+    #FF002E calc(var(--value, 0) * 100%),
+    #808080 calc(var(--value, 0) * 100%),
+    #808080 100%
   );
-  border-radius: 0px;
 }
 
-/* Track für Firefox */
+/* Track for Firefox */
 .volumeSlider::-moz-range-track {
-  height: var(--volume-track-height-firefox, 20px);
-  background: var(--volume-track-bg, #808080);
+  height: var(--volume-track-height-firefox, 10px);
+  background: #808080;
   border-radius: 0px;
 }
 
-/* Track für IE/Edge */
+/* Track for IE/Edge */
 .volumeSlider::-ms-fill-lower,
 .volumeSlider::-ms-fill-upper {
-  height: var(--volume-track-height-ie, 20px);
-  background: var(--volume-track-bg, #808080);
+  height: var(--volume-track-height-ie, 10px);
+  background: #808080;
   border-radius: 0px;
 }
 
-/* Gefüllter Bereich für Firefox */
+/* Progress (filled part) for Firefox */
 .volumeSlider::-moz-range-progress {
-  background-color: var(--volume-track-fill, #FF002E);
-  height: var(--volume-track-height, 10px);
+  background-color: #FF002E;
+  height: var(--volume-track-height-firefox, 10px);
   border-radius: 0px;
 }
 
-/* Gefüllter Bereich für IE/Edge */
+/* Progress (filled part) for IE/Edge */
 .volumeSlider::-ms-fill-lower {
-  background-color: var(--volume-track-fill, #FF002E);
-  height: var(--volume-track-height-ie, 20px);
+  background-color: #FF002E;
+  height: var(--volume-track-height-ie, 10px);
   border-radius: 0px;
 }
 .volumeSlider::-ms-fill-upper {
-  background-color: var(--volume-track-bg, #808080);
-  height: var(--volume-track-height-ie, 20px);
+  background-color: #808080;
+  height: var(--volume-track-height-ie, 10px);
   border-radius: 0px;
 }
 
@@ -98,17 +98,14 @@
   cursor: pointer;
   z-index: 3;
 }
-/* Thumb für high */
 .volumeSliderHigh::-webkit-slider-thumb {
   margin-left: var(--volume-thumb-margin-high, 1px);
   margin-top: var(--volume-thumb-margin-top, -5px);
 }
-/* Thumb für medium */
 .volumeSliderMedium::-webkit-slider-thumb {
   margin-left: var(--volume-thumb-margin-medium, -3px);
   margin-top: var(--volume-thumb-margin-top, -5px);
 }
-/* Thumb für mute */
 .volumeSliderMute::-webkit-slider-thumb {
   margin-left: var(--volume-thumb-margin-mute, -6px);
   margin-top: var(--volume-thumb-margin-top, -5px);

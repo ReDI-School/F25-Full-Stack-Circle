@@ -7,7 +7,7 @@ import MiddleIcon from '../../assets/icons/middleVolume.svg?react';
 
 const VolumeSlider: React.FC<VolumeSliderProps> = ({ value, onChange, className = '' }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Math.max(0, Math.min(100, Number(e.target.value)));
+    const newValue = Math.max(0, Math.min(1, Number(e.target.value)));
     if (onChange) {
       onChange(newValue);
     }
@@ -18,7 +18,7 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({ value, onChange, className 
     if (value === 0) {
       return { IconComponent: MuteIcon, sliderTypeClass: styles.volumeSliderMute };
     }
-    if (value >= 90) {
+    if (value >= 0.9) {
       return { IconComponent: HighIcon, sliderTypeClass: styles.volumeSliderHigh };
     }
     return { IconComponent: MiddleIcon, sliderTypeClass: styles.volumeSliderMedium };
@@ -30,14 +30,15 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({ value, onChange, className 
         <input
           type="range"
           min={0}
-          max={100}
+          max={1}
+          step={0.01}
           value={value}
           onChange={handleChange}
           className={`${styles.volumeSlider} ${sliderTypeClass} ${className}`.trim()}
           style={{ '--value': value } as React.CSSProperties}
           aria-valuenow={value}
           aria-valuemin={0}
-          aria-valuemax={100}
+          aria-valuemax={1}
           aria-label="Volume control"
         />
       </div>
