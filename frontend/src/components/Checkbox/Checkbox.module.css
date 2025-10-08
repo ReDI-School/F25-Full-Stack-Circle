@@ -7,8 +7,8 @@
   user-select: none;
   border: none;
   background-color: transparent;
-  color: var(--text-primary);
-  font-size: var(--text-base);
+  color: var(--text-primary, #ffffff);
+  font-size: var(--text-base, 16px);
   font-family: var(--font-family);
   font-weight: var(--font-normal);
 }
@@ -27,7 +27,7 @@
   height: 18px;
   width: 18px;
   background-color: transparent;
-  border: 1px solid var(--transparent-white-35);
+  border: 1px solid rgba(255, 255, 255, 0.35); /*var(--transparent-white-35*/
   border-radius: var(--radius-sm);
   transition: all var(--transition-base);
   flex-shrink: 0;
@@ -41,13 +41,17 @@
 .checkboxContainer:hover .checkboxInput:not(:checked) ~ .checkmark {
   border: 1px solid var(--primary-white);
 }
+
 /*checked*/
 .checkboxInput:checked ~ .checkmark {
   background-color: var(--primary-white);
+  border-color: var(--primary-white);
 }
+
 /*checked und hover*/
 .checkboxContainer:hover .checkboxInput:checked ~ .checkmark {
-  background-color: var(--transparent-white-70);
+  background-color: rgba(255, 255, 255, 0.7); /*var(--transparent-white-70)*/
+  border-color: rgba(255, 255, 255, 0.7); /*var(--transparent-white-70)*/
 }
 
 /* checkmark icon*/
@@ -55,10 +59,10 @@
   content: '';
   position: absolute;
   display: none;
-  top: 5px;
-  left: 4px;
+  top: 4px;
+  left: 3px;
   width: 11px;
-  height: 8px;
+  height: 6px;
   border: solid var(--transparent-black-90);
   border-width: 0 2px 2px 0;
   transform: scaleX(-1) rotate(45deg);
