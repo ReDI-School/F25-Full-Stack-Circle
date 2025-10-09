@@ -13,15 +13,21 @@ const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
   className = '',
   ariaLabel = 'Video progress', // Default aria-label for accessibility, and you can override it via props
 }) => {
-  // Use useMemo to optimize calculations and render styles only when dependencies change 
+  // Use useMemo to optimize calculations and render styles only when dependencies change
   const progress = useMemo(() => Math.max(0, Math.min(100, value)), [value]);
   const loadedValue = useMemo(() => Math.max(0, Math.min(100, loaded)), [loaded]);
-  const progressStyle = useMemo(() => color ? { background: color, width: `${progress}%` } : { width: `${progress}%` }, [color, progress]);
+  const progressStyle = useMemo(
+    () => (color ? { background: color, width: `${progress}%` } : { width: `${progress}%` }),
+    [color, progress]
+  );
   const loadedStyle = useMemo(() => ({ width: `${loadedValue}%` }), [loadedValue]);
-  const thumbStyle = useMemo(() => ({
-    left: `calc(${progress}% )`,
-    background: color || undefined,
-  }), [progress, color]);
+  const thumbStyle = useMemo(
+    () => ({
+      left: `calc(${progress}% )`,
+      background: color || undefined,
+    }),
+    [progress, color]
+  );
 
   return (
     <div className={`${styles.progressBarContainer} ${className}`.trim()}>
@@ -38,14 +44,18 @@ const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label={ariaLabel}
-            onMouseDown={onChange ? (e) => { e.preventDefault(); } : undefined}
+            onMouseDown={
+              onChange
+                ? (e) => {
+                    e.preventDefault();
+                  }
+                : undefined
+            }
           />
         )}
       </div>
       {(maxLabel || currentLabel) && (
-        <span className={styles.progressBarLabel}>
-          {(currentLabel || maxLabel)}
-        </span>
+        <span className={styles.progressBarLabel}>{currentLabel || maxLabel}</span>
       )}
     </div>
   );
