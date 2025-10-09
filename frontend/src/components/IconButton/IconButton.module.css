@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-circle);
-  border:solid var(--grey-500);
+  border: solid var(--grey-500);
   transition: var(--transition-base);
   cursor: pointer;
 }
@@ -51,7 +51,7 @@
   opacity: 70%;
   border-color: var(--grey-350);
 }
- 
+
 .iconButton:not(:disabled):hover {
   /* Hovered state styles */
   opacity: 90%;
@@ -60,7 +60,7 @@
 
 .iconButton:not(:disabled):active {
   /* Active state styles */
-  transform: scale(.9);
+  transform: scale(0.9);
 }
 
 .iconButton--small {
@@ -72,13 +72,13 @@
 .iconButton--medium {
   /* Medium size styles */
   height: var(--text-4xl);
-  width: var(--text-4xl); 
+  width: var(--text-4xl);
 }
 
 .iconButton--large {
   /* Large size styles */
   height: var(--text-5xl);
-  width: var(--text-5xl); 
+  width: var(--text-5xl);
 }
 
 .icon {
@@ -86,7 +86,7 @@
   color: var(--primary-black);
   max-width: var(--text-3xl);
   max-height: var(--text-3xl);
-} 
+}
 
 .icon--small {
   /* Small SVG size styles */
@@ -123,5 +123,5 @@
 
 .icon--outlined.icon--secondary {
   /* Filled variant styles */
-    color: var(--grey-100);
+  color: var(--grey-100);
 }
