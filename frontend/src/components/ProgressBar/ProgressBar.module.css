@@ -1,0 +1,80 @@
+.progressBarContainer {
+  display: flex;
+  align-items: center;
+  width: var(--normalize-width);
+  gap: var(--space-4);
+  position: relative;
+  overflow: visible;
+}
+
+.progressBar {
+  position: relative;
+  width: var(--normalize-width);
+  height: var(--progressBar-height);
+  background: var(--grey-200);
+  overflow: visible;
+  transition: background var(--transition-base);
+  cursor: pointer;
+}
+
+.progressBarLoaded {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--normalize-height);
+  background: var(--grey-25);
+  transition: width var(--transition-base);
+  z-index: 1;
+}
+
+.progressBarTrack {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--normalize-height);
+  background: var(--primary-red);
+  transition: width var(--transition-base);
+  z-index: 2;
+}
+
+.progressBarThumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--progressBarThumb-width);
+  height: var(--progressBarThumb-height);
+  background: var(--primary-red);
+  border-radius: var(--radius-circle);
+  cursor: pointer;
+  transition:
+    all var(--transition-base),
+    box-shadow var(--transition-base);
+  z-index: var(--progressBarThumb-z-index);
+  transform: translate(-50%, -28%);
+}
+
+.progressBarThumb:focus {
+  outline: 2px solid var(--secondary-blue-100);
+  outline-offset: var(--progressBarThumb-focus-offset, 2px);
+}
+
+.progressBarLabel {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  min-width: var(--progressBarLabel-min-width, 56px);
+  text-align: right;
+  font-family: var(--font-family);
+}
+.progressBar:hover .progressBarTrack .progressBarLoaded {
+  background: var(--secondary-red-100);
+  transition: background var(--transition-base);
+}
+
+.progressBar:hover {
+  height: var(--progressBar-hover-height);
+}
+
+.progressBar:hover .progressBarThumb {
+  height: var(--progressBarThumb-hover-height);
+  width: var(--progressBarThumb-hover-width);
+}

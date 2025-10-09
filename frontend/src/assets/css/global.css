@@ -64,12 +64,12 @@
   --transparent-white-15: #ffffff;
   --transparent-white-20: #ffffff;
   --transparent-white-30: #ffffff;
-  --transparent-white-35: #ffffff;
+  --transparent-white-35: rgba(255, 255, 255, 0.35);
   --transparent-white-50: #ffffff;
-  --transparent-white-70: #ffffff;
+  --transparent-white-70: rgba(255, 255, 255, 0.7);
   --transparent-black-30: #000000;
   --transparent-black-60: #000000;
-  --transparent-black-90: #000000;
+  --transparent-black-90: rgba(0, 0, 0, 0.9);
 
   /* Semantic Colors */
   --success: #28a745;
@@ -157,7 +157,7 @@
   --radius-pill-sm: 20px;
   --radius-pill-md: 25px;
   --radius-pill-lg: 30px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -180,6 +180,56 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-toast: 1080;
+  --progressBarThumb-z-index: 20;
+
+  /* Hover Sizes */
+  --progressBarThumb-hover-width: 18px;
+  --progressBarThumb-hover-height: 18px;
+  --progressBar-hover-height: 10px;
+
+  /* Widths */
+  --progressBarLabel-min-width: 56px;
+  --progressBarThumb-width: 16px;
+  --normalize-width: 100%;
+
+  /* Heights */
+  --progressBarThumb-height: 16px;
+  --progressBar-height: 8px;
+  --normalize-height: 100%;
+
+  /* Focus Offsets */
+  --progressBarThumb-focus-offset: 2px;
+
+  /* Volume Slider Styles */
+  --volume-bg: #181818;
+  --volume-container-width: 70px;
+  --volume-container-height: 200px;
+  --volume-container-padding-top: 70px;
+  --volume-container-gap: 58px;
+
+  --volume-slider-bg: #262626;
+  --volume-slider-container-width: 150px;
+  --volume-slider-container-radius: 2px;
+
+  --volume-slider-width: 110px;
+  --volume-slider-height: 30px;
+  --volume-slider-accent: #FF002E;
+
+  --volume-track-height: 10px;
+  --volume-track-height-firefox: 20px;
+  --volume-track-height-ie: 20px;
+  --volume-track-bg: #808080;
+  --volume-track-fill: #FF002E;
+
+  --volume-thumb-size: 20px;
+  --volume-thumb-bg: #FF002E;
+  --volume-thumb-border: #FF002E;
+  --volume-thumb-margin-high: 1px;
+  --volume-thumb-margin-medium: -3px;
+  --volume-thumb-margin-mute: -6px;
+  --volume-thumb-margin-top: -5px;
+
+  --volume-icon-size: 40px;
 }
 
 *,
