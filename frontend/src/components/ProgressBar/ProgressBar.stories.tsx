@@ -15,7 +15,7 @@ export const Beginning: Story = {
     value: 2,
     showThumb: true,
     loaded: 12,
-    duration: 3600
+    duration: 3600,
   },
 };
 
@@ -24,7 +24,7 @@ export const ProgressDefault: Story = {
     value: 60,
     showThumb: true,
     loaded: 80,
-    duration: 200
+    duration: 200,
   },
 };
 
@@ -33,6 +33,6 @@ export const ProgressHover: Story = {
     value: 80,
     showThumb: true,
     loaded: 100,
-    duration: 540
+    duration: 540,
   },
 };
