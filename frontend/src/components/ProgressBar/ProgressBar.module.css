@@ -1,4 +1,3 @@
-
 .progressBarContainer {
   display: flex;
   align-items: center;
@@ -64,10 +63,9 @@
   text-align: right;
   font-family: var(--font-family);
 }
-.progressBar:hover .progressBarTrack  .progressBarLoaded{
+.progressBar:hover .progressBarTrack .progressBarLoaded {
   background: var(--secondary-red-100);
   transition: background var(--transition-base);
-  
 }
 
 .progressBar:hover {
@@ -75,6 +73,6 @@
 }
 
 .progressBar:hover .progressBarThumb {
-    height: var(--progressBarThumb-hover-height);
-    width: var(--progressBarThumb-hover-width);
+  height: var(--progressBarThumb-hover-height);
+  width: var(--progressBarThumb-hover-width);
 }

@@ -64,9 +64,9 @@
   --transparent-white-15: #ffffff;
   --transparent-white-20: #ffffff;
   --transparent-white-30: #ffffff;
-  --transparent-white-35: #ffffff;
+  --transparent-white-35: rgba(255, 255, 255, 0.35);
   --transparent-white-50: #ffffff;
-  --transparent-white-70: #ffffff;
+  --transparent-white-70: rgba(255, 255, 255, 0.7);
   --transparent-black-30: #000000;
   --transparent-black-60: #000000;
   --transparent-black-90: rgba(0, 0, 0, 0.9);
