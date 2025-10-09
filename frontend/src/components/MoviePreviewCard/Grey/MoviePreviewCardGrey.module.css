@@ -1,0 +1,83 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 236px;
+  border-radius: var(--radius-base);
+  overflow: hidden;
+}
+
+.imageWrap {
+  position: relative;
+  button {
+    position: absolute;
+    right: 20px;
+    bottom: 8px;
+  }
+}
+
+.imageDesc {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  padding: 0 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: var(--text-base);
+}
+
+.svgWrap {
+  max-width: 21px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.mainWrap {
+  background: var(--grey-650);
+  padding: 25px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.buttonWrap {
+  display: flex;
+}
+
+.buttonWrapLeft {
+  display: flex;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.bottomWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ratingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  p {
+    color: var(--grey-50);
+  }
+  > p:first-child {
+    color: var(--secondary-green);
+  }
+}
+
+.maturityWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.description {
+  color: var(--grey-25);
+}
