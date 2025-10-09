@@ -30,7 +30,6 @@ const EpisodeList: React.FC<EpisodeListProps> = ({
             );
           })}
         </ul>
-        <div className={styles.listLine}></div>
       </div>
     </div>
   );
