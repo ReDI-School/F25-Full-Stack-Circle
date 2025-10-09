@@ -1,9 +1,9 @@
 interface CheckboxProps {
-  checked?: boolean;
+  checked: boolean;
+
+  onChange: (checked: boolean) => void;
 
   label?: string;
-
-  onChange?: (checked: boolean) => void;
 
   'aria-label'?: string;
 }
