@@ -1,0 +1,125 @@
+.volumeSliderContainer {
+  background: var(--volume-bg, #181818);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: var(--volume-container-width, 70px);
+  height: var(--volume-container-height, 200px);
+  box-sizing: border-box;
+  padding-top: var(--volume-container-padding-top, 70px);
+  position: relative;
+  gap: var(--volume-container-gap, 58px);
+}
+
+.sliderContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--volume-slider-bg, #262626);
+  transform: rotate(-90deg);
+  width: var(--volume-slider-container-width, 150px);
+  border-radius: var(--volume-slider-container-radius, 2px);
+}
+
+.volumeSlider {
+  width: var(--volume-slider-width, 110px);
+  height: var(--volume-slider-height, 30px);
+  transform: rotate(-360deg);
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  outline: none;
+  padding: 0;
+  border-radius: 0 !important;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  accent-color: var(--volume-slider-accent, #FF002E);
+  overflow: visible;
+}
+
+/* Track for Chrome, Edge, Safari */
+.volumeSlider::-webkit-slider-runnable-track {
+  height: var(--volume-track-height, 10px);
+  border-radius: 0px;
+  background: linear-gradient(
+    to right,
+    #FF002E 0%,
+    #FF002E calc(var(--value, 0) * 100%),
+    #808080 calc(var(--value, 0) * 100%),
+    #808080 100%
+  );
+}
+
+/* Track for Firefox */
+.volumeSlider::-moz-range-track {
+  height: var(--volume-track-height-firefox, 10px);
+  background: #808080;
+  border-radius: 0px;
+}
+
+/* Track for IE/Edge */
+.volumeSlider::-ms-fill-lower,
+.volumeSlider::-ms-fill-upper {
+  height: var(--volume-track-height-ie, 10px);
+  background: #808080;
+  border-radius: 0px;
+}
+
+/* Progress (filled part) for Firefox */
+.volumeSlider::-moz-range-progress {
+  background-color: #FF002E;
+  height: var(--volume-track-height-firefox, 10px);
+  border-radius: 0px;
+}
+
+/* Progress (filled part) for IE/Edge */
+.volumeSlider::-ms-fill-lower {
+  background-color: #FF002E;
+  height: var(--volume-track-height-ie, 10px);
+  border-radius: 0px;
+}
+.volumeSlider::-ms-fill-upper {
+  background-color: #808080;
+  height: var(--volume-track-height-ie, 10px);
+  border-radius: 0px;
+}
+
+/* Thumb */
+.volumeSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--volume-thumb-size, 20px);
+  height: var(--volume-thumb-size, 20px);
+  background: var(--volume-thumb-bg, #FF002E);
+  border-radius: var(--radius-circle, 50%);
+  border: 1px solid var(--volume-thumb-border, #FF002E);
+  cursor: pointer;
+  z-index: 3;
+}
+.volumeSliderHigh::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-high, 1px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+.volumeSliderMedium::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-medium, -3px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+.volumeSliderMute::-webkit-slider-thumb {
+  margin-left: var(--volume-thumb-margin-mute, -6px);
+  margin-top: var(--volume-thumb-margin-top, -5px);
+}
+
+.volumeSlider:focus {
+  outline: none;
+}
+
+.iconContainer {
+  width: var(--volume-icon-size, 24px);
+  height: var(--volume-icon-size, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 2;
+}
