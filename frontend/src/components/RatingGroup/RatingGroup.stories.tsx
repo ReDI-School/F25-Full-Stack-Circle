@@ -48,7 +48,6 @@ type Story = StoryObj<typeof RatingGroup>;
 export const Small: Story = {
   args: {
     children: createIconButtons('small'),
-    // children: createIconButtons('small'),
     size: 'small',
   },
 };
