@@ -1,8 +1,7 @@
 import type { RatingGroupProps } from './RatingGroup.types';
 import styles from './RatingGroup.module.css';
 import { cva } from 'class-variance-authority';
-import { cloneElement, useState, type ReactElement } from 'react';
-import type { IconButtonProps } from '../IconButton';
+import React, { useState } from 'react';
 
 const styledRatingGroup = cva(styles.ratingGroup, {
   variants: {
@@ -15,37 +14,22 @@ const styledRatingGroup = cva(styles.ratingGroup, {
 });
 
 const RatingGroup = ({ children, size = 'medium', className }: RatingGroupProps) => {
-  // const [selected, setSelected] = useState(false);
-
-  // const handleItemOnClick = () => {
-  //   setSelected((prev) => !prev);
-  // };
-
-  // return (
-  //   <div className={styledRatingGroup({ size, className })}>
-  //     {children.map((iconButton) => {
-  //       return iconButton;
-  //     })}
-  //   </div>
-  // );
-
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const handleItemOnClick = (index: number) => {
-    setSelected((prev) => (prev === index ? null : index));
+    setSelectedIndex(index);
   };
 
   return (
     <div className={styledRatingGroup({ size, className })}>
-      {children.map((child, index) =>
-        cloneElement(child as ReactElement<IconButtonProps>, {
+      {React.Children.map(children, (iconButton, index) => {
+        return React.cloneElement(iconButton, {
           onClick: () => handleItemOnClick(index),
-          selected: selected === index,
-        })
-      )}
+          selected: selectedIndex === index,
+        });
+      })}
     </div>
   );
-
 };
 
 export default RatingGroup;
