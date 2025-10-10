@@ -36,7 +36,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  accent-color: var(--volume-slider-accent, #FF002E);
+  accent-color: var(--volume-slider-accent, #ff002e);
   overflow: visible;
 }
 
@@ -46,8 +46,8 @@
   border-radius: 0px;
   background: linear-gradient(
     to right,
-    #FF002E 0%,
-    #FF002E calc(var(--value, 0) * 100%),
+    #ff002e 0%,
+    #ff002e calc(var(--value, 0) * 100%),
     #808080 calc(var(--value, 0) * 100%),
     #808080 100%
   );
@@ -70,14 +70,14 @@
 
 /* Progress (filled part) for Firefox */
 .volumeSlider::-moz-range-progress {
-  background-color: #FF002E;
+  background-color: #ff002e;
   height: var(--volume-track-height-firefox, 10px);
   border-radius: 0px;
 }
 
 /* Progress (filled part) for IE/Edge */
 .volumeSlider::-ms-fill-lower {
-  background-color: #FF002E;
+  background-color: #ff002e;
   height: var(--volume-track-height-ie, 10px);
   border-radius: 0px;
 }
@@ -92,9 +92,9 @@
   appearance: none;
   width: var(--volume-thumb-size, 20px);
   height: var(--volume-thumb-size, 20px);
-  background: var(--volume-thumb-bg, #FF002E);
+  background: var(--volume-thumb-bg, #ff002e);
   border-radius: var(--radius-circle, 50%);
-  border: 1px solid var(--volume-thumb-border, #FF002E);
+  border: 1px solid var(--volume-thumb-border, #ff002e);
   cursor: pointer;
   z-index: 3;
 }
