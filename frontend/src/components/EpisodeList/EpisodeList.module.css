@@ -1,0 +1,84 @@
+.alertMessage {
+  font-size: var(--text-base);
+  text-align: center;
+  margin: 2.5rem;
+}
+
+.episodeListContainer {
+  margin: 0;
+  padding: 1.25rem;
+  background-color: #141414;
+  border-radius: 8px;
+}
+
+.episodeListContainer h3 {
+  margin-bottom: 1.25rem;
+}
+
+.episodeListWrapper {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.episodeList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.episodeItem {
+  transition: transform var(--transition-base);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  position: relative;
+  min-height: 120px;
+  box-shadow: none;
+  border-bottom: 1px solid #404040;
+  width: 754px;
+  margin: 0 auto;
+}
+
+.episodeItem:hover {
+  transform: translateY(-2px);
+}
+
+.currentEpisode {
+  background-color: var(--bg-tertiary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alertMessage {
+    font-size: var(--text-sm);
+    margin: 1.5rem;
+  }
+
+  .episodeListWrapper {
+    margin: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .episodeListContainer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .alertMessage {
+    font-size: var(--text-xs);
+    margin: 1rem;
+  }
+
+  .episodeListWrapper {
+    padding: 0.5rem;
+  }
+}
