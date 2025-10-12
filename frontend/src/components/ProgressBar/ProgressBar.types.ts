@@ -11,6 +11,4 @@ export interface ProgressBarProps {
   className?: string;
   /** Optional: Actual loaded data in seconds */
   loaded?: number;
-  /** Optional: Actual loaded data in seconds */
-  onMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
