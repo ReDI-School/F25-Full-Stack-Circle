@@ -13,29 +13,26 @@ type Story = StoryObj<typeof ProgressBar>;
 export const Beginning: Story = {
   args: {
     value: 2,
-    currentLabel: '00:12',
-    maxLabel: '1:00:41',
     showThumb: true,
     loaded: 12,
+    duration: 3600,
   },
 };
 
 export const ProgressDefault: Story = {
   args: {
     value: 60,
-    currentLabel: '1:00:41',
-    maxLabel: '1:00:41',
     showThumb: true,
     loaded: 80,
+    duration: 200,
   },
 };
 
 export const ProgressHover: Story = {
   args: {
     value: 80,
-    currentLabel: '1:00:41',
-    maxLabel: '1:00:41',
     showThumb: true,
     loaded: 100,
+    duration: 540,
   },
 };

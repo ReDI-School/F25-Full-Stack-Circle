@@ -1,6 +1,6 @@
-export type InputSize = "Large" | "Medium";
-export type InputType = "Email" | "EmailorPhone" | "Password";
-export type InputState = "Default" | "Error" | "Focused";
+export type InputSize = 'Large' | 'Medium';
+export type InputType = 'Email' | 'EmailorPhone' | 'Password';
+export type InputState = 'Default' | 'Error' | 'Focused';
 
 export interface InputFieldProps {
   size?: InputSize;

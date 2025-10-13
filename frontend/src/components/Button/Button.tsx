@@ -1,7 +1,10 @@
-import type { ButtonProps } from './Button.types';
-import styles from './Button.module.css';
 import { cva } from 'class-variance-authority';
+
 import { ICONS } from '../../assets/icons/index';
+
+import type { ButtonProps } from './Button.types';
+
+import styles from './Button.module.css';
 
 // the first argument is the base styles of your button,
 // in this case 'styles.button' carries the base styles of the button

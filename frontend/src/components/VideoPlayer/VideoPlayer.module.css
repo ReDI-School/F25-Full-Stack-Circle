@@ -1,6 +1,7 @@
 .videoPlayerWrapper {
     display: inline-block;
-    position: relative;
+    /* Temporary; just to see the border */
+    border: solid white; 
 }
 
 .small {
