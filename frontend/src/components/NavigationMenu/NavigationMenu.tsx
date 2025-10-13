@@ -12,7 +12,10 @@ const NavigationMenu = () => {
           const [label, route] = getRoute();
           return (
             <li className={styles.list} key={label}>
-              <NavLink to={route} className={styles.link}>
+              <NavLink
+                to={route}
+                className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
+              >
                 {label}
               </NavLink>
             </li>
