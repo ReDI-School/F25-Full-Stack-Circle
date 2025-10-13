@@ -19,8 +19,8 @@
         color: var(--text-primary);
         text-decoration: none;
     }
-
-    .link:hover {
-        text-decoration: underline;
+    
+    .active {
+        font-weight: bold;
     }
 }
