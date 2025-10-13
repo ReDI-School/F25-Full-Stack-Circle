@@ -3,6 +3,8 @@ export interface ProgressBarProps {
   value: number;
   /** The duration of the video in seconds */
   duration: number;
+  /** Sets the new value when clicked */
+  setNewValue?: (newValue: number) => void;
   /** Zeigt den Slider-Knopf an (z.B. für Hover oder Drag) */
   showThumb?: boolean;
   /** Optional: Farbe für den Fortschritt */
