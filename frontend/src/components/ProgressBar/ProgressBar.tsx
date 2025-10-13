@@ -1,20 +1,19 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import styles from './ProgressBar.module.css';
 import type { ProgressBarProps } from './ProgressBar.types';
 
 const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
   value,
+  setNewValue,
   loaded = 0,
   duration,
   showThumb = false,
   color,
   className = '',
-  ariaLabel = 'Video progress', // Default aria-label for accessibility, and you can override it via props
+  ariaLabel = 'Video progress', // Default aria-label for accessibility, and you can override it via props,
 }) => {
-  const [valueState, setValueState] = useState<number>(value);
-
   // Use useMemo to optimize calculations and render styles only when dependencies change
-  const progress = useMemo(() => (valueState / duration) * 100, [duration, valueState]);
+  const progress = useMemo(() => (value / duration) * 100, [duration, value]);
 
   const loadedValue = useMemo(() => (loaded / duration) * 100, [loaded, duration]);
 
@@ -39,12 +38,15 @@ const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
   }, [value, duration]);
 
   const handleOnMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const divWidth = e.currentTarget.clientWidth; // gets the inner width of the div
-    // I used max and min here to avoid going more than the div's width or below 0, only happens if thumb is true
-    const pointerDistance = Math.min(divWidth, Math.max(0, e.clientX - rect.left)); // gets the distance of the pointer from the left side of the div in px
-    const pointerRatio = pointerDistance / divWidth; // gets the ratio of the pointer's distance to the width
-    setValueState(duration * pointerRatio); // converts to seconds
+    if (setNewValue) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const divWidth = e.currentTarget.clientWidth; // gets the inner width of the div
+      // I used max and min here to avoid going more than the div's width or below 0, only happens if thumb is true
+      const pointerDistance = Math.min(divWidth, Math.max(0, e.clientX - rect.left)); // gets the distance of the pointer from the left side of the div in px
+      const pointerRatio = pointerDistance / divWidth; // gets the ratio of the pointer's distance to the width
+
+      setNewValue(duration * pointerRatio); // converts to seconds
+    }
   };
 
   return (
