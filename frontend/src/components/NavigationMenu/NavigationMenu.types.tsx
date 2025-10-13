@@ -1,10 +1,5 @@
-interface NavItem {
-  label: string;
-  href: string | (() => string);
+interface NavigationMenuProps {
   onClick?: () => void;
 }
-interface NavigationMenuProps {
-  navItems?: NavItem[];
-}
 
-export type { NavigationMenuProps, NavItem };
+export type { NavigationMenuProps };
