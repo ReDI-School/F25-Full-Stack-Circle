@@ -5,27 +5,37 @@ import type { ProgressBarProps } from './ProgressBar.types';
 const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
   value,
   loaded = 0,
-  maxLabel,
-  currentLabel,
+  onMouseDown,
+  duration,
   showThumb = false,
   color,
-  onChange,
   className = '',
   ariaLabel = 'Video progress', // Default aria-label for accessibility, and you can override it via props
 }) => {
-  // Use useMemo to optimize calculations and render styles only when dependencies change 
-  const progress = useMemo(() => Math.max(0, Math.min(100, value)), [value]);
-  const loadedValue = useMemo(() => Math.max(0, Math.min(100, loaded)), [loaded]);
-  const progressStyle = useMemo(() => color ? { background: color, width: `${progress}%` } : { width: `${progress}%` }, [color, progress]);
+  // Use useMemo to optimize calculations and render styles only when dependencies change
+  const progress = useMemo(() => (value / duration) * 100, [value, duration]);
+  const loadedValue = useMemo(() => (loaded / duration) * 100, [loaded, duration]);
+  const progressStyle = useMemo(
+    () => (color ? { background: color, width: `${progress}%` } : { width: `${progress}%` }),
+    [color, progress]
+  );
   const loadedStyle = useMemo(() => ({ width: `${loadedValue}%` }), [loadedValue]);
-  const thumbStyle = useMemo(() => ({
-    left: `calc(${progress}% )`,
-    background: color || undefined,
-  }), [progress, color]);
+  const thumbStyle = useMemo(
+    () => ({
+      left: `calc(${progress}% )`,
+      background: color || undefined,
+    }),
+    [progress, color]
+  );
+
+  const formattedTime = useMemo(() => {
+    if (duration >= 3600) return new Date(value * 1000).toISOString().slice(11, 19);
+    else return new Date(value * 1000).toISOString().slice(14, 19);
+  }, [value, duration]);
 
   return (
     <div className={`${styles.progressBarContainer} ${className}`.trim()}>
-      <div className={styles.progressBar}>
+      <div className={styles.progressBar} onMouseDown={(e) => onMouseDown(e)}>
         <div className={styles.progressBarLoaded} style={loadedStyle} />
         <div className={styles.progressBarTrack} style={progressStyle} />
         {showThumb && (
@@ -34,19 +44,14 @@ const ProgressBar: React.FC<ProgressBarProps & { ariaLabel?: string }> = ({
             style={thumbStyle}
             tabIndex={0}
             role="slider"
-            aria-valuenow={progress}
+            aria-valuenow={value}
             aria-valuemin={0}
-            aria-valuemax={100}
+            aria-valuemax={duration}
             aria-label={ariaLabel}
-            onMouseDown={onChange ? (e) => { e.preventDefault(); } : undefined}
           />
         )}
       </div>
-      {(maxLabel || currentLabel) && (
-        <span className={styles.progressBarLabel}>
-          {(currentLabel || maxLabel)}
-        </span>
-      )}
+      {formattedTime}
     </div>
   );
 };
