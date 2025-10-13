@@ -1,6 +1,8 @@
-import styles from './NavigationMenu.module.css';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
+
 import { routePaths, routeLabels } from '../../config/RoutePaths';
+
+import styles from './NavigationMenu.module.css';
 
 const resolveRoute = (route?: string | (() => string)) => {
   if (!route) return '#';
@@ -13,9 +15,12 @@ const NavigationMenu = () => {
       <ul className={styles.items}>
         {Object.entries(routePaths).map(([key, route]) => (
           <li className={styles.list} key={key}>
-            <Link to={resolveRoute(route)} className={styles.link}>
+            <NavLink
+              to={resolveRoute(route)}
+              className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
+            >
               {routeLabels[key as keyof typeof routePaths] ?? key}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
