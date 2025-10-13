@@ -50,7 +50,7 @@ interface VideoPlayerProps {
    * Element or component to use as the play icon in light mode.
    */
   playIcon?: React.ReactElement;
- 
+
   /**
    * Sets the current playback time in seconds.
    */
