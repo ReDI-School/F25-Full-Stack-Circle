@@ -31,12 +31,12 @@ const Video = ({
   const playerRef = useRef<HTMLVideoElement | null>(null);
 
   const [state, setState] = useState({
-    light: light
+    light: light,
     // will add more states here
   });
 
   const handleOnClickPreview = () => {
-    setState(prev =>  ({...prev, light: false }));
+    setState((prev) => ({ ...prev, light: false }));
   };
 
   const handleOnStart = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
@@ -63,7 +63,7 @@ const Video = ({
       playerRef.current.currentTime = currentTime;
     }
   };
- 
+
   const handleOnPause = () => {
     console.log('OnPause');
   };
@@ -82,7 +82,7 @@ const Video = ({
 
   const handleOnEnded = () => {
     console.log('onEnded');
-    setState(prev => ({...prev, light: light}));
+    setState((prev) => ({ ...prev, light: light }));
   };
 
   const handleOnError = () => {
@@ -118,46 +118,32 @@ const Video = ({
             portrait: false,
           },
         }}
-
         // Called when user clicks the light mode preview
         onClickPreview={handleOnClickPreview}
-
         // Called when media is loaded and ready to play.
         onReady={handleOnReady}
-         
         // Called when media starts playing
         onStart={(e) => handleOnStart(e)}
-
         // Called when the playing prop is set to true
         onPlay={handleOnPlay}
-
         // Called when media actually starts playing
         onPlaying={handleOnPlaying}
-
         // Called when media is paused
         onPause={handleOnPause}
-
         // Called when playback rate of the player changed
         onRateChange={handleOnRateChange}
-
         // Called when media is seeking
         onSeeking={handleOnSeeking}
-
         // Called when media has finished seeking
         onSeeked={handleOnSeeked}
-
         // Called when media finishes playing
         onEnded={handleOnEnded}
-
         // Called when an error occurs whilst attempting to play media
         onError={handleOnError}
-
         // Called when the media's current time changes
         onTimeUpdate={handleOnTimeUpdate}
-
         // Called when media data is loaded
         onProgress={handleOnProgress}
-
         // Callback containing duration of the media, in seconds
         onDurationChange={handleOnDurationChange}
       />
