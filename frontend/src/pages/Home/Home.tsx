@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <NavigationMenu></NavigationMenu>
+      <NavigationMenu />
       <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loadingUsers ? (
