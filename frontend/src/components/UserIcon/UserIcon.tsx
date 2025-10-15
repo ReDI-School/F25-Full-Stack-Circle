@@ -17,7 +17,6 @@ const styledUserIcon = cva(styles.button, {
   },
   defaultVariants: {
     size: 'big',
-    userName: 'User Name',
   },
 });
 
