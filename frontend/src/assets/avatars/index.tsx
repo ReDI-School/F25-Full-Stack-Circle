@@ -62,9 +62,6 @@ export const PopularAvatars: Record<string, string> = {
   '14': avatar14,
   '15': avatar15,
   '16': avatar16,
-};
-
-export const OtherAvatars: Record<string, string> = {
   '17': avatar17,
   '18': avatar18,
   '19': avatar19,

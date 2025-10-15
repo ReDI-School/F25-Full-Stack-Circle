@@ -3,11 +3,9 @@ interface UserIconProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  children?: React.ReactNode;
   size?: 'big' | 'small';
   userName?: string | React.ReactNode;
-  icon?: string | React.ReactNode;
-  iconOnly?: boolean;
+  avatar?: string | React.ReactNode;
   'aria-label'?: string;
 }
 

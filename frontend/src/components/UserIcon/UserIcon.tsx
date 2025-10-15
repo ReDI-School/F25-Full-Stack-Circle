@@ -8,71 +8,54 @@ import styles from './UserIcon.module.css';
 
 // the first argument is the base styles of your UserIcon,
 // in this case 'styles.UserIcon' carries the base styles of the UserIcon
-const styledUserIcon = cva(styles.UserIcon, {
+const styledUserIcon = cva(styles.button, {
   variants: {
     size: {
       big: styles.sizeBig,
-      small: styles.sizeLarge,
-    },
-    fullWidth: {
-      true: styles.fullWidth,
-    },
-    iconOnly: {
-      true: styles.iconOnly,
+      small: styles.sizeSmall,
     },
   },
   defaultVariants: {
     size: 'big',
-    iconOnly: false,
+    userName: 'User Name',
   },
 });
 
 const UserIcon = ({
-  children,
   onClick,
   disabled = false,
   size = 'big',
-  icon,
-  userName,
-  iconOnly = false,
+  avatar = '01',
+  userName = 'User Name',
   type = 'button',
   'aria-label': ariaLabel,
   ...rest
 }: UserIconProps) => {
-  const renderIcon = (icon: string | React.ReactNode, ariaLabel?: string) => {
-    if (!icon) return null;
+  const renderIcon = (avatar: string | React.ReactNode, ariaLabel?: string) => {
+    if (!avatar) return null;
 
     // if string, get from ICONS first
-    if (typeof icon === 'string') {
-      const src = PopularAvatars[icon];
-      return <img src={src} alt={ariaLabel ?? ''} className={styles.icon} />;
+    if (typeof avatar === 'string') {
+      const src = PopularAvatars[avatar];
+      return <img src={src} alt={ariaLabel ?? ''} className={styles.avatar} />;
     }
 
     // if not, treat as React node
-    return <span className={styles.icon}>{icon}</span>;
+    return <span className={styles.avatar}>{avatar}</span>;
   };
 
   return (
-    <UserIcon
-      className={styledUserIcon({
-        size,
-        iconOnly,
-      })}
+    <button
+      className={styledUserIcon({ size })}
       onClick={onClick}
       disabled={disabled}
       type={type}
       aria-label={ariaLabel}
       {...rest}
     >
-      {iconOnly ? (
-        renderIcon(icon, ariaLabel)
-      ) : (
-        <>
-          <span className={styles.label}>{children}</span>
-          {userName && renderIcon(icon)}
-        </>
-      )}
-    </UserIcon>
+      {renderIcon(avatar, ariaLabel)}
+      {size === 'big' && userName && <span className={styles.userName}>{userName}</span>}
+    </button>
   );
 };
 

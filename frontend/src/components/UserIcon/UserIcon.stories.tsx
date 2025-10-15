@@ -17,20 +17,36 @@ export const Default: Story = {
   },
 };
 
-export const Disabled: Story = {
-  args: {
-    children: 'UserIcon',
-    disabled: true,
-  },
-};
-
-export const Sizes: Story = {
+export const Big: Story = {
   render: () => (
     <>
-      <UserIcon size="big" icon="01">
+      <UserIcon size="big" avatar="04" userName="Big">
         Big
       </UserIcon>
-      <UserIcon size="small" icon="16"></UserIcon>
+    </>
+  ),
+};
+
+export const Small: Story = {
+  render: () => (
+    <>
+      <UserIcon size="small" avatar="15"></UserIcon>
+    </>
+  ),
+};
+
+export const All: Story = {
+  render: () => (
+    <>
+      {Array.from({ length: 46 }, (_, i) => {
+        const avatarNumber = String(i + 1).padStart(2, '0'); // '01', '02', ...
+        return (
+          <div key={avatarNumber} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+            <UserIcon size="big" avatar={avatarNumber} userName={`User ${i + 1}`} />
+            <UserIcon size="small" avatar={avatarNumber} />
+          </div>
+        );
+      })}
     </>
   ),
 };
