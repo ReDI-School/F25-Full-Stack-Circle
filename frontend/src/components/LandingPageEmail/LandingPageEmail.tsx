@@ -20,7 +20,13 @@ const LandingPageEmail = () => {
           Ready to watch? Enter your email to create or restart your membership.
         </h5>
         <div className={styles.email}>
-          <InputField size="Large" type="Email" state="Default" value={email} onChange={setEmail} />
+          <InputField
+            size="Medium"
+            type="Email"
+            state="Default"
+            value={email}
+            onChange={setEmail}
+          />
           <Button
             variant="primary"
             size="large"
