@@ -31,13 +31,11 @@
 }
 
 .input.medium {
-  height: 56px;
   width: 314px;
 }
 
 .input.large {
-  height: 64px;
-  width: 372px;
+  width: 368px;
 }
 
 .input.filled,
