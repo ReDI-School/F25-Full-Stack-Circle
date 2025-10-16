@@ -1,5 +1,5 @@
 .container {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -12,16 +12,19 @@
   font-size: var(--text-5xl);
   font-weight: var(--font-bold);
   line-height: 62px;
+  text-align: center;
 }
 .textM {
   font-size: var(--text-2xl);
   font-weight: var(--font-normal);
   line-height: var(--leading-tight);
+  text-align: center;
 }
 .textS {
   font-size: var(--text-xl);
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
+  text-align: center;
 }
 .email {
   display: flex;
