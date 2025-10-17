@@ -111,9 +111,9 @@
 }
 
 .sizeLarge {
-  height: 48px;
-  padding: var(--space-3) calc(var(--space-6) + 4px);
-  font-size: calc(var(--text-base) + 2px);
+  height: 56px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-2xl);
 }
 
 /* Icon and labels */

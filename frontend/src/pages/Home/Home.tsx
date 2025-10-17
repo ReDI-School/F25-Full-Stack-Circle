@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
 import { useConfig } from '../../hooks';
+import { NavigationMenu } from '../../components/NavigationMenu';
 
 import styles from './Home.module.css';
 
@@ -60,6 +61,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
+      <NavigationMenu />
       <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loadingUsers ? (
