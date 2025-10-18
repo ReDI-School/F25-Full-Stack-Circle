@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { EpisodeList } from './index.ts';
+import EpisodeList from './EpisodeList';
 import type { Episode, EpisodeListProps } from './EpisodeList.types';
 
 const meta: Meta<typeof EpisodeList> = {

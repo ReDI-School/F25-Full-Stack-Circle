@@ -1,20 +1,8 @@
+import type { Episode } from '../EpisodeList/EpisodeList.types';
+
 interface EpisodeCardProps {
-  episode: {
-    id: string | number;
-    number: number;
-    thumbnail: string;
-    title: string;
-    description?: string;
-    duration?: string;
-  };
-  onClick?: (episode: {
-    id: string | number;
-    number: number;
-    thumbnail: string;
-    title: string;
-    description?: string;
-    duration?: string;
-  }) => void;
+  episode: Episode;
+  onClick?: (episode: Episode) => void;
   isCurrent?: boolean;
   className?: string;
 }

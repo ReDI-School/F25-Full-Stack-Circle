@@ -1,22 +1,28 @@
 import type { EpisodeCardProps } from './EpisodeCard.types';
 import styles from './EpisodeCard.module.css';
 
-const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, onClick, isCurrent }) => {
+const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, onClick, isCurrent, className = '' }) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      onClick?.(episode);
+    }
+  };
+
   return (
     <div
-      className={`${styles.episodeCard} ${isCurrent ? styles.currentCard : ''}`}
+      className={`${styles.episodeCard} ${isCurrent ? styles.currentCard : ''} ${className}`}
       onClick={() => onClick?.(episode)}
+      onKeyDown={handleKeyDown}
       role="button"
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onClick?.(episode);
-        }
-      }}
       tabIndex={0}
     >
       <div className={styles.cardContent}>
         <span className={styles.episodeNumber}>{episode.number}</span>
-        <img src="https://placehold.co/600x400" alt={episode.title} className={styles.thumbnail} />
+        <img
+          src={episode.thumbnail}
+          alt={episode.title}
+          className={styles.thumbnail}
+        />
         <div className={styles.detailsContainer}>
           <div className={styles.details}>
             <h4>{episode.title}</h4>

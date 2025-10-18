@@ -1,6 +1,7 @@
-import type { EpisodeListProps } from './EpisodeList.types';
+import type { Episode, EpisodeListProps } from './EpisodeList.types';
 import EpisodeCard from '../EpisodeCard/EpisodeCard';
 import styles from './EpisodeList.module.css';
+import { useState } from 'react';
 
 const EpisodeList: React.FC<EpisodeListProps> = ({
   episodes = [],
@@ -8,9 +9,16 @@ const EpisodeList: React.FC<EpisodeListProps> = ({
   currentEpisodeId,
   className = '',
 }) => {
+  const [selectedId, setSelectedId] = useState(currentEpisodeId);
+
   if (episodes.length === 0) {
     return <p className={styles.alertMessage}>Watch out for the new season.</p>;
   }
+
+  const handleOnEpisodeClick = (episode: Episode) => {
+    setSelectedId(episode.id);
+    onEpisodeClick?.(episode);
+  };
 
   return (
     <div className={`${styles.episodeListContainer} ${className}`}>
@@ -18,14 +26,18 @@ const EpisodeList: React.FC<EpisodeListProps> = ({
       <div className={styles.episodeListWrapper}>
         <ul className={styles.episodeList}>
           {episodes.map((episode) => {
-            const isCurrent = episode.id === currentEpisodeId;
+            const isCurrent = episode.id === selectedId;
 
             return (
               <li
                 key={episode.id}
                 className={`${styles.episodeItem} ${isCurrent ? styles.currentEpisode : ''}`}
               >
-                <EpisodeCard episode={episode} onClick={onEpisodeClick} isCurrent={isCurrent} />
+                <EpisodeCard
+                  episode={episode}
+                  onClick={() => handleOnEpisodeClick(episode)}
+                  isCurrent={isCurrent}
+                />
               </li>
             );
           })}
