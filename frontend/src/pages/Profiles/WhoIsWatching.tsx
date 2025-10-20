@@ -1,14 +1,17 @@
 import styles from './WhoIsWatching.module.css';
+import { Button } from '../../components';
+import { UserIcon } from '../../components/UserIcon';
 
 const WhoIsWatching = () => {
   interface User {
     id: string;
     name: string;
+    avatar: string;
   }
   const users: User[] = [
-    { id: '1', name: 'Ahmad' },
-    { id: '2', name: 'Koubrse' },
-    { id: '3', name: 'Chikas' },
+    { id: '1', name: 'Ahmad', avatar: '01' },
+    { id: '2', name: 'Koubrse', avatar: '02' },
+    { id: '3', name: 'Chikas', avatar: '03' },
   ];
 
   return (
@@ -17,16 +20,11 @@ const WhoIsWatching = () => {
       <ul className={styles.list}>
         {users.map((user) => (
           <li key={user.id} className={styles.item}>
-            {/* Use button component ↓ */}
-            <button
-              className={styles.profileBtn}
-              onClick={() => console.log('Selected user', user.name)}
-            ></button>
-
-            <span className={styles.name}>{user.name}</span>
+            <UserIcon userName={user.name} avatar={user.avatar}></UserIcon>
           </li>
         ))}
       </ul>
+      <Button variant="outlined"> Manage Profiles</Button>
     </div>
   );
 };

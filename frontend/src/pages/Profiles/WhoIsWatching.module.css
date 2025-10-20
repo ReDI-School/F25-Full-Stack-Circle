@@ -11,33 +11,26 @@
   align-items: center;
   flex-direction: column;
   animation: fadeIn 0.8s ease-out forwards;
+  
 
 }
 
 .title {
   margin: 0 0 20px 0;
+  font-weight: 400;
 }
 
 .list {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 10px;
   list-style: none;
   font-size: 2.25rem;
+  margin: 0 0 50px 0;
+
 
 }
 
 .item {
   text-decoration: none;
-}
-
-.profileBtn {
-  background: linear-gradient(180deg, rgba(220, 6, 6, 0.882), rgb(255, 0, 0));
-  cursor: pointer;
-}
-
-.name {
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
 }
