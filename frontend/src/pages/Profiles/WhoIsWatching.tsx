@@ -23,6 +23,7 @@ const WhoIsWatching = () => {
             <UserIcon userName={user.name} avatar={user.avatar}></UserIcon>
           </li>
         ))}
+        <UserIcon userName="Add Profile" avatar="47"></UserIcon>
       </ul>
       <Button variant="outlined"> Manage Profiles</Button>
     </div>
