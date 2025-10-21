@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 
-import { routePaths } from '../../config/RoutePaths';
+import { routePaths } from '../../routes/routePaths';
 
 import styles from './NavigationMenu.module.css';
 
@@ -8,12 +8,12 @@ const NavigationMenu = () => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.items}>
-        {Object.values(routePaths).map((getRoute) => {
-          const [label, route] = getRoute();
+        {Object.entries(routePaths).map(([, getRoute]) => {
+          const { label, path } = getRoute();
           return (
             <li className={styles.list} key={label}>
               <NavLink
-                to={route}
+                to={path}
                 className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
               >
                 {label}
