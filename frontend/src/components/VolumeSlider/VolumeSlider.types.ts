@@ -7,4 +7,6 @@ export interface VolumeSliderProps {
   className?: string;
   /** Optional: Color for the Slider */
   color?: string;
+  /** Optional: Orientation of the volume slider */
+  orientation?: 'vertical' | 'horizontal';
 }
