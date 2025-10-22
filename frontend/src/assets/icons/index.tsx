@@ -21,6 +21,7 @@ import questionIcon from './questionIcon.svg';
 import searchIcon from './searchIcon.svg';
 import thumbDownIcon from './thumbDownIcon.svg';
 import thumbUpIcon from './thumbUpIcon.svg';
+import translatorIcon from './translator.svg';
 import twitterIcon from './twitterIcon.svg';
 import youTubeIcon from './youTubeIcon.svg';
 
@@ -48,6 +49,7 @@ export const ICONS: Record<string, string> = {
   search: searchIcon,
   thumbDown: thumbDownIcon,
   thumbUp: thumbUpIcon,
+  translator: translatorIcon,
   twitter: twitterIcon,
   youTube: youTubeIcon,
 };

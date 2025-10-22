@@ -20,6 +20,7 @@ const styledButton = cva(styles.button, {
       outlined: styles.outlined,
     },
     size: {
+      small: styles.sizeSmall,
       medium: styles.sizeMedium,
       large: styles.sizeLarge,
     },
