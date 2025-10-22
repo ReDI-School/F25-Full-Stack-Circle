@@ -47,7 +47,13 @@ export const HomepageHeader = ({
           )}
         </div>
 
-        <div className={styles.rightSection}>
+        <div
+          className={
+            type === 'LandingPage'
+              ? styles['rightSection-landing-page']
+              : styles['rightSection-home-page']
+          }
+        >
           {type === 'LandingPage' ? (
             <>
               <Select
