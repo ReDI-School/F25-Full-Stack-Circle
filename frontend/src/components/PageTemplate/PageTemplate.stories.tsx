@@ -12,6 +12,8 @@ type Story = StoryObj<typeof PageTemplate>;
 
 export const Default: Story = {
   args: {
-    children: 'Violent,Dark,Action',
+    children: 'Menu',
+    imageLink: 'https://wallpapercave.com/netflix-wallpapers',
+    backGroundColor: '#000',
   },
 };
