@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-
-import type { PageTemplateProps } from './PageTemplate.types';
 import styles from './PageTemplate.module.css';
-import Image1 from '../../assets/images/page-template-hero-image.jpg';
+import type { PageTemplateProps } from './PageTemplate.types';
 
+import Image1 from '../../assets/images/page-template-hero-image.jpg';
 import Logo from '../../assets/images/logo.svg?react';
 
 const PageTemplate = ({
