@@ -59,6 +59,7 @@
   --grey-700: #2a2a2a;
   --grey-750: #262626;
   --grey-800: #232323;
+  --grey-825: #222222;
   --grey-850: #181818;
   --grey-900: #141414;
   --transparent-white-15: #ffffff;
@@ -127,6 +128,10 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
   --leading-17px: 17px; /* Specific line height for navigation */
+  --leading-27px: 27px; /* Specific line height for descriptions */
+  --leading-30px: 30px; /* Specific line height for large descriptions */
+  --leading-40px: 40px; /* Specific line height for mobile headlines */
+  --leading-62px: 62px; /* Specific line height for desktop headlines */
 
   /* Spacing Scale */
   --space-0: 0;
@@ -184,6 +189,15 @@
   --z-tooltip: 1070;
   --z-toast: 1080;
   --progressBarThumb-z-index: 20;
+
+  /* Content Block Dimensions */
+  --content-block-max-width-mobile: 500px;
+  --content-block-max-width-tablet: 1104px;
+  --content-block-max-width-desktop: 1200px;
+  --content-block-min-height: 410px;
+  --content-text-max-width: 546px;
+  --content-image-max-height: 410px;
+  --border-divider-width: 8px;
 
   /* Hover Sizes */
   --progressBarThumb-hover-width: 18px;
