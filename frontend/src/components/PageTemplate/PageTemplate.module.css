@@ -1,0 +1,39 @@
+.wrap {
+  min-height: 100vh;
+  position: relative;
+  background: cover no-repeat top center;
+  z-index: 5;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+  }
+}
+
+.navBarWrap {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px 28px;
+}
+
+.logoWrap {
+  display: block;
+  max-width: 148px;
+  height: auto;
+  svg {
+    width: 100%;
+  }
+}
