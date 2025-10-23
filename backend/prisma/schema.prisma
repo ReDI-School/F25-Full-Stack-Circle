@@ -12,9 +12,93 @@ datasource db {
 }
 
 model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  name         String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  UserReaction UserReaction[]
+}
+
+model UserReaction {
+  user      User         @relation(fields: [user_id], references: [id])
+  user_id   Int
+  video     Video        @relation(fields: [video_id], references: [id])
+  video_id  Int
+  type      ReactionType
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@id([user_id, video_id])
+}
+
+model Video {
+  id             Int            @id @default(autoincrement())
+  name           String?
+  duration       Int
+  url            String
+  title          Title?         @relation(fields: [movie_title_id], references: [id])
+  movie_title_id Int?           @unique
+  season         Season?        @relation(fields: [season_id], references: [id])
+  season_id      Int?           @unique
+  episode_number Int?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  UserReaction   UserReaction[]
+}
+
+model Title {
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(255)
+  type      VideoType
+  category  Category[]
+  season    Season[]
+  video     Video?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Season {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
+  number    Int
+  thumbnail String
+  title     Title    @relation(fields: [title_id], references: [id])
+  title_id  Int      @unique
+  video     Video?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id              Int            @id @default(autoincrement())
+  name            String         @db.VarChar(255)
+  age_restriction AgeRestriction
+  title           Title          @relation(fields: [title_id], references: [id])
+  title_id        Int
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+enum ReactionType {
+  LIKE
+  DISLIKE
+}
+
+enum AgeRestriction {
+  TVY
+  TVY7
+  G
+  TVG
+  PG
+  TVPG
+  PG13
+  TV14
+  R
+  TVMA
+  NC17
+}
+
+enum VideoType {
+  MOVIE
+  SERIES
 }

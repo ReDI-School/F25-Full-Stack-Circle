@@ -10,6 +10,8 @@ export interface SelectProps<Value extends OptionValue> {
   className?: string;
   'aria-label'?: string;
   'aria-describedby'?: string;
+  icon?: React.ReactNode;
+  iconPosition?: 'before' | 'after';
 }
 
 export type OptionValue = string | number;

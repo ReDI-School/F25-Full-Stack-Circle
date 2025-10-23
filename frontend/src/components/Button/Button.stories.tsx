@@ -45,6 +45,7 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <>
+      <Button size="small">Small</Button>
       <Button size="medium">Medium</Button>
       <Button size="large">Large</Button>
     </>

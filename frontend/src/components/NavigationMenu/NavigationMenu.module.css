@@ -6,21 +6,44 @@
   width: 100%;
   padding: 1rem 2rem;
   z-index: 1000;
+}
 
-  .items {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+.items {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .link {
-    color: var(--text-primary);
-    text-decoration: none;
-  }
+.list {
+  margin: 0;
+  padding: 0;
+}
 
-  .active {
-    font-weight: bold;
-  }
+.link {
+  font-family: 'Netflix Sans', var(--font-family);
+  font-weight: var(--font-normal);
+  font-style: normal;
+  font-size: var(--text-sm);
+  line-height: var(--line-height-sm);
+  letter-spacing: var(--letter-spacing-sm);
+  vertical-align: middle;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--text-secondary);
+}
+
+.active {
+  font-family: 'Netflix Sans', var(--font-family);
+  font-weight: var(--font-medium);
+  font-style: normal;
+  font-size: var(--text-sm);
+  line-height: var(--line-height-sm);
+  letter-spacing: var(--letter-spacing-sm);
+  vertical-align: middle;
 }
