@@ -44,6 +44,7 @@ import avatar43 from './other/212.svg';
 import avatar44 from './other/229.svg';
 import avatar45 from './other/230.svg';
 import avatar46 from './other/247.svg';
+import avatar47 from './other/+.svg';
 
 export const PopularAvatars: Record<string, string> = {
   '01': avatar1,
@@ -92,4 +93,5 @@ export const PopularAvatars: Record<string, string> = {
   '44': avatar44,
   '45': avatar45,
   '46': avatar46,
+  '47': avatar47,
 };
