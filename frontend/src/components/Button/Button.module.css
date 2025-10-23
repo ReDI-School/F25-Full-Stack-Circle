@@ -104,6 +104,11 @@
 }
 
 /* Sizes */
+.sizeSmall {
+  height: 32px;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
 .sizeMedium {
   height: 40px;
   padding: var(--space-3) var(--space-6);
@@ -133,7 +138,13 @@
 /* Icon-only (square) */
 .iconOnly {
   padding: 0;
-  width: 40px; /* default square for medium */
+  width: 40px; /* default square for small */
+  height: 40px;
+  justify-content: center;
+}
+.iconOnlyMedium {
+  padding: 0;
+  width: 40px;
   height: 40px;
   justify-content: center;
 }
