@@ -49,35 +49,4 @@ export const Youtube: Story = {
     src: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
   },
 };
-
-export const VimeoSmall: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'small',
-  },
-};
-
-export const VimeoMedium: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'medium',
-  },
-};
-
-export const VimeoLarge: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'large',
-  },
-};
-
-export const VimeoFull: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'full',
-  },
-};
+ 
