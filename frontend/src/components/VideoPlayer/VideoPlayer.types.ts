@@ -1,8 +1,15 @@
+import type { RefObject } from "react";
+
 interface VideoPlayerProps {
   /**
    * The url or path of a video.
    */
   src: string;
+
+  /**
+   * The reference to the Video Player. Used to control the states of the Video Player. 
+   */
+  playerRef: RefObject<HTMLVideoElement | null>
 
   /**
    * Set to true or false to play or pause the media.
@@ -50,22 +57,76 @@ interface VideoPlayerProps {
    * Element or component to use as the play icon in light mode.
    */
   playIcon?: React.ReactElement;
+  
+  /**
+   *  Called when user clicks the light mode preview.
+   */
+  onClickPreview?: () => void;
 
   /**
-   * Sets the current playback time in seconds.
+   * Called when media is loaded and ready to play.
    */
-  currentTime?: number;
+  onReady?: () => void;
 
   /**
-   * Size of the wrapper.
+   * Called when media starts playing.
    */
-  size?: 'small' | 'medium' | 'large' | 'full';
+  onStart?: () => void;
 
   /**
-   * Toggle fullscreen.
-   * Default: false
+   * Called when the playing prop is set to true.
    */
-  fullscreen?: boolean;
+  onPlay?: () => void;
+
+  /**
+   * Called when media actually starts playing.
+   */
+  onPlaying?: () => void;
+
+  /**
+   * Called when media is paused.
+   */
+  onPause?: () => void;
+
+  /**
+   * Called when playback rate of the player changed.
+   */
+  onRateChange?: () => void;
+
+  /**
+   * Called when media is seeking.
+   */
+  onSeeking?: () => void;
+
+  /**
+   * Called when media has finished seeking.
+   */
+  onSeeked?: () => void;
+
+  /**
+   * Called when media finishes playing.
+   */
+  onEnded?: () => void;
+
+  /**
+   * Called when an error occurs whilst attempting to play media.
+   */
+  onError?: () => void;
+
+  /**
+   * Called when the media's current time changes.
+   */
+  onTimeUpdate?: () => void;
+
+  /**
+   * Called when media data is loaded.
+   */
+  onProgress?: () => void;
+
+  /**
+   * Callback containing duration of the media, in seconds.
+   */
+  onDurationChange?: () => void;
 }
 
 export type { VideoPlayerProps };
