@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'http://localhost:4000/users' });
+import type { User } from './user.types';
+
+const api = axios.create({ baseURL: 'http://localhost:4000/' });
+
+const usersData = (res: { data: User }) => res.data;
 
 export const userAPI = {
-  getAll: () => api.get('/users').then((res) => console.log('res.data: ', res.data)),
-  getOne: (id: string) => api.get(`users${id}`).then((res) => res.data),
-  create: (data: any) => api.post(`/users`, data).then((res) => res.data),
-  update: (id: string, data: any) => api.put(`/users${id}`, data).then((res) => res.data),
-  delete: (id: string) => api.delete(`/users/id${id}`).then((res) => res.data),
+  getAll: () => api.get<User>('/users').then(usersData),
+  getOne: (id: string) => api.get<User>(`users${id}`).then(usersData),
+  create: (data: User) => api.post<User>(`/users`, data).then(usersData),
+  update: (id: string, data: User) => api.put<User>(`/users${id}`, data).then(usersData),
+  delete: (id: string) => api.delete(`/users/id${id}`).then(usersData),
 };
