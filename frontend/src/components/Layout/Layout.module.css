@@ -1,8 +1,8 @@
 .layout {
   width: 100%;
   min-height: 100vh;
-  /* display: flex; */
-  /* place-content: center; */
-  /* place-items: center; */
-  box-sizing: border-box;
+
+  &.auth {
+    background: url('/assets/images/auth-bg-image.png');
+  }
 }
