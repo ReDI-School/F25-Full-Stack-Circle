@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 import useRoutesListMatch from '../../hooks/useRouteListMatch';
-import { routePaths } from '../../routes/routePaths';
+import { authRoutes } from '../../routes/routePaths';
 
 import { Header } from '../Header';
 import styles from './Layout.module.css';
@@ -13,8 +13,6 @@ const styledLayout = cva(styles.layout, {
     },
   },
 });
-
-const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { isMatched: isAuthPage } = useRoutesListMatch(authRoutes);
