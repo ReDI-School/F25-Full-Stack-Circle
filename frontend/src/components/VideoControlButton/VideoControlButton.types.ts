@@ -13,7 +13,7 @@ interface VideoControlButtonProps {
    * The function to be called when the button is hovered
    */
   onHover?: () => void;
-   
+
   /**
    * Accessibility label for screen readers
    */

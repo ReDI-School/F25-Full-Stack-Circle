@@ -10,7 +10,7 @@
   cursor: pointer;
   background-color: var(--grey-900);
 }
- 
+
 .controlIcon {
   height: var(--space-6);
   width: var(--space-6);
