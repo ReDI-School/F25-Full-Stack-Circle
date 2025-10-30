@@ -1,7 +1,5 @@
 import RediflixLogo from '../../assets/images/logo.svg';
 import { languagesMap } from '../../constants/languages';
-import useRoutesListMatch from '../../hooks/useRouteListMatch';
-import { routePaths } from '../../routes/routePaths';
 import Button from '../Button/Button';
 import { NavigationMenu } from '../NavigationMenu';
 import Select from '../Select/Select';
@@ -9,12 +7,10 @@ import type { HeaderProps } from './Header.types';
 
 import styles from './Header.module.css';
 
-const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
-
 export const Header = ({ type }: HeaderProps) => {
-  const { isMatched: isAuthPage } = useRoutesListMatch(authRoutes);
-
   const isPrivate = type === 'private';
+  const isPublic = type === 'public';
+
   const selectOptions = Object.entries(languagesMap).map(([value, label]) => ({
     value,
     label,
@@ -29,7 +25,7 @@ export const Header = ({ type }: HeaderProps) => {
           {/* // TODO: add search, notifications, profile icon */}
         </>
       ) : (
-        !isAuthPage && (
+        isPublic && (
           <div className={styles.selectors}>
             <Select options={selectOptions} placeholder="English" />
             <Button onClick={() => {}}>Sign In</Button>
