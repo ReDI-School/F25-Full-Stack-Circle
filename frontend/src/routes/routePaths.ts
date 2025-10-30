@@ -7,3 +7,5 @@ export const routePaths = {
   signIn: () => ({ label: 'Sign In', path: '/signin' }),
   signUp: () => ({ label: 'Sign Up', path: '/signup' }),
 };
+
+export const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
