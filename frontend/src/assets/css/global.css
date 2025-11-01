@@ -65,8 +65,10 @@
   --transparent-white-20: #ffffff;
   --transparent-white-30: #ffffff;
   --transparent-white-35: rgba(255, 255, 255, 0.35);
+  --transparent-white-40: rgba(255, 255, 255, 0.4);
   --transparent-white-50: #ffffff;
   --transparent-white-70: rgba(255, 255, 255, 0.7);
+  --transparent-white-80: rgba(255, 255, 255, 0.8);
   --transparent-black-30: #000000;
   --transparent-black-60: #000000;
   --transparent-black-90: rgba(0, 0, 0, 0.9);
@@ -124,6 +126,7 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
   --leading-loose: 2;
+  --leading-17px: 17px; /* Specific line height for navigation */
 
   /* Spacing Scale */
   --space-0: 0;
@@ -213,17 +216,17 @@
 
   --volume-slider-width: 110px;
   --volume-slider-height: 30px;
-  --volume-slider-accent: #FF002E;
+  --volume-slider-accent: #ff002e;
 
   --volume-track-height: 10px;
   --volume-track-height-firefox: 20px;
   --volume-track-height-ie: 20px;
   --volume-track-bg: #808080;
-  --volume-track-fill: #FF002E;
+  --volume-track-fill: #ff002e;
 
   --volume-thumb-size: 20px;
-  --volume-thumb-bg: #FF002E;
-  --volume-thumb-border: #FF002E;
+  --volume-thumb-bg: #ff002e;
+  --volume-thumb-border: #ff002e;
   --volume-thumb-margin-high: 1px;
   --volume-thumb-margin-medium: -3px;
   --volume-thumb-margin-mute: -6px;

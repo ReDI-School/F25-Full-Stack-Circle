@@ -5,7 +5,7 @@ interface ButtonProps
   > {
   children?: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'white' | 'outlined';
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   icon?: string | React.ReactNode;
   iconPosition?: 'before' | 'after';
   iconOnly?: boolean;
