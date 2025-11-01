@@ -36,6 +36,8 @@ const Select = <Value extends OptionValue>({
   placeholder = '',
   'aria-label': ariaLabel = 'Select',
   'aria-describedby': ariaDescribedby,
+  icon,
+  iconPosition = 'before',
 }: SelectProps<Value>) => {
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -76,6 +78,7 @@ const Select = <Value extends OptionValue>({
 
   return (
     <div ref={selectRef} className={styledSelect({ expanded: isOptionsShown, className })}>
+      {icon && iconPosition === 'before' && <span className={styles.selectIcon}>{icon}</span>}
       <Button
         className={styles.selectArrow}
         role="combobox"
@@ -103,6 +106,7 @@ const Select = <Value extends OptionValue>({
         tabIndex={-1}
         readOnly
       />
+      {icon && iconPosition === 'after' && <span className={styles.selectIcon}>{icon}</span>}
       {isOptionsShown && (
         <div id={`${id}-listbox`} role="listbox" className={styles.selectDropdown}>
           {options.map(({ label, value, isDisabled = false }) => {
