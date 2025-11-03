@@ -1,4 +1,4 @@
-.wrapper {
+.videoControl {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -8,6 +8,19 @@
 
   display: grid;
   grid-template-rows: 1fr 1fr;
+}
+
+.gridWrapper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.controlButtonWrapper {
+  display: flex;
   gap: 1rem;
 }
- 
+
+span {
+  place-content: center;
+  text-align: center;
+}
