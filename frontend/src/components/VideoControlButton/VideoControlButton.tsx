@@ -37,7 +37,7 @@ const VideoControlButton = ({ icon, onClick, ariaLabel }: VideoControlButtonProp
   const Icon = iconMap[icon];
 
   return (
-    <button className={styledControlButton()} onClick={onClick} aria-label={ariaLabel}>
+    <button className={styledControlButton()} onClick={onClick} aria-label={ariaLabel} type='button'>
       <Icon className={styledControlIcon()} aria-label="control button icon" />
     </button>
   );
