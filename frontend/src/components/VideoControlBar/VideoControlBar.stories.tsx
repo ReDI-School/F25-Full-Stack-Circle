@@ -82,7 +82,6 @@ const Template: StoryFn<VideoControlBarProps> = (args: VideoControlBarProps) => 
           ...args.volumeSliderProps,
           value: volume,
           onChange: handleVolumeChange,
-          orientation: 'horizontal'
         }}
         onPlayButtonClick={handleOnPlayButtonClick}
         onCaptionButtonClick={handleOnCaptionButtonClick}
