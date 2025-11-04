@@ -1,14 +1,14 @@
-import type React from 'react';
 import type { IconButtonProps } from '../IconButton';
+import type { ReactElement } from 'react';
 
 interface RatingGroupProps {
   /**
    * The array of IconButton Component to display
    */
-  children: React.ReactElement<IconButtonProps>;
+  children: ReactElement<IconButtonProps>[];
 
   /**
-   * The array of IconButton Component to display
+   * The size of IconButton Components to display
    */
   size?: 'small' | 'medium' | 'large';
 
