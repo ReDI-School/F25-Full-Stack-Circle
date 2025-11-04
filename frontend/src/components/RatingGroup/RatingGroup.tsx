@@ -1,7 +1,8 @@
-import type { RatingGroupProps } from './RatingGroup.types';
-import styles from './RatingGroup.module.css';
 import { cva } from 'class-variance-authority';
-import React, { useState } from 'react';
+import { cloneElement, useState } from 'react';
+
+import type { RatingGroupProps } from './index';
+import styles from './RatingGroup.module.css';
 
 const styledRatingGroup = cva(styles.ratingGroup, {
   variants: {
@@ -14,17 +15,19 @@ const styledRatingGroup = cva(styles.ratingGroup, {
 });
 
 const RatingGroup = ({ children, size = 'medium', className }: RatingGroupProps) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(
+    children.findIndex((c) => c.props.selected)
+  );
 
-  const handleItemOnClick = (index: number) => {
+  const handleItemClick = (index: number) => {
     setSelectedIndex(index);
   };
 
   return (
     <div className={styledRatingGroup({ size, className })}>
-      {React.Children.map(children, (iconButton, index) => {
-        return React.cloneElement(iconButton, {
-          onClick: () => handleItemOnClick(index),
+      {children.map((iconButton, index) => {
+        return cloneElement(iconButton, {
+          onClick: () => handleItemClick(index),
           selected: selectedIndex === index,
         });
       })}

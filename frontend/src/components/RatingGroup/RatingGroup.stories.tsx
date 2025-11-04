@@ -11,36 +11,11 @@ const meta: Meta<typeof RatingGroup> = {
 export default meta;
 
 const createIconButtons = (size: 'small' | 'medium' | 'large') => {
-  return (
-    <>
-      <IconButton
-        key={0}
-        icon="thumbs-down"
-        size={size}
-        variant="outlined"
-        theme="primary"
-        selected
-      />
-      ,
-      <IconButton
-        key={1}
-        icon="thumbs-up"
-        size={size}
-        variant="outlined"
-        theme="primary"
-        selected={false}
-      />
-      ,
-      <IconButton
-        key={2}
-        icon="double-thumbs-up"
-        size={size}
-        variant="outlined"
-        theme="primary"
-        selected={false}
-      />
-    </>
-  );
+  return [
+    <IconButton icon="thumbs-down" size={size} variant="outlined" theme="primary" />,
+    <IconButton icon="thumbs-up" size={size} variant="outlined" theme="primary" selected />,
+    <IconButton icon="double-thumbs-up" size={size} variant="outlined" theme="primary" />,
+  ];
 };
 
 type Story = StoryObj<typeof RatingGroup>;
