@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
+import videoRouter from './routes/videoRoutes';
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(
 
 // Routes
 app.use('/users', userRouter);
+app.use('/videos', videoRouter);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {
