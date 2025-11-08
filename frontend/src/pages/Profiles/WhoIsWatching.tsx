@@ -1,14 +1,10 @@
 import styles from './WhoIsWatching.module.css';
 import { Button } from '../../components';
 import { UserIcon } from '../../components/UserIcon';
+import type { WhoIsWatching } from './WhoIsWatchting.types';
 
 const WhoIsWatching = () => {
-  interface User {
-    id: string;
-    name: string;
-    avatar: string;
-  }
-  const users: User[] = [
+  const users: WhoIsWatching[] = [
     { id: '1', name: 'Ahmad', avatar: '01' },
     { id: '2', name: 'Koubrse', avatar: '02' },
     { id: '3', name: 'Chikas', avatar: '03' },
