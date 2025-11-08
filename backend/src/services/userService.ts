@@ -12,6 +12,10 @@ export class UserService {
   }
 
   async createUser(data: { email: string; name?: string; password: string; accountId: string }) {
+    if (!data.accountId) {
+      throw new Error('Account Id is required');
+    }
+
     return await prisma.user.create({
       data: {
         email: data.email,
