@@ -1,0 +1,23 @@
+.controlButton {
+  background-color: transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  border: none;
+  transition: var(--transition-base);
+}
+
+.controlButton:hover {
+  cursor: pointer;
+  background-color: var(--grey-900);
+}
+
+.controlIcon {
+  height: var(--space-6);
+  width: var(--space-6);
+  color: var(--primary-white);
+  transition: var(--transition-base);
+}
+
+.controlButton:hover > .controlIcon {
+  transform: scale(1.1);
+}
