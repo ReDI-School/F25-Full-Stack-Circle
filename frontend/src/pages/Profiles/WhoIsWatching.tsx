@@ -1,10 +1,10 @@
 import styles from './WhoIsWatching.module.css';
 import { Button } from '../../components';
 import { UserIcon } from '../../components/UserIcon';
-import type { WhoIsWatching } from './WhoIsWatchting.types';
+import type { User } from './WhoIsWatching.types';
 
 const WhoIsWatching = () => {
-  const users: WhoIsWatching[] = [
+  const users: User[] = [
     { id: '1', name: 'Ahmad', avatar: '01' },
     { id: '2', name: 'Koubrse', avatar: '02' },
     { id: '3', name: 'Chikas', avatar: '03' },
