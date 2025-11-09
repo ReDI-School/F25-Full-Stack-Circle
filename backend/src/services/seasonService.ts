@@ -1,6 +1,6 @@
 import prisma from '../libs/prisma';
 
-export class seasonsService {
+export class SeasonService {
   // Alle Seasons abrufen
   async getAllSeasons() {
     return await prisma.season.findMany({
