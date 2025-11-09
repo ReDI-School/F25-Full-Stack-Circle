@@ -1,7 +1,6 @@
 import prisma from '../libs/prisma';
 
 export class SeasonService {
-  // Alle Seasons abrufen
   async getAllSeasons() {
     return await prisma.season.findMany({
       include: {
@@ -9,7 +8,7 @@ export class SeasonService {
         video: true,
       },
     });
-  } //// Titel und Episoden (Videos) mit einbeziehen
+  }
 
   async getSeasonById(id: number) {
     return await prisma.season.findUnique({
@@ -18,7 +17,6 @@ export class SeasonService {
     });
   }
 
-  // Neue Season anlegen
   async createSeason(data: { number: number; thumbnail: string; title_id: number }) {
     return await prisma.season.create({
       data,
@@ -27,7 +25,7 @@ export class SeasonService {
       },
     });
   }
-  // Season aktualisieren
+
   async updateSeason(id: number, data: { number?: number; thumbnail?: string; title_id?: number }) {
     return await prisma.season.update({
       where: { id },
