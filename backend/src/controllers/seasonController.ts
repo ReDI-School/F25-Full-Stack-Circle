@@ -49,4 +49,27 @@ export class SeasonController {
       res.status(500).json({ error: 'Failed to create new season' });
     }
   }
+
+  async updateSeason(req: Request, res: Response) {
+    try {
+      const id = Number(req.params.id);
+      const { number, thumbnail, title_id } = req.body;
+      const updatedSeason = await seasonService.updateSeason(id, { number, thumbnail, title_id });
+      res.status(200).json(updatedSeason);
+    } catch (error) {
+      console.error('Error updating season:', error);
+      res.status(500).json({ error: 'Failed to update season' });
+    }
+  }
+
+  async deleteSeason(req: Request, res: Response) {
+    try {
+      const id = Number(req.params.id);
+      await seasonService.deleteSeason(id);
+      res.json({ message: 'Season deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting season:', error);
+      res.status(500).json({ error: 'Failed to delete season' });
+    }
+  }
 }
