@@ -30,4 +30,23 @@ export class SeasonController {
       res.status(500).json({ error: 'Failed to fetch season' });
     }
   }
+
+  async createSeason(req: Request, res: Response) {
+    try {
+      const { number, thumbnail, title_id } = req.body;
+      if (!number || !thumbnail || !title_id) {
+        return res.status(400).json({ error: 'Missing required data' });
+      }
+
+      const newSeason = await seasonService.createSeason({
+        number: Number(number),
+        thumbnail,
+        title_id: Number(title_id),
+      });
+      res.status(201).json(newSeason);
+    } catch (error) {
+      console.log('Error creating new season:', error);
+      res.status(500).json({ error: 'Failed to create new season' });
+    }
+  }
 }
