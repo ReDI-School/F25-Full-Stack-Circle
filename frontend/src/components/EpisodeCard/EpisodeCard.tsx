@@ -1,7 +1,12 @@
 import type { EpisodeCardProps } from './EpisodeCard.types';
 import styles from './EpisodeCard.module.css';
 
-const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, onClick, isCurrent, className = '' }) => {
+const EpisodeCard: React.FC<EpisodeCardProps> = ({
+  episode,
+  onClick,
+  isCurrent,
+  className = '',
+}) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       onClick?.(episode);
@@ -18,11 +23,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, onClick, isCurrent, 
     >
       <div className={styles.cardContent}>
         <span className={styles.episodeNumber}>{episode.number}</span>
-        <img
-          src={episode.thumbnail}
-          alt={episode.title}
-          className={styles.thumbnail}
-        />
+        <img src={episode.thumbnail} alt={episode.title} className={styles.thumbnail} />
         <div className={styles.detailsContainer}>
           <div className={styles.details}>
             <h4>{episode.title}</h4>

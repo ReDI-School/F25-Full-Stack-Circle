@@ -9,10 +9,9 @@ interface ButtonProps
   icon?: string | React.ReactNode;
   iconPosition?: 'before' | 'after';
   iconOnly?: boolean;
-  fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
-  stretch?: boolean; // Whether the button should stretch to the width of its container
+  stretch?: boolean;
 }
 
 export type { ButtonProps };

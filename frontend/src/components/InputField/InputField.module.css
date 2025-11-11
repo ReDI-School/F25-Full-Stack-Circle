@@ -1,14 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  position: relative;
   border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
   font-family: var(--font-family);
 }
 
 .inputWrapper {
   position: relative;
-  padding: var(--space-2);
 }
 
 .input {
