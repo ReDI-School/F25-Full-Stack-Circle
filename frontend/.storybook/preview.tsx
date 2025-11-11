@@ -1,8 +1,14 @@
 import type { Preview } from '@storybook/react-vite';
+import { BrowserRouter } from 'react-router-dom';
 import '../src/assets/css/global.css';
 import '../src/assets/css/reset.css';
 
 const preview: Preview = {
+  decorators: [
+    (Story) => {
+      return <BrowserRouter>{Story()}</BrowserRouter>;
+    },
+  ],
   parameters: {
     controls: {
       matchers: {
