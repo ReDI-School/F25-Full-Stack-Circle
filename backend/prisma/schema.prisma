@@ -23,7 +23,7 @@ model User {
 model UserReaction {
   user      User         @relation(fields: [user_id], references: [id])
   user_id   Int
-  video     Video        @relation(fields: [video_id], references: [id])
+  video     Video        @relation(fields: [video_id], references: [id], onDelete: Cascade)
   video_id  Int
   type      ReactionType
   createdAt DateTime     @default(now())

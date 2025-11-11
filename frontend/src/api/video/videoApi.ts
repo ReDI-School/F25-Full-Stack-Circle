@@ -1,6 +1,8 @@
 import type { VideoData } from './videoApi.types';
+import { config } from '../../config';
 
-const BASE_URL = 'http://localhost:3000/videos';
+const { apiUrl } = await config();
+const BASE_URL = apiUrl + '/videos';
 
 export async function getAllVideos() {
   const res = await fetch(BASE_URL);

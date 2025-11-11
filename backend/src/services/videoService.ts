@@ -17,6 +17,7 @@ export class VideoService {
   async createVideo(data: {
     name?: string;
     duration: number;
+    image?: string;
     url: string;
     movie_title_id?: number;
     season_id?: number;
@@ -30,6 +31,7 @@ export class VideoService {
     data: {
       name?: string;
       duration?: number;
+      image?: string;
       url?: string;
       movie_title_id?: number;
       season_id?: number;
