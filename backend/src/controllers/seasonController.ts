@@ -37,6 +37,16 @@ export class SeasonController {
       if (!number || !thumbnail || !title_id) {
         return res.status(400).json({ error: 'Missing required data' });
       }
+      if (isNaN(Number(number))) {
+        return res.status(400).json({ error: "Field 'number' must be a valid number." });
+      }
+
+      if (isNaN(Number(title_id))) {
+        return res.status(400).json({ error: "Field 'title_id' must be a valid number." });
+      }
+      if (thumbnail && typeof thumbnail !== 'string') {
+        return res.status(400).json({ error: "Field 'thumbnail' must be a string." });
+      }
 
       const newSeason = await seasonService.createSeason({
         number: Number(number),
@@ -54,7 +64,29 @@ export class SeasonController {
     try {
       const id = Number(req.params.id);
       const { number, thumbnail, title_id } = req.body;
-      const updatedSeason = await seasonService.updateSeason(id, { number, thumbnail, title_id });
+
+      if (isNaN(id) || id < 0) {
+        return res.status(400).json({ error: 'Invalid or missing season ID.' });
+      }
+      if (!number || !thumbnail || !title_id) {
+        return res.status(400).json({ error: 'Missing required data' });
+      }
+      if (isNaN(Number(number))) {
+        return res.status(400).json({ error: "Field 'number' must be a valid number." });
+      }
+
+      if (isNaN(Number(title_id))) {
+        return res.status(400).json({ error: "Field 'title_id' must be a valid number." });
+      }
+      if (thumbnail && typeof thumbnail !== 'string') {
+        return res.status(400).json({ error: "Field 'thumbnail' must be a string." });
+      }
+
+      const updatedSeason = await seasonService.updateSeason(id, {
+        number: Number(number),
+        thumbnail,
+        title_id: Number(title_id),
+      });
       res.status(200).json(updatedSeason);
     } catch (error) {
       console.error('Error updating season:', error);
