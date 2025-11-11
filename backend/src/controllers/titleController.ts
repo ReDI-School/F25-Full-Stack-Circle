@@ -29,7 +29,33 @@ export class TitleController {
   async createTitle(req: Request, res: Response) {
     try {
       const body = req.body;
-      const title = await titleService.createTitle(body);
+
+      let categories: number[] = [];
+      if (body.category) {
+        categories = Array.isArray(body.category) ? body.category : [body.category];
+      }
+
+      let seasons: number[] = [];
+      if (body.season) {
+        seasons = Array.isArray(body.season) ? body.season : [body.season];
+      }
+
+      const title = await titleService.createTitle({
+        ...body,
+        category:
+          categories.length > 0
+            ? {
+                connect: categories.map((categoryId: number) => ({ id: categoryId })),
+              }
+            : undefined,
+        season:
+          seasons.length > 0
+            ? {
+                connect: seasons.map((seasonId: number) => ({ id: seasonId })),
+              }
+            : undefined,
+      });
+
       res.status(201).json({ title });
     } catch (error) {
       console.error('Error creating title:', error);

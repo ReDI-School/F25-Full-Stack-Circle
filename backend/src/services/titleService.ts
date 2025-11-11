@@ -1,4 +1,4 @@
-import { Category, Prisma, Season, Video, VideoType } from 'generated/prisma';
+import { VideoType, Prisma } from 'generated/prisma';
 import prisma from 'src/libs/prisma';
 
 export class TitleService {
@@ -30,14 +30,7 @@ export class TitleService {
   }
 
   // async createTitle(title: Prisma.TitleCreateInput) {
-  async createTitle(title: {
-    id: number;
-    name: string;
-    type: VideoType;
-    category?: Category[];
-    season?: Season[];
-    video?: Video;
-  }) {
+  async createTitle(title: Prisma.TitleCreateInput) {
     return await prisma.title.create({ data: title });
   }
 
