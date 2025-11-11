@@ -1,8 +1,14 @@
 .layout {
   width: 100%;
   min-height: 100vh;
+}
 
-  &.auth {
-    background: url('/assets/images/auth-bg-image.png');
-  }
+.layout.auth {
+  background: url('src/assets/images/auth-bg-image.png') no-repeat center top / cover;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }

@@ -22,8 +22,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className={styledLayout({ isAuthPage })}>
-      <Header type={headerType} />
-      {children}
+      <div className={styles.container}>
+        <Header type={headerType} />
+        {children}
+      </div>
     </div>
   );
 };
