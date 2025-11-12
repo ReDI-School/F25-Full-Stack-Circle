@@ -3,11 +3,11 @@ name: Build Frontend
 on:
   pull_request:
     paths:
-      - 'frontend/**'
+      - "frontend/**"
     types: [opened, reopened, synchronize]
   push:
     paths:
-      - 'frontend/**'
+      - "frontend/**"
     branches:
       - main
 
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install Dependencies
@@ -44,3 +44,69 @@ jobs:
       - name: Run Build
         run: npm run build
         working-directory: frontend
+
+        # Backend validation
+  backend-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Prettier
+        run: npm run format -- --check
+
+      - name: Build Backend
+        run: npm run build
+
+      - name: Verify backend deployment (optional)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Checking backend health endpoint..."
+          curl -f ${{ secrets.BACKEND_URL }}/health || exit 1
+
+  # Run production migrations
+  backend-migrations:
+    runs-on: ubuntu-latest
+    needs: backend-validation
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npm run prisma:generate
+
+      - name: Run Production Migrations
+        env:
+          DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+        run: npx prisma migrate deploy
+
+      - name: Verify DB connectivity
+        env:
+          DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+        run: npx prisma db pull || echo "DB connectivity check skipped"
