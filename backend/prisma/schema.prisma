@@ -62,8 +62,8 @@ model Season {
   id        Int      @id @default(autoincrement())
   number    Int
   thumbnail String
-  title     Title    @relation(fields: [title_id], references: [id])
-  title_id  Int
+  title     Title?   @relation(fields: [title_id], references: [id])
+  title_id  Int?
   video     Video[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
