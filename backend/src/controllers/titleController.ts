@@ -54,6 +54,7 @@ export class TitleController {
                 connect: seasons.map((seasonId: number) => ({ id: seasonId })),
               }
             : undefined,
+        video: body.video ? { connect: { id: body.video } } : undefined,
       });
 
       res.status(201).json({ title });
@@ -67,7 +68,62 @@ export class TitleController {
     try {
       const id = Number(req.params.id);
       const body = req.body;
-      const title = await titleService.updateTitle(id, body);
+
+      const currentTitle = await titleService.getTitleByIdIncludeAll(id);
+
+      let currentCategories: number[] = [];
+      let currentSeasons: number[] = [];
+      if (currentTitle) {
+        currentCategories = currentTitle.category.map((category) => category.id);
+        currentSeasons = currentTitle.season.map((season) => season.id);
+      }
+
+      let categories: number[] = [];
+      if (body.category) {
+        categories = Array.isArray(body.category) ? body.category : [body.category];
+      }
+
+      let seasons: number[] = [];
+      if (body.season) {
+        seasons = Array.isArray(body.season) ? body.season : [body.season];
+      }
+
+      console.log('current', currentSeasons, seasons);
+
+      const title = await titleService.updateTitle(id, {
+        ...body,
+        category:
+          categories.length > 0 // User adds 1 or more category
+            ? {
+                // Disconnects/removes the currently set categories
+                // Order here is important (disconnect before connect) else it will connect then disconnect the same category id. Only happens for the same id.
+                disconnect: currentCategories.map((category) => ({ id: category })),
+                // Connects/adds new categories
+                connect: categories.map((category) => ({ id: category })),
+              }
+            : currentCategories.length > 0 // User wants to remove all the category then we should disconnect the current categories (if length > 0)
+              ? {
+                  disconnect: currentCategories.map((category) => ({ id: category })),
+                }
+              : undefined,
+        season:
+          seasons.length > 0
+            ? {
+                disconnect: currentSeasons.map((season) => ({ id: season })),
+                connect: seasons.map((season) => ({ id: season })),
+              }
+            : currentSeasons.length > 0
+              ? {
+                  disconnect: currentSeasons.map((season) => ({ id: season })),
+                }
+              : undefined,
+        video: body.video
+          ? {
+              connect: { id: body.video },
+            }
+          : undefined,
+      });
+
       res.json({ title });
     } catch (error) {
       console.error('Error updating title:', error);
