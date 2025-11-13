@@ -69,15 +69,6 @@ export class TitleController {
       const id = Number(req.params.id);
       const body = req.body;
 
-      const currentTitle = await titleService.getTitleByIdIncludeAll(id);
-
-      let currentCategories: number[] = [];
-      let currentSeasons: number[] = [];
-      if (currentTitle) {
-        currentCategories = currentTitle.category.map((category) => category.id);
-        currentSeasons = currentTitle.season.map((season) => season.id);
-      }
-
       let categories: number[] = [];
       if (body.category) {
         categories = Array.isArray(body.category) ? body.category : [body.category];
@@ -88,35 +79,35 @@ export class TitleController {
         seasons = Array.isArray(body.season) ? body.season : [body.season];
       }
 
-      console.log('current', currentSeasons, seasons);
+      const currentTitle = await titleService.getTitleByIdIncludeAll(id);
+
+      let categoriesToDisconnect: number[] = [];
+      let seasonsToDisconnect: number[] = [];
+      if (currentTitle) {
+        categoriesToDisconnect = currentTitle.category
+          .filter((category) => !categories.includes(category.id))
+          .map((category) => category.id);
+        seasonsToDisconnect = currentTitle.season
+          .filter((season) => !seasons.includes(season.id))
+          .map((season) => season.id);
+      }
 
       const title = await titleService.updateTitle(id, {
         ...body,
         category:
-          categories.length > 0 // User adds 1 or more category
+          categories.length > 0 || categoriesToDisconnect.length > 0
             ? {
-                // Disconnects/removes the currently set categories
-                // Order here is important (disconnect before connect) else it will connect then disconnect the same category id. Only happens for the same id.
-                disconnect: currentCategories.map((category) => ({ id: category })),
-                // Connects/adds new categories
-                connect: categories.map((category) => ({ id: category })),
+                disconnect: categoriesToDisconnect.map((id) => ({ id })),
+                connect: categories.map((id) => ({ id })),
               }
-            : currentCategories.length > 0 // User wants to remove all the category then we should disconnect the current categories (if length > 0)
-              ? {
-                  disconnect: currentCategories.map((category) => ({ id: category })),
-                }
-              : undefined,
+            : undefined,
         season:
-          seasons.length > 0
+          seasons.length > 0 || seasonsToDisconnect.length > 0
             ? {
-                disconnect: currentSeasons.map((season) => ({ id: season })),
+                disconnect: seasonsToDisconnect.map((season) => ({ id: season })),
                 connect: seasons.map((season) => ({ id: season })),
               }
-            : currentSeasons.length > 0
-              ? {
-                  disconnect: currentSeasons.map((season) => ({ id: season })),
-                }
-              : undefined,
+            : undefined,
         video: body.video
           ? {
               connect: { id: body.video },
