@@ -1,0 +1,650 @@
+/* Container */
+.movieCards {
+  --card-radius: 8px;
+  --card-bg: #1d1d1f;
+  --card-elev: 0 8px 24px rgba(0,0,0,.45);
+  --fg: #e6e6e6;
+  --muted: #a6a6a6;
+  --brand: #e50914;
+  color: var(--fg);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Base card look shared by all variants */
+.cardDefault,
+.cardMoreLikeThis,
+.cardEpisodePreview,
+.cardPlayerPreview,
+.cardTop10,
+.cardContinueWatching,
+.cardTrailerPreview {
+  position: relative;
+  border: 0;
+  background: var(--card-bg);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.cardDefault:hover,
+.cardMoreLikeThis:hover,
+.cardEpisodePreview:hover,
+.cardPlayerPreview:hover,
+.cardTop10:hover,
+.cardContinueWatching:hover,
+.cardTrailerPreviewWrapper:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--card-elev);
+  filter: brightness(.96);
+}
+
+.cardDefault:focus-visible,
+.cardMoreLikeThis:focus-visible,
+.cardEpisodePreview:focus-visible,
+.cardPlayerPreview:focus-visible,
+.cardTop10:focus-visible,
+.cardContinueWatching:focus-visible,
+.cardTrailerPreview:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Sizing (defaults to 16:9) */
+.cardDefault { width: 200px; max-width: 100%; aspect-ratio: 16 / 9; }
+.cardMoreLikeThis { width: 200px; aspect-ratio: 16 / 9; }
+.cardTrailerPreview { width: 200px; aspect-ratio: 16 / 9; }
+.cardTrailerPreviewWrapper { width: 200px; aspect-ratio: 16 / 9; }
+.cardEpisodePreview { width: 128px; aspect-ratio: 16 / 9; }
+.cardPlayerPreviewWrapper { width: 200px; aspect-ratio: 16 / 9; } /* small square preview */
+.cardContinueWatching { width: 200px; aspect-ratio: 16 / 9; }
+.cardTop10 { width: 100px; aspect-ratio: 1 / 1; }
+
+/* Media fills card */
+.thumbnail,
+.media,
+img.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: #2a2a2a;
+}
+
+/* Overlays: gradients for readability */
+.shadeTop,
+.shadeBottom {
+  position: absolute;
+  left: 0; right: 0;
+  pointer-events: none;
+}
+.shadeTop { top: 0; height: 42%; background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.shadeBottom { bottom: 0; height: 38%; background: linear-gradient(0deg, rgba(0,0,0,.62), rgba(0,0,0,0)); }
+
+/* Badges */
+.badgeBrand {
+  position: absolute;
+  top: 8px; left: 8px;
+  padding: 2px 6px;
+  background: rgba(229, 9, 20, .95);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.badgeDuration {
+  position: absolute;
+  top: 8px; right: 8px;
+  padding: 2px 6px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Play overlay (hidden until hover/focus) */
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.cardDefault:hover .playOverlay,
+.cardMoreLikeThis:hover .playOverlay,
+.cardEpisodePreview:hover .playOverlay,
+.cardPlayerPreview:hover .playOverlay,
+.cardTop10:hover .playOverlay,
+.cardContinueWatching:hover .playOverlay,
+.cardTrailerPreview:hover .playOverlay,
+.cardDefault:focus-within .playOverlay,
+.cardTrailerPreview:focus-within .playOverlay {
+  opacity: 1;
+}
+
+.playBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.95);
+  border: none;
+  display: grid;
+  place-items: center;
+  transition: transform .15s ease, background .15s ease;
+}
+.playBtn:hover { transform: scale(1.04); }
+.playBtn:active { transform: scale(.96); }
+.playBtn svg { width: 18px; height: 18px; fill: #000; }
+
+/* Title/meta block below card when used */
+.title {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* standard property to satisfy linter */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Chip (e.g., Recently Added) */
+.chip {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+
+/* Progress bar for Continue Watching */
+.progress {
+  --progress: 0%; /* set inline style on card to override */
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  background: rgba(255,255,255,.2);
+}
+.progressFill {
+  width: var(--progress);
+  height: 100%;
+  background: var(--brand);
+}
+
+/* Top 10: large rank background with small poster area on the right */
+.cardTop10Wrapper {
+  position: relative;
+  display: block;
+  /* space the card to the right to make room for the big number */
+  --rankWidth: 50%;
+}
+
+/* Large "1" icon on the left side */
+.rankOne {
+  position: absolute;
+  left: 35%;
+  bottom: 0;
+  top: 0;
+  width: 100px;
+  background-color: black !important;
+  background: url('../../assets/icons/one.svg') no-repeat left bottom / contain;
+  pointer-events: none;
+  /* allow the card to visually sit above the number but keep number visible */
+  z-index: 0;
+  opacity: 0.9; /* use SVG's own opacity, small boost for visibility */
+}
+
+/* The tile on the right side */
+.cardTop10 {
+  position: relative;
+  display: block;
+  margin-left: calc(var(--rankWidth) + 8px); /* small gap between number and tile */
+  width: auto;
+  aspect-ratio: 1.33 / 1; /* visually similar to screenshot */
+  overflow: hidden;
+  background: #333;
+  z-index: 1; /* sits above the number svg */
+}
+
+/* Subtle top gradient like other tiles */
+.cardTop10::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.00) 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Reuse shared thumbnail class; ensure it fills card */
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Reuse the small 'N' brand */
+.badgeBrand {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  background: url('../../assets/icons/smallLetter.svg') no-repeat center / contain;
+  z-index: 2;
+}
+
+/* Recently Added badge bottom-right */
+.badgeRecentlyAdded {
+  position: absolute;
+  left: 50px;
+  bottom: 0px;
+  background: #e50914;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 4px 4px 0 0;
+  z-index: 2;
+}
+
+/* --- MoreLikeThis: visual tweaks to match design --- */
+
+/* Replace straight top gradient with a subtle diagonal shade */
+.cardMoreLikeThis .shadeTop { display: none; }
+
+.cardMoreLikeThis::after {
+  content: "";
+  position: absolute;
+  top: -18%;
+  left: -8%;
+  width: 140%;
+  height: 58%;
+  pointer-events: none;
+  background: linear-gradient(
+    195deg,
+    rgba(0,0,0,.45) 0%,
+    rgba(0,0,0,.22) 38%,
+    rgba(0,0,0,0) 66%
+  );
+  transform: rotate(-6deg);
+  opacity: .9;
+}
+
+/* Use smallLetter.svg icon at top-left for MoreLikeThis */
+.cardMoreLikeThis .badgeBrand {
+  top: 8px;
+  left: 8px;
+  padding: 0;
+  width: 11px;
+  height: 20px;
+  background: none;
+  color: transparent;
+}
+.cardMoreLikeThis .badgeBrand::before {
+  content: "";
+  display: block;
+  width: 11px;
+  height: 20px;
+  background: url("../../assets/icons/smallLetter.svg") no-repeat center;
+  background-size: contain;
+}
+
+/* Keep duration (top-right) visible and crisp */
+.cardMoreLikeThis .badgeDuration {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 6px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  z-index: 2;
+}
+
+/* Ensure overlays stack correctly */
+.cardMoreLikeThis .playOverlay { z-index: 2; }
+.cardMoreLikeThis .badgeBrand { z-index: 2; }
+
+/* Center play on hover with ring style (transparent center) */
+.cardMoreLikeThis .playBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.35);
+  border: 2px solid rgba(255,255,255,.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+.cardMoreLikeThis .playBtn svg {
+  width: 14px;
+  height: 14px;
+  fill: #fff;
+}
+
+.cardMoreLikeThis:hover .playOverlay,
+.cardMoreLikeThis:focus-within .playOverlay {
+  opacity: 1;
+}
+
+/* Slightly stronger dim on hover to match screenshot */
+.cardMoreLikeThis:hover,
+.cardMoreLikeThis:focus-within {
+  filter: brightness(.94);
+}
+
+/* Utility spacing when a caption follows a card */
+.cardDefault + .title,
+.cardMoreLikeThis + .title,
+.cardTop10 + .title,
+.cardContinueWatching + .title,
+.cardTrailerPreview + .title {
+  margin-top: 10px;
+}
+/* Episode Preview card layout */
+.cardEpisodePreviewWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* More Like This card layout */
+.cardMoreLikeThisWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* The button itself */
+.cardMoreLikeThis {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #2b2b2b;
+}
+
+/* Subtle top shading for readability */
+.cardMoreLikeThis::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fill image */
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Top-left brand (smallLetter.svg) */
+.badgeBrand {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  background: url('../../assets/icons/smallLetter.svg') no-repeat center / contain;
+  z-index: 2;
+}
+
+/* Top-right duration */
+.badgeDuration {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
+/* Centered play button overlay (appears on hover/focus) */
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity .2s ease;
+  z-index: 3;
+  pointer-events: none; /* disabled until visible */
+}
+
+.cardMoreLikeThisWrapper:hover .playOverlay,
+.cardMoreLikeThisWrapper:focus-within .playOverlay,
+.cardEpisodePreviewWrapper:hover .playOverlay,
+.cardEpisodePreviewWrapper:focus-within .playOverlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Trailer Preview */
+.cardTrailerPreviewWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.trailerMeta {
+  width: 200px;
+  background-color: #000;
+  height: 40px;
+}
+.trailerTitle {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  font-style : medium;
+  padding: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* clamp to two lines like the screenshot */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* Player Preview */
+.cardPlayerPreviewWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cardPlayerPreview {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #333; /* fallback bg while image loads */
+}
+
+.cardPlayerPreview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.playerTimeBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a2a2a;
+  z-index: 2;
+}
+
+.playerTimeText {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Top10 — side-by-side layout like the reference (left big number, right tile) */
+.cardTop10Row {
+  display: flex;
+  align-items: stretch;         /* make both columns share the same height */
+  gap: 0;                          /* no space between the two panes */
+}
+
+/* --- Top10 exact layout (pixel-perfect to mock) --- */
+.cardTop10Row {
+  position: relative;
+  width: 215px;              /* 106 (left) + 109 (poster width) */
+  height: 154px;             /* poster height */
+}
+
+/* Left big "rank" pane (make it dark so the numeral shows) */
+.rankPane {
+  position: absolute;
+  top: 0px;
+  left: 18px;
+  width: 130px;
+  height: 154px;
+  overflow: hidden;
+  border-radius: 8px 0 0 8px;
+}
+
+/* Stop drawing the fixed 'one.svg' background */
+.rankPane::before {
+  content: none !important;
+}
+
+/* Dynamic rank artwork: we pass the SVG as mask-image inline from TS */
+.rankArt {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255,255,255,0.28); /* tint of the numeral */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-size: auto 92%;
+  mask-size: auto 92%;
+  pointer-events: none;
+}
+
+/* Right poster tile */
+.cardTop10 {
+  position: absolute;
+  top: 0;
+  left: 106px;               /* per spec */
+  width: 109px;              /* per spec */
+  height: 154px;             /* per spec */
+  overflow: hidden;
+  background: #3b3b3b;
+  border-top-right-radius: 2px;     /* per spec */
+  border-bottom-right-radius: 2px;  /* per spec */
+}
+
+/* Readability gradient on poster */
+.cardTop10::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.00) 40%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Poster image fills tile */
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Small "N" brand top-left inside poster */
+.badgeBrand {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  background: url('../../assets/icons/smallLetter.svg') no-repeat center / contain;
+  z-index: 2;
+}
+
+/* Recently Added pill bottom-right inside poster */
+.cardTop10 .badgeRecentlyAdded {
+  position: absolute;
+  right: 8px;
+  bottom: 10px;
+  background: #e50914;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+/* Top10: pixel-spec badge position and sizing */
+.cardTop10 .badgeRecentlyAdded {
+  position: absolute;
+  top: 137px;
+  left: 12px;
+  width: 85px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 2px;
+  padding-right: 4px;
+  padding-bottom: 2px;
+  padding-left: 6px;
+  background: #e50914;
+  color: #fff;
+
+  /* label typography per spec */
+  font-family: "Netflix Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;         /* Medium */
+  font-style: normal;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0;
+
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  white-space: nowrap;
+  z-index: 2;
+}
