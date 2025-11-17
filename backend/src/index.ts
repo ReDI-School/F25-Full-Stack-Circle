@@ -40,6 +40,7 @@ app.use(
 
 // Routes
 app.use('/users', userRouter);
+app.use('/category', categoryRouter);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {

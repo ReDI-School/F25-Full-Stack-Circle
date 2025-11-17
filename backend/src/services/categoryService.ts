@@ -21,6 +21,9 @@ export class CategoryService {
     }) {
     return await prisma.category.create({
       data,
+      include: {
+        title: true,
+      },
     });
   }
 
@@ -28,6 +31,9 @@ export class CategoryService {
     return await prisma.category.update({
       where: { id },
       data,
+      include: {
+        title: true,
+      },
     });
   }
 
