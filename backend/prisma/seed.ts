@@ -1,4 +1,4 @@
-import { AgeRestriction, Prisma, VideoType } from '@prisma/client';
+import { AgeRestriction } from '@prisma/client';
 import { PrismaClient } from '../generated/prisma';
 
 const prisma = new PrismaClient();
@@ -67,22 +67,6 @@ async function main() {
 
   const testSeason = await prisma.season.createMany({ data: seasonData });
   console.log('✅ Test seasons created:', testSeason);
-
-  // Create test titles
-  await prisma.title.deleteMany();
-  const titleData: Prisma.TitleCreateInput[] = [
-    {
-      name: 'title1',
-      type: VideoType.MOVIE,
-    },
-    {
-      name: 'title2',
-      type: VideoType.SERIES,
-    },
-  ];
-
-  const testTitle = await prisma.title.createMany({ data: titleData });
-  console.log('✅ Test titles created:', testTitle);
 
   console.log('🎉 Seed completed successfully!');
 }
