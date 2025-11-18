@@ -1,16 +1,16 @@
-import styles from './HomepageHeader.module.css';
-import RediflixLogo from '../../assets/images/logo.svg';
-import TranslatorIcon from '../../assets/icons/translator.svg';
-import SearchIcon from '../../assets/icons/search.svg';
-import NotificationIcon from '../../assets/icons/notification.svg';
 import ArrowDownIcon from '../../assets/icons/arrowDownIcon.svg';
+import NotificationIcon from '../../assets/icons/notification.svg';
+import SearchIcon from '../../assets/icons/search.svg';
 import smallAvatar from '../../assets/icons/smallAvatar.svg';
+import TranslatorIcon from '../../assets/icons/translator.svg';
+import RediflixLogo from '../../assets/images/logo.svg';
+import { DEFAULT_LANGUAGE, LANGUAGE_OPTIONS } from '../../constants/LanguageOptions';
+import { authRoutes, routePaths } from '../../routes/routePaths';
 import Button from '../Button/Button';
-import Select from '../Select/Select';
-import { getNavigationItems } from '../../config/RoutePaths';
-import { LANGUAGE_OPTIONS, DEFAULT_LANGUAGE } from '../../constants/LanguageOptions';
-import type { HomepageHeaderProps } from './HomepageHeader.types';
 import type { OptionType } from '../Select';
+import Select from '../Select/Select';
+import styles from './HomepageHeader.module.css';
+import type { HomepageHeaderProps } from './HomepageHeader.types';
 
 export const HomepageHeader = ({
   type = 'LandingPage',
@@ -20,7 +20,9 @@ export const HomepageHeader = ({
   currentPage = 'Home',
   ...props
 }: HomepageHeaderProps) => {
-  const navigationItems = getNavigationItems();
+  const navigationItems = Object.entries(routePaths).filter(
+    ([, getRoute]) => !authRoutes.includes(getRoute().path)
+  );
 
   const handleLanguageChange = (option: OptionType<string>) => {
     onLanguageChange?.(option.value);
@@ -34,15 +36,18 @@ export const HomepageHeader = ({
 
           {type === 'HomePage' && (
             <nav className={styles.navigation}>
-              {navigationItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.path}
-                  className={`${styles.navItem} ${currentPage === item.label ? styles.navItemActive : ''}`}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navigationItems.map(([, getRoute]) => {
+                const { label, path } = getRoute();
+                return (
+                  <a
+                    key={label}
+                    href={path}
+                    className={`${styles.navItem} ${currentPage === label ? styles.navItemActive : ''}`}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
             </nav>
           )}
         </div>

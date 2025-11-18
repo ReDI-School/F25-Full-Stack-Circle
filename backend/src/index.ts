@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
 import titleRouter from './routes/titleRoutes';
+import seasonRoutes from './routes/seasonRoutes';
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use(
 // Routes
 app.use('/users', userRouter);
 app.use('/titles', titleRouter);
+app.use('/seasons', seasonRoutes);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {
