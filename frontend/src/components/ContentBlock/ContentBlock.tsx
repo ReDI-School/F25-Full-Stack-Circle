@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority';
+
 import styles from './ContentBlock.module.css';
 import type { ContentBlockProps } from './ContentBlock.types';
 
