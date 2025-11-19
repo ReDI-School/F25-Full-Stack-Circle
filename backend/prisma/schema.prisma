@@ -63,8 +63,8 @@ model Season {
   id        Int      @id @default(autoincrement())
   number    Int
   thumbnail String
-  title     Title    @relation(fields: [title_id], references: [id])
-  title_id  Int
+  title     Title?   @relation(fields: [title_id], references: [id])
+  title_id  Int?
   video     Video[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -74,8 +74,7 @@ model Category {
   id              Int            @id @default(autoincrement())
   name            String         @db.VarChar(255)
   age_restriction AgeRestriction
-  title           Title          @relation(fields: [title_id], references: [id])
-  title_id        Int
+  title           Title[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 }
