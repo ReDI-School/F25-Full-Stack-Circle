@@ -11,5 +11,5 @@ export const userAPI = {
   getOne: (id: string) => api.get<User[]>(`/users${id}`).then(usersData),
   create: (data: User) => api.post<User[]>(`/users`, data).then(usersData),
   update: (id: string, data: User) => api.put<User[]>(`/users/${id}`, data).then(usersData),
-  delete: (id: string) => api.delete(`/users/id${id}`).then(usersData),
+  delete: (id: string) => api.delete(`/users/${id}`).then(usersData),
 };
