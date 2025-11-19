@@ -5,8 +5,8 @@
   align-items: center;
   background-color: transparent;
   color: var(--primary-white);
-  font-family: 'Netflix Sans';
   gap: var(--space-6);
+  margin-top: var(--space-32);
 }
 .textL {
   font-size: var(--text-5xl);

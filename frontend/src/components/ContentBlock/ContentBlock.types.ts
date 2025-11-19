@@ -1,3 +1,5 @@
+export type Layout = 'left-to-right' | 'right-to-left';
+
 export interface ContentBlockProps {
   /**
    * The main headline text
@@ -17,7 +19,7 @@ export interface ContentBlockProps {
   /**
    * The layout direction of the content
    */
-  layout?: 'left-to-right' | 'right-to-left';
+  layout?: Layout;
 
   /**
    * Image specifications
