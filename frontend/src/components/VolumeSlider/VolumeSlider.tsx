@@ -1,9 +1,8 @@
 import React, { useMemo, useState, useRef } from 'react';
 import styles from './VolumeSlider.module.css';
 import type { VolumeSliderProps } from './VolumeSlider.types';
-import MuteIcon from '../../assets/icons/muteVolume.svg?react';
-import HighIcon from '../../assets/icons/highVolume.svg?react';
-import MiddleIcon from '../../assets/icons/middleVolume.svg?react';
+import { VideoControlButton } from '../VideoControlButton/index';
+import type { IconName } from '../VideoControlButton/VideoControlButton.types';
 
 const VolumeSlider: React.FC<VolumeSliderProps> = ({
   value,
@@ -47,14 +46,17 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
   };
 
   // Dynamically choose icon and style class
-  const { IconComponent, sliderTypeClass } = useMemo(() => {
+  const { IconComponent, sliderTypeClass } = useMemo<{
+    IconComponent: IconName;
+    sliderTypeClass: string;
+  }>(() => {
     if (value === 0) {
-      return { IconComponent: MuteIcon, sliderTypeClass: styles.volumeSliderMute };
+      return { IconComponent: 'mute-volume', sliderTypeClass: styles.volumeSliderMute };
     }
     if (value >= 0.7) {
-      return { IconComponent: HighIcon, sliderTypeClass: styles.volumeSliderHigh };
+      return { IconComponent: 'high-volume', sliderTypeClass: styles.volumeSliderHigh };
     }
-    return { IconComponent: MiddleIcon, sliderTypeClass: styles.volumeSliderMedium };
+    return { IconComponent: 'medium-volume', sliderTypeClass: styles.volumeSliderMedium };
   }, [value]);
 
   const isVertical = orientation === 'vertical';
@@ -88,14 +90,11 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
           />
         </div>
       </div>
-      <button
-        type="button"
+      <VideoControlButton
+        icon={IconComponent}
+        ariaLabel={value > 0 ? 'Mute' : 'Unmute'}
         onClick={handleIconClick}
-        className={styles.iconContainer}
-        aria-label={value > 0 ? 'Mute' : 'Unmute'}
-      >
-        <IconComponent />
-      </button>
+      />
     </div>
   );
 };
