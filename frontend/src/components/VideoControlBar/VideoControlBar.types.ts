@@ -20,7 +20,7 @@ interface VideoControlBarProps {
   /**
    * The state of the video. This will toggle Play icon to Pause icon and vice versa.
    */
-  isPlaying: boolean;
+  isPlaying: boolean | undefined;
 
   /**
    * The event that triggers when the Play/Pause button is clicked.

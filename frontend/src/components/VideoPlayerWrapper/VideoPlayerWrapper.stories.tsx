@@ -30,6 +30,7 @@ export const VimeoPlayIconWithThumbnail: Story = {
     light:
       'https://i.vimeocdn.com/video/2066328655-4be9e0a8e8c43c2e1d24bb918cee4072980b9a7d473960ace1111ad2ded75073-d?mw=2000&mh=1127&q=70',
     playIcon: playIconComponent,
+    size: 'full',
   },
 };
 

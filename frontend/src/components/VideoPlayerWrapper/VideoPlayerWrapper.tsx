@@ -1,22 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import type { VideoPlayerWrapperProps } from './VideoPlayerWrapper.types';
-import ReactPlayer from 'react-player';
 import { cva } from 'class-variance-authority';
-import styles from './VideoPlayerWithControls.module.css';
-import { VideoControlBar } from '../VideoControlBar';
-import { ProgressBar } from '../ProgressBar';
-import PlayIcon from '../../assets/icons/playIcon.svg?react';
-// import MuteVolume from '../../assets/icons/muteVolume.svg?react';
-// import MiddleVolume from '../../assets/icons/middleVolume.svg?react';
-import HighVolume from '../../assets/icons/highVolume.svg?react';
-import PlayBack from '../../assets/icons/playback.svg?react';
-import Next from '../../assets/icons/next.svg?react';
-import Rewind from '../../assets/icons/rewind.svg?react';
-import Fullscreen from '../../assets/icons/fullscreen.svg?react';
-import Forward from '../../assets/icons/forward.svg?react';
-import EpisodeList from '../../assets/icons/episodeList.svg?react';
-import Caption from '../../assets/icons/caption.svg?react';
-import Video from '../VideoPlayer/VideoPlayer';
+import ReactPlayer from 'react-player';
+import styles from './VideoPlayerWrapper.module.css';
+import { Video } from '../VideoPlayer/index';
+import { VideoControlBar } from '../VideoControlBar/index';
+import type { VideoPlayerWrapperProps } from './VideoPlayerWrapper.types';
 
 const styledWrapper = cva(styles.videoPlayerWrapper, {
   variants: {
@@ -39,7 +27,7 @@ const VideoPlayerWrapper = ({
   playIcon,
   width = '100%',
   height = '100%',
-  volume,
+  volume = 1,
   playbackRate,
   currentTime = 0,
   size = 'medium',
@@ -54,6 +42,7 @@ const VideoPlayerWrapper = ({
     loaded: 0,
     duration: 0,
     start: false,
+    volume,
     fullscreen: fullscreen,
     showControls: true,
     light: light,
@@ -155,11 +144,11 @@ const VideoPlayerWrapper = ({
     });
   };
 
-  const handleOnClickPlay = () => {
+  const handleClickPlay = () => {
     setState((prev) => ({ ...prev, playing: !prev.playing }));
   };
 
-  const handleOnClickRewind = () => {
+  const handleClickRewind = () => {
     const player = playerRef.current;
     setState((prev) => {
       const newTime = Math.max(0, prev.currentTime - 10);
@@ -168,13 +157,17 @@ const VideoPlayerWrapper = ({
     });
   };
 
-  const handleOnClickForward = () => {
+  const handleClickForward = () => {
     const player = playerRef.current;
     setState((prev) => {
       const newTime = Math.min(prev.duration, prev.currentTime + 10);
       if (player) player.currentTime = newTime;
       return { ...prev, currentTime: newTime };
     });
+  };
+
+  const handleVolumeChange = (value: number) => {
+    setState((prev) => ({ ...prev, volume: value }));
   };
 
   const handleSetNewValue = (newValue: number) => {
@@ -190,7 +183,7 @@ const VideoPlayerWrapper = ({
     });
   };
 
-  const handleOnClickFullscreen = () => {
+  const handleClickFullscreen = () => {
     const wrapper = wrapperRef.current;
     if (state.fullscreen) {
       document.exitFullscreen();
@@ -246,7 +239,7 @@ const VideoPlayerWrapper = ({
       ref={wrapperRef}
       className={styledWrapper({ size, showMouseInFullscreen: state.showControls })}
     >
-      <Video 
+      <Video
         playerRef={playerRef}
         width={width}
         height={height}
@@ -254,9 +247,8 @@ const VideoPlayerWrapper = ({
         playing={state.playing}
         light={state.light}
         playIcon={playIcon}
-        volume={volume}
+        volume={state.volume}
         playbackRate={playbackRate}
-        
         // Called when user clicks the light mode preview
         onClickPreview={handleOnClickPreview}
         // Called when media is loaded and ready to play.
@@ -284,41 +276,35 @@ const VideoPlayerWrapper = ({
         // Called when media data is loaded
         onProgress={handleOnProgress}
         // Callback containing duration of the media, in seconds
-        onDurationChange={handleOnDurationChange} />
-
-      <ReactPlayer
-        
+        onDurationChange={handleOnDurationChange}
       />
+
+      <ReactPlayer />
       {!state.light && state.showControls && (
-        <VideoControlBar>
-          <div style={{ backgroundColor: 'transparent', height: 1 }} />
-          <ProgressBar
-            value={state.currentTime}
-            loaded={state.loaded}
-            duration={state.duration}
-            setNewValue={(newValue: number) => handleSetNewValue(newValue)}
-            showThumb
-            color="red"
-          />
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: '1rem',
-            }}
-          >
-            <PlayIcon width={20} height={20} onClick={handleOnClickPlay} />
-            <Rewind width={20} height={20} onClick={handleOnClickRewind} />
-            <Forward width={20} height={20} onClick={handleOnClickForward} />
-            <HighVolume width={20} height={20} />
-            <p>Title Placeholder S1:Ep1 Episode Title</p>
-            <Next width={20} height={20} />
-            <EpisodeList width={20} height={20} />
-            <Caption width={20} height={20} />
-            <PlayBack width={20} height={20} />
-            <Fullscreen width={20} height={20} onClick={handleOnClickFullscreen} />
-          </div>
-        </VideoControlBar>
+        <VideoControlBar
+          isPlaying={state.playing}
+          onPlayButtonClick={handleClickPlay}
+          onCaptionButtonClick={() => {}}
+          onEpisodeListButtonClick={() => {}}
+          onForwardButtonClick={handleClickForward}
+          onFullscreenButtonClick={handleClickFullscreen}
+          onNextButtonClick={() => {}}
+          onPlaybackButtonClick={() => {}}
+          onRewindButtonClick={handleClickRewind}
+          progressBarProps={{
+            value: state.currentTime,
+            loaded: state.loaded,
+            duration: state.duration,
+            setNewValue: (newValue: number) => handleSetNewValue(newValue),
+            showThumb: true,
+            color: 'red',
+          }}
+          title="Movie Title"
+          volumeSliderProps={{
+            value: state.volume,
+            onChange: (value: number) => handleVolumeChange(value),
+          }}
+        />
       )}
     </div>
   );
