@@ -2,7 +2,7 @@
 .movieCards {
   --card-radius: 8px;
   --card-bg: #1d1d1f;
-  --card-elev: 0 8px 24px rgba(0,0,0,.45);
+  --card-elev: 0 8px 24px rgba(0, 0, 0, 0.45);
   --fg: #e6e6e6;
   --muted: #a6a6a6;
   --brand: #e50914;
@@ -31,8 +31,11 @@
   margin: 0;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
 }
 
 .cardDefault:hover,
@@ -44,7 +47,7 @@
 .cardTrailerPreviewWrapper:hover {
   transform: translateY(-2px) scale(1.01);
   box-shadow: var(--card-elev);
-  filter: brightness(.96);
+  filter: brightness(0.96);
 }
 
 .cardDefault:focus-visible,
@@ -59,14 +62,39 @@
 }
 
 /* Sizing (defaults to 16:9) */
-.cardDefault { width: 200px; max-width: 100%; aspect-ratio: 16 / 9; }
-.cardMoreLikeThis { width: 200px; aspect-ratio: 16 / 9; }
-.cardTrailerPreview { width: 200px; aspect-ratio: 16 / 9; }
-.cardTrailerPreviewWrapper { width: 200px; aspect-ratio: 16 / 9; }
-.cardEpisodePreview { width: 128px; aspect-ratio: 16 / 9; }
-.cardPlayerPreviewWrapper { width: 200px; aspect-ratio: 16 / 9; } /* small square preview */
-.cardContinueWatching { width: 200px; aspect-ratio: 16 / 9; }
-.cardTop10 { width: 100px; aspect-ratio: 1 / 1; }
+.cardDefault {
+  width: 200px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.cardMoreLikeThis {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+}
+.cardTrailerPreview {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+}
+.cardTrailerPreviewWrapper {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+}
+.cardEpisodePreview {
+  width: 128px;
+  aspect-ratio: 16 / 9;
+}
+.cardPlayerPreviewWrapper {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+} /* small square preview */
+.cardContinueWatching {
+  width: 200px;
+  aspect-ratio: 16 / 9;
+}
+.cardTop10 {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+}
 
 /* Media fills card */
 .thumbnail,
@@ -83,18 +111,28 @@ img.thumbnail {
 .shadeTop,
 .shadeBottom {
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   pointer-events: none;
 }
-.shadeTop { top: 0; height: 42%; background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0)); }
-.shadeBottom { bottom: 0; height: 38%; background: linear-gradient(0deg, rgba(0,0,0,.62), rgba(0,0,0,0)); }
+.shadeTop {
+  top: 0;
+  height: 42%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+.shadeBottom {
+  bottom: 0;
+  height: 38%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0));
+}
 
 /* Badges */
 .badgeBrand {
   position: absolute;
-  top: 8px; left: 8px;
+  top: 8px;
+  left: 8px;
   padding: 2px 6px;
-  background: rgba(229, 9, 20, .95);
+  background: rgba(229, 9, 20, 0.95);
   color: #fff;
   font-weight: 700;
   font-size: 12px;
@@ -103,7 +141,8 @@ img.thumbnail {
 
 .badgeDuration {
   position: absolute;
-  top: 8px; right: 8px;
+  top: 8px;
+  right: 8px;
   padding: 2px 6px;
   color: #fff;
   font-size: 12px;
@@ -117,7 +156,7 @@ img.thumbnail {
   display: grid;
   place-items: center;
   opacity: 0;
-  transition: opacity .18s ease;
+  transition: opacity 0.18s ease;
 }
 
 .cardDefault:hover .playOverlay,
@@ -136,15 +175,25 @@ img.thumbnail {
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  background: rgba(255,255,255,.95);
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   display: grid;
   place-items: center;
-  transition: transform .15s ease, background .15s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
-.playBtn:hover { transform: scale(1.04); }
-.playBtn:active { transform: scale(.96); }
-.playBtn svg { width: 18px; height: 18px; fill: #000; }
+.playBtn:hover {
+  transform: scale(1.04);
+}
+.playBtn:active {
+  transform: scale(0.96);
+}
+.playBtn svg {
+  width: 18px;
+  height: 18px;
+  fill: #000;
+}
 
 /* Title/meta block below card when used */
 .title {
@@ -175,16 +224,18 @@ img.thumbnail {
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 /* Progress bar for Continue Watching */
 .progress {
   --progress: 0%; /* set inline style on card to override */
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 4px;
-  background: rgba(255,255,255,.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 .progressFill {
   width: var(--progress);
@@ -232,7 +283,7 @@ img.thumbnail {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.00) 40%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 40%);
   pointer-events: none;
   z-index: 1;
 }
@@ -274,10 +325,12 @@ img.thumbnail {
 /* --- MoreLikeThis: visual tweaks to match design --- */
 
 /* Replace straight top gradient with a subtle diagonal shade */
-.cardMoreLikeThis .shadeTop { display: none; }
+.cardMoreLikeThis .shadeTop {
+  display: none;
+}
 
 .cardMoreLikeThis::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -18%;
   left: -8%;
@@ -286,12 +339,12 @@ img.thumbnail {
   pointer-events: none;
   background: linear-gradient(
     195deg,
-    rgba(0,0,0,.45) 0%,
-    rgba(0,0,0,.22) 38%,
-    rgba(0,0,0,0) 66%
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.22) 38%,
+    rgba(0, 0, 0, 0) 66%
   );
   transform: rotate(-6deg);
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* Use smallLetter.svg icon at top-left for MoreLikeThis */
@@ -305,11 +358,11 @@ img.thumbnail {
   color: transparent;
 }
 .cardMoreLikeThis .badgeBrand::before {
-  content: "";
+  content: '';
   display: block;
   width: 11px;
   height: 20px;
-  background: url("../../assets/icons/smallLetter.svg") no-repeat center;
+  background: url('../../assets/icons/smallLetter.svg') no-repeat center;
   background-size: contain;
 }
 
@@ -326,17 +379,21 @@ img.thumbnail {
 }
 
 /* Ensure overlays stack correctly */
-.cardMoreLikeThis .playOverlay { z-index: 2; }
-.cardMoreLikeThis .badgeBrand { z-index: 2; }
+.cardMoreLikeThis .playOverlay {
+  z-index: 2;
+}
+.cardMoreLikeThis .badgeBrand {
+  z-index: 2;
+}
 
 /* Center play on hover with ring style (transparent center) */
 .cardMoreLikeThis .playBtn {
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  background: rgba(0,0,0,.35);
-  border: 2px solid rgba(255,255,255,.95);
-  box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 .cardMoreLikeThis .playBtn svg {
   width: 14px;
@@ -352,7 +409,7 @@ img.thumbnail {
 /* Slightly stronger dim on hover to match screenshot */
 .cardMoreLikeThis:hover,
 .cardMoreLikeThis:focus-within {
-  filter: brightness(.94);
+  filter: brightness(0.94);
 }
 
 /* Utility spacing when a caption follows a card */
@@ -388,7 +445,7 @@ img.thumbnail {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%);
   pointer-events: none;
   z-index: 1;
 }
@@ -421,7 +478,7 @@ img.thumbnail {
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
   z-index: 2;
 }
 
@@ -432,7 +489,7 @@ img.thumbnail {
   display: grid;
   place-items: center;
   opacity: 0;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
   z-index: 3;
   pointer-events: none; /* disabled until visible */
 }
@@ -461,10 +518,10 @@ img.thumbnail {
   line-height: 20px;
   letter-spacing: 0px;
   vertical-align: middle;
-  font-style : medium;
+  font-style: medium;
   padding: 10px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;       /* clamp to two lines like the screenshot */
+  -webkit-line-clamp: 2; /* clamp to two lines like the screenshot */
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
@@ -489,7 +546,7 @@ img.thumbnail {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 40%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 40%);
   pointer-events: none;
   z-index: 1;
 }
@@ -517,15 +574,15 @@ img.thumbnail {
 /* Top10 — side-by-side layout like the reference (left big number, right tile) */
 .cardTop10Row {
   display: flex;
-  align-items: stretch;         /* make both columns share the same height */
-  gap: 0;                          /* no space between the two panes */
+  align-items: stretch; /* make both columns share the same height */
+  gap: 0; /* no space between the two panes */
 }
 
 /* --- Top10 exact layout (pixel-perfect to mock) --- */
 .cardTop10Row {
   position: relative;
-  width: 215px;              /* 106 (left) + 109 (poster width) */
-  height: 154px;             /* poster height */
+  width: 215px; /* 106 (left) + 109 (poster width) */
+  height: 154px; /* poster height */
 }
 
 /* Left big "rank" pane (make it dark so the numeral shows) */
@@ -548,7 +605,7 @@ img.thumbnail {
 .rankArt {
   position: absolute;
   inset: 0;
-  background-color: rgba(255,255,255,0.28); /* tint of the numeral */
+  background-color: rgba(255, 255, 255, 0.28); /* tint of the numeral */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: left center;
@@ -562,13 +619,13 @@ img.thumbnail {
 .cardTop10 {
   position: absolute;
   top: 0;
-  left: 106px;               /* per spec */
-  width: 109px;              /* per spec */
-  height: 154px;             /* per spec */
+  left: 106px; /* per spec */
+  width: 109px; /* per spec */
+  height: 154px; /* per spec */
   overflow: hidden;
   background: #3b3b3b;
-  border-top-right-radius: 2px;     /* per spec */
-  border-bottom-right-radius: 2px;  /* per spec */
+  border-top-right-radius: 2px; /* per spec */
+  border-bottom-right-radius: 2px; /* per spec */
 }
 
 /* Readability gradient on poster */
@@ -576,7 +633,7 @@ img.thumbnail {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.00) 40%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%);
   z-index: 1;
   pointer-events: none;
 }
@@ -634,8 +691,8 @@ img.thumbnail {
   color: #fff;
 
   /* label typography per spec */
-  font-family: "Netflix Sans", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 500;         /* Medium */
+  font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500; /* Medium */
   font-style: normal;
   font-size: 10px;
   line-height: 100%;
