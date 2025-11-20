@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { CategoryService } from '../services/categoryService';
+import { AgeRestriction } from '@prisma/client'; 
 
 const categoryService = new CategoryService();
 
@@ -40,21 +41,7 @@ export class CategoryController {
       if (typeof name !== 'string') {
         return res.status(400).json({ error: "Field 'name' must be a string." });
       }
-      if (
-        ![
-          'TVY',
-          'TVY7',
-          'G',
-          'TVG',
-          'PG',
-          'TVPG',
-          'PG13',
-          'TV14',
-          'R',
-          'TVMA',
-          'NC17',
-        ].includes(age_restriction)
-      ) {
+      if (!(Object.values(AgeRestriction) as string[]).includes(age_restriction)) {
         return res.status(400).json({ error: "Field 'age_restriction' has invalid value." });
       }
       if (isNaN(Number(title_id))) {
@@ -84,18 +71,7 @@ export class CategoryController {
 
       const updateData: Partial<{
         name: string;
-        age_restriction:
-          | 'TVY'
-          | 'TVY7'
-          | 'G'
-          | 'TVG'
-          | 'PG'
-          | 'TVPG'
-          | 'PG13'
-          | 'TV14'
-          | 'R'
-          | 'TVMA'
-          | 'NC17';
+        age_restriction: AgeRestriction;
         title_id: number;
       }> = {};
 
@@ -107,21 +83,7 @@ export class CategoryController {
       }
 
       if (age_restriction !== undefined) {
-        if (
-          ![
-            'TVY',
-            'TVY7',
-            'G',
-            'TVG',
-            'PG',
-            'TVPG',
-            'PG13',
-            'TV14',
-            'R',
-            'TVMA',
-            'NC17',
-          ].includes(age_restriction)
-        ) {
+        if (!(Object.values(AgeRestriction) as string[]).includes(age_restriction)) {
           return res.status(400).json({ error: "Field 'age_restriction' has invalid value." });
         }
         updateData.age_restriction = age_restriction;
