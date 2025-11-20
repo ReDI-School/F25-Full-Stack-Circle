@@ -104,6 +104,11 @@
 }
 
 /* Sizes */
+.sizeSmall {
+  height: 32px;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
 .sizeMedium {
   height: 40px;
   padding: var(--space-3) var(--space-6);
@@ -111,9 +116,9 @@
 }
 
 .sizeLarge {
-  height: 48px;
-  padding: var(--space-3) calc(var(--space-6) + 4px);
-  font-size: calc(var(--text-base) + 2px);
+  height: 56px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-2xl);
 }
 
 /* Icon and labels */
@@ -133,7 +138,13 @@
 /* Icon-only (square) */
 .iconOnly {
   padding: 0;
-  width: 40px; /* default square for medium */
+  width: 40px; /* default square for small */
+  height: 40px;
+  justify-content: center;
+}
+.iconOnlyMedium {
+  padding: 0;
+  width: 40px;
   height: 40px;
   justify-content: center;
 }
@@ -141,11 +152,6 @@
 .iconOnly.sizeLarge {
   width: 48px;
   height: 48px;
-}
-
-/* fullWidth alias kept for compatibility: reuse .stretch behavior */
-.fullWidth {
-  width: 100%;
 }
 
 /* Focus visible for accessibility */

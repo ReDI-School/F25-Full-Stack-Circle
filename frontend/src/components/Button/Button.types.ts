@@ -5,14 +5,13 @@ interface ButtonProps
   > {
   children?: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'white' | 'outlined';
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   icon?: string | React.ReactNode;
   iconPosition?: 'before' | 'after';
   iconOnly?: boolean;
-  fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
-  stretch?: boolean; // Whether the button should stretch to the width of its container
+  stretch?: boolean;
 }
 
 export type { ButtonProps };
