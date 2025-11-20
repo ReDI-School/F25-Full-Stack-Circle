@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 import useRoutesListMatch from '../../hooks/useRouteListMatch';
-import { authRoutes } from '../../routes/routePaths';
+import { authRoutes, routePaths } from '../../routes/routePaths';
 
 import { Header } from '../Header';
 import styles from './Layout.module.css';
@@ -16,7 +16,7 @@ const styledLayout = cva(styles.layout, {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { isMatched: isAuthPage } = useRoutesListMatch(authRoutes);
-  const { isMatched: isLandingPage } = useRoutesListMatch([]); // TODO: add landing page route when created
+  const { isMatched: isLandingPage } = useRoutesListMatch([routePaths.landingPage().path]);
 
   const headerType = isAuthPage ? 'auth' : isLandingPage ? 'public' : 'private';
 
