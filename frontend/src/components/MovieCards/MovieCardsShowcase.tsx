@@ -1,7 +1,7 @@
 import React from 'react';
 import { MovieCards } from '.';
 import type { MovieCardData } from './MovieCards.types.ts';
-import styles from './MovieCardsShowcase.module.css';
+import styles from './MovieCards.module.css';
 
 const thumb = (w: number, h: number) =>
   `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><rect width='100%' height='100%' fill='%23232323'/><rect width='100%' height='36' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23393939'/><stop offset='1' stop-color='%23232323' stop-opacity='0'/></linearGradient></defs></svg>`;
