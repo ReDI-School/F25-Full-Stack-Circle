@@ -19,7 +19,7 @@
 }
 
 .titleButton:hover {
-  color: var(--grey-100); 
+  color: var(--grey-100);
 }
 
 .carouselWrapper {
@@ -41,20 +41,20 @@
   height: 120px;
   border-radius: var(--radius-md);
   object-fit: cover;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
   box-shadow: var(--shadow-md);
 }
-
-
 
 .navButton {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%)scale(1.3);
+  transform: translateY(-50%) scale(1.3);
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
   color: var(--text-primary);
-   font-size: 3.5rem;
+  font-size: 3.5rem;
   font-size: var(--text-3xl);
   cursor: pointer;
   opacity: 0;
@@ -79,7 +79,6 @@
   background-color: rgba(0, 0, 0, 0.7);
   transform: translateY(-50%) scale(1.6);
 }
-
 
 .container:hover .navButton {
   opacity: 1;

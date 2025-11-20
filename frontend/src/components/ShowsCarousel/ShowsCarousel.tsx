@@ -1,12 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
-import styles from "./ShowsCarousel.module.css";
-import type { ShowsCarouselProps } from "./ShowsCarousel.types";
+import React, { useRef, useEffect, useState } from 'react';
+import styles from './ShowsCarousel.module.css';
+import type { ShowsCarouselProps } from './ShowsCarousel.types';
 
-export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
-  title,
-  images,
-  className,
-}) => {
+export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, images, className }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const spacing = 8;
   const [steps, setSteps] = useState(1);
@@ -16,7 +12,6 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
     const container = carouselRef.current;
     if (!container) return;
 
-    
     const calculateSteps = () => {
       const pageWidth = container.clientWidth * 0.8;
       const totalWidth = container.scrollWidth;
@@ -25,7 +20,7 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
     };
 
     calculateSteps();
-    window.addEventListener("resize", calculateSteps);
+    window.addEventListener('resize', calculateSteps);
 
     const handleScroll = () => {
       const { scrollLeft, scrollWidth, clientWidth } = container;
@@ -34,20 +29,20 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
       if (scrollLeft + clientWidth >= scrollWidth - 1) {
         const first = container.firstElementChild as HTMLElement;
         if (first) {
-          container.style.scrollBehavior = "auto";
+          container.style.scrollBehavior = 'auto';
           container.appendChild(first);
           container.scrollLeft -= first.offsetWidth + spacing;
-          container.style.scrollBehavior = "smooth";
+          container.style.scrollBehavior = 'smooth';
         }
       }
 
       if (scrollLeft <= 0) {
         const last = container.lastElementChild as HTMLElement;
         if (last) {
-          container.style.scrollBehavior = "auto";
+          container.style.scrollBehavior = 'auto';
           container.prepend(last);
           container.scrollLeft += last.offsetWidth + spacing;
-          container.style.scrollBehavior = "smooth";
+          container.style.scrollBehavior = 'smooth';
         }
       }
 
@@ -56,29 +51,29 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
       setCurrentStep(step);
     };
 
-    container.addEventListener("scroll", handleScroll);
+    container.addEventListener('scroll', handleScroll);
     return () => {
-      container.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", calculateSteps);
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', calculateSteps);
     };
   }, [images, steps]);
 
-  const scroll = (direction: "left" | "right") => {
+  const scroll = (direction: 'left' | 'right') => {
     const container = carouselRef.current;
     if (!container) return;
-    const scrollAmount = container.clientWidth * 0.8; 
-    const offset = direction === "left" ? -scrollAmount : scrollAmount;
-    container.scrollBy({ left: offset, behavior: "smooth" });
+    const scrollAmount = container.clientWidth * 0.8;
+    const offset = direction === 'left' ? -scrollAmount : scrollAmount;
+    container.scrollBy({ left: offset, behavior: 'smooth' });
   };
 
   return (
-    <div className={`${styles.container} ${className || ""}`}>
+    <div className={`${styles.container} ${className || ''}`}>
       {title && <button className={styles.titleButton}>{title}</button>}
 
       <div className={styles.carouselWrapper}>
         <button
           className={`${styles.navButton} ${styles.left}`}
-          onClick={() => scroll("left")}
+          onClick={() => scroll('left')}
           aria-label="Scroll left"
         >
           ❮
@@ -98,7 +93,7 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
 
         <button
           className={`${styles.navButton} ${styles.right}`}
-          onClick={() => scroll("right")}
+          onClick={() => scroll('right')}
           aria-label="Scroll right"
         >
           ❯
@@ -109,9 +104,7 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
           {Array.from({ length: steps }).map((_, idx) => (
             <span
               key={idx}
-              className={`${styles.carouselStep} ${
-                idx === currentStep ? styles.activeStep : ""
-              }`}
+              className={`${styles.carouselStep} ${idx === currentStep ? styles.activeStep : ''}`}
             />
           ))}
         </div>
