@@ -4,7 +4,7 @@ import type { User } from './user.types';
 
 const api = axios.create({ baseURL: 'http://localhost:4000/' });
 
-const usersData = (res: { data: User[] }) => res.data;
+const extractUsers = (res: { data: User[] }) => res.data;
 
 export const userAPI = {
   getAll: () => api.get<User[]>('/users').then(usersData),
