@@ -51,7 +51,7 @@ const Home = () => {
         {!loading && !error && (
           <>
             {users?.length ? (
-              users.map(({id, name, email}: User) => <div key={id || name}>{email}</div>)
+              users.map(({ id, name, email }: User) => <div key={id || name}>{email}</div>)
             ) : (
               <div>No users found</div>
             )}
