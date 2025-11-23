@@ -8,7 +8,8 @@ export const useUsers = () => {
 
   return {
     users: data ?? [],
-    loading: !data && !error,
+    isLoading,
+    isValidating,
     error,
     refetch: mutate,
   };
