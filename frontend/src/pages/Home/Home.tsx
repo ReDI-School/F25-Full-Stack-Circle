@@ -11,7 +11,7 @@ import styles from './Home.module.css';
 import { userAPI } from '../../config/usersAPI';
 
 const Home = () => {
-  const { users, loading, error } = useUsers();
+  const { users, isLoading, error } = useUsers();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -51,9 +51,9 @@ const Home = () => {
       <NavigationMenu />
       <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
-        {loading && <div>Loading users...</div>}
+        {isLoading && <div>Loading users...</div>}
         {error && <div>Error fetching users</div>}
-        {!loading && !error && (
+        {!isLoading && !error && (
           <>
             {users?.length ? (
               users.map(({ id, name, email }: User) => <div key={id || name}>{email}</div>)
