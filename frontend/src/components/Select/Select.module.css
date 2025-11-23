@@ -15,6 +15,10 @@
 }
 
 .selectIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--space-2-5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,12 +53,9 @@
 
 .selectArrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   right: 0;
   border: none;
-  width: auto;
-  height: auto;
   background-color: transparent;
   cursor: pointer;
   &:focus,
@@ -66,7 +67,7 @@
       background-color: var(--grey-700);
     }
   }
-  &:hover:not(:disabled) {
+  &:hover {
     background-color: transparent;
   }
 }

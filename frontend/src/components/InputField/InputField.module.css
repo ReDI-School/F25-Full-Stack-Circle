@@ -1,13 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
+  position: relative;
   border-radius: var(--radius-lg);
-  margin-bottom: var(--space-4);
   font-family: var(--font-family);
 }
 
 .inputWrapper {
   position: relative;
+  padding: var(--space-2);
 }
 
 .input {
@@ -53,6 +54,7 @@
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   color: var(--grey-50);
+  background: rgba(0, 0, 0, 0.5);
   padding: 0 var(--space-2);
   transition: all var(--transition-base);
   z-index: 2;
@@ -83,6 +85,7 @@
 
 .error .label {
   color: var(--error);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .errorText {

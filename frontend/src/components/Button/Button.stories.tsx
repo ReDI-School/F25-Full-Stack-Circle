@@ -52,12 +52,19 @@ export const Sizes: Story = {
   ),
 };
 
-export const SignInLargeStretched: Story = {
+export const FullWidth: Story = {
+  args: {
+    children: 'Submit',
+    fullWidth: true,
+  },
+};
+
+export const SignInLargeFullWidth: Story = {
   args: {
     children: 'Sign In',
     variant: 'primary',
     size: 'large',
-    stretch: true,
+    fullWidth: true,
   },
 };
 
@@ -69,11 +76,11 @@ export const SignInMedium: Story = {
   },
 };
 
-export const SecondaryStretched: Story = {
+export const SecondaryFullWidth: Story = {
   args: {
     children: 'Use a Sign-In Code',
     variant: 'secondary',
-    stretch: true,
+    fullWidth: true,
   },
 };
 
@@ -133,7 +140,7 @@ export const SecondaryWithOnlyIcon: Story = {
 export const ButtonExamples: Story = {
   render: () => (
     <>
-      <Button variant="primary" size="large" stretch>
+      <Button variant="primary" size="large" fullWidth>
         Sign In
       </Button>
 
@@ -141,7 +148,7 @@ export const ButtonExamples: Story = {
         Sign In
       </Button>
 
-      <Button variant="secondary" stretch>
+      <Button variant="secondary" fullWidth>
         Use a Sign-In Code
       </Button>
 
@@ -184,7 +191,7 @@ export const ButtonExamples: Story = {
 
       <Button variant="secondary" icon="close" iconOnly aria-label="Close" />
 
-      <Button variant="primary" stretch>
+      <Button variant="primary" fullWidth>
         Submit
       </Button>
 

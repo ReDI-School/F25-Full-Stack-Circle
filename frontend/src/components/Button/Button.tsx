@@ -24,6 +24,9 @@ const styledButton = cva(styles.button, {
       medium: styles.sizeMedium,
       large: styles.sizeLarge,
     },
+    fullWidth: {
+      true: styles.fullWidth,
+    },
     iconOnly: {
       true: styles.iconOnly,
     },
@@ -44,7 +47,7 @@ const Button = ({
   icon,
   iconPosition = 'after',
   iconOnly = false,
-  className,
+  fullWidth = false,
   type = 'button',
   'aria-label': ariaLabel,
   ...rest
@@ -68,8 +71,8 @@ const Button = ({
         stretch,
         variant,
         size,
+        fullWidth,
         iconOnly,
-        className,
       })}
       onClick={onClick}
       disabled={disabled}

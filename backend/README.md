@@ -72,8 +72,12 @@ When creating a new feature, you'll need to create files in multiple directories
 ### 1. First, create a service in `src/services/userService.ts`
 
 ```typescript
-// src/services/userService.tscd ..
+// src/services/userService.ts
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
+
+export class UserService {
   async getAllUsers() {
     return await prisma.user.findMany();
   }
