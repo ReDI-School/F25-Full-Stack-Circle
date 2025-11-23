@@ -48,7 +48,7 @@ model Video {
   title          Title?         @relation(fields: [movie_title_id], references: [id])
   movie_title_id Int?           @unique
   season         Season?        @relation(fields: [season_id], references: [id])
-  season_id      Int?           
+  season_id      Int?
   episode_number Int?
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
@@ -70,8 +70,8 @@ model Season {
   id        Int      @id @default(autoincrement())
   number    Int
   thumbnail String
-  title     Title    @relation(fields: [title_id], references: [id])
-  title_id  Int      
+  title     Title?   @relation(fields: [title_id], references: [id])
+  title_id  Int?
   video     Video[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -81,8 +81,7 @@ model Category {
   id              Int            @id @default(autoincrement())
   name            String         @db.VarChar(255)
   age_restriction AgeRestriction
-  title           Title          @relation(fields: [title_id], references: [id])
-  title_id        Int
+  title           Title[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 }

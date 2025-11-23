@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router';
 
-import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
-import { NavigationMenu } from '../../components/NavigationMenu';
-import { useUsers } from '../../hooks/useUsers';
-import type { User } from '../../config/user.types';
+import { useConfig } from '../../hooks';
 
 import styles from './Home.module.css';
 import { userAPI } from '../../config/usersAPI';
@@ -48,8 +45,6 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <NavigationMenu />
-      <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loading && <div>Loading users...</div>}
         {error && <div>Error fetching users</div>}
