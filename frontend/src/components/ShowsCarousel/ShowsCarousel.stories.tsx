@@ -8,7 +8,6 @@ const images = import.meta.glob('../../assets/shows/*.png', { eager: true });
 
 const sampleImages = Object.values(images).map((img) => (img as ImageModule).default);
 
-
 const meta: Meta<typeof ShowsCarousel> = {
   title: 'Components/ShowsCarousel',
   component: ShowsCarousel,
