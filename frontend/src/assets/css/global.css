@@ -59,10 +59,11 @@
   --grey-700: #2a2a2a;
   --grey-750: #262626;
   --grey-800: #232323;
+  --grey-825: #222222;
   --grey-850: #181818;
   --grey-900: #141414;
   --transparent-white-15: #ffffff;
-  --transparent-white-20: #ffffff;
+  --transparent-white-20: rgba(255, 255, 255, 0.2);
   --transparent-white-30: #ffffff;
   --transparent-white-35: rgba(255, 255, 255, 0.35);
   --transparent-white-40: rgba(255, 255, 255, 0.4);
@@ -70,7 +71,7 @@
   --transparent-white-70: rgba(255, 255, 255, 0.7);
   --transparent-white-80: rgba(255, 255, 255, 0.8);
   --transparent-black-30: #000000;
-  --transparent-black-60: #000000;
+  --transparent-black-60: rgba(0, 0, 0, 0.6);
   --transparent-black-90: rgba(0, 0, 0, 0.9);
 
   /* Semantic Colors */
@@ -109,6 +110,7 @@
   --text-xl: 1.25rem; /* 20px */
   --text-2xl: 1.5rem; /* 24px */
   --text-3xl: 1.875rem; /* 30px */
+  --text-3-5xl: 2.125rem; /* 34px */
   --text-4xl: 2.25rem; /* 36px */
   --text-5xl: 3rem; /* 48px */
   --text-6xl: 3.75rem; /* 60px */
@@ -127,6 +129,10 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
   --leading-17px: 17px; /* Specific line height for navigation */
+  --leading-27px: 27px; /* Specific line height for descriptions */
+  --leading-30px: 30px; /* Specific line height for large descriptions */
+  --leading-40px: 40px; /* Specific line height for mobile headlines */
+  --leading-62px: 62px; /* Specific line height for desktop headlines */
 
   /* Spacing Scale */
   --space-0: 0;
@@ -143,6 +149,7 @@
   --space-10: 2.5rem; /* 40px */
   --space-12: 3rem; /* 48px */
   --space-16: 4rem; /* 64px */
+  --space-18: 4.25rem; /* 68px */
   --space-20: 5rem; /* 80px */
   --space-24: 6rem; /* 96px */
   --space-32: 8rem; /* 128px */
@@ -184,6 +191,15 @@
   --z-tooltip: 1070;
   --z-toast: 1080;
   --progressBarThumb-z-index: 20;
+
+  /* Content Block Dimensions */
+  --content-block-max-width-mobile: 500px;
+  --content-block-max-width-tablet: 1104px;
+  --content-block-max-width-desktop: 1200px;
+  --content-block-min-height: 410px;
+  --content-text-max-width: 546px;
+  --content-image-max-height: 410px;
+  --border-divider-width: 8px;
 
   /* Hover Sizes */
   --progressBarThumb-hover-width: 18px;

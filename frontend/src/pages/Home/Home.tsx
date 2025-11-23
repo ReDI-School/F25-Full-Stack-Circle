@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 
-import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
-import { NavigationMenu } from '../../components/NavigationMenu';
-import { useUsers } from '../../hooks/useUsers';
-import type { User } from '../../config/user.types';
+import { useConfig } from '../../hooks';
 
 import styles from './Home.module.css';
 import { userAPI } from '../../config/usersAPI';
@@ -48,15 +45,13 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <NavigationMenu />
-      <img src={logo} alt="Rediflix Logo" width={500} />
       <div>
         {loading && <div>Loading users...</div>}
         {error && <div>Error fetching users</div>}
         {!loading && !error && (
           <>
             {users?.length ? (
-              users.map((user: User) => <div key={user.id || user.name}>{user.email}</div>)
+              users.map(({id, name, email}: User) => <div key={id || name}>{email}</div>)
             ) : (
               <div>No users found</div>
             )}
