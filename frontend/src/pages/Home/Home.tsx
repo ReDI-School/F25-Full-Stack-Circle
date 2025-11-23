@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/Button/Button';
@@ -8,7 +9,6 @@ import type { User } from '../../config/user.types';
 
 import styles from './Home.module.css';
 import { userAPI } from '../../config/usersAPI';
-import { useState } from 'react';
 
 const Home = () => {
   const { users, loading, error } = useUsers();
