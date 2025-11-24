@@ -10,13 +10,17 @@
   left: 0;
   right: 0;
   width: 100%;
+  padding-top: 21px;
   height: 92px;
+  z-index: 999;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+}
+
+.headerWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 999;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
 }
 
 .signInLink {
