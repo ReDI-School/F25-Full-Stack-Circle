@@ -5,6 +5,7 @@ import { authRoutes, routePaths } from '../../routes/routePaths';
 
 import { Header } from '../Header';
 import styles from './Layout.module.css';
+import { useLocation } from 'react-router';
 
 const styledLayout = cva(styles.layout, {
   variants: {
@@ -19,15 +20,35 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { isMatched: isLandingPage } = useRoutesListMatch([routePaths.landingPage().path]);
 
   const headerType = isAuthPage ? 'auth' : isLandingPage ? 'public' : 'private';
+  const location = useLocation();
+  const isAccountHomePage = location.pathname === '/home';
 
-  return (
+  const content = (
+    <div className={styles.pageWrapper}>
+      <Header type={headerType} />
+      <main className={styles.main}>{children}</main>
+    </div>
+  );
+
+  return isAccountHomePage ? (
+    <div className={styledLayout({ isAuthPage })}>{content}</div>
+  ) : (
     <div className={styledLayout({ isAuthPage })}>
-      <div className={styles.container}>
-        <Header type={headerType} />
-        {children}
-      </div>
+      <div className={styles.container}>{content}</div>
     </div>
   );
 };
+
+// return (
+//   <div className={styledLayout({ isAuthPage })}>
+//     <div className={styles.container}>
+//       <div className={styles.pageWrapper}>
+//         <Header type={headerType} />
+//         <main className={styles.main}>{children}</main>
+//       </div>
+//     </div>
+//   </div>
+// );
+// };
 
 export default Layout;

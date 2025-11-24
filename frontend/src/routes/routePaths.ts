@@ -1,12 +1,13 @@
 export const routePaths = {
   landingPage: () => ({ label: 'Landing Page', path: '/' }),
-  home: () => ({ label: 'Home', path: '/home' }),
+  accountHomePage: () => ({ label: 'Account', path: '/home' }),
   shows: () => ({ label: 'TV Shows', path: '/shows' }),
   news: () => ({ label: 'News & Popular', path: '/news' }),
   myList: () => ({ label: 'My List', path: '/list' }),
   language: () => ({ label: 'Browse By Language', path: '/language' }),
   signIn: () => ({ label: 'Sign In', path: '/signin' }),
   signUp: () => ({ label: 'Sign Up', path: '/signup' }),
+  // home: () => ({ label: 'Home', path: '/home' }),
 };
 
 export const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
