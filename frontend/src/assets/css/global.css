@@ -249,6 +249,8 @@
   --volume-thumb-margin-top: -5px;
 
   --volume-icon-size: 40px;
+
+  --header-height: 92px;
 }
 
 *,

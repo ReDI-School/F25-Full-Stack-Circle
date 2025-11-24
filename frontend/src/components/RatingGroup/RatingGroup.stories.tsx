@@ -12,9 +12,28 @@ export default meta;
 
 const createIconButtons = (size: 'small' | 'medium' | 'large') => {
   return [
-    <IconButton icon="thumbs-down" size={size} variant="outlined" theme="primary" />,
-    <IconButton icon="thumbs-up" size={size} variant="outlined" theme="primary" selected />,
-    <IconButton icon="double-thumbs-up" size={size} variant="outlined" theme="primary" />,
+    <IconButton
+      key="thumbs-down"
+      icon="thumbs-down"
+      size={size}
+      variant="outlined"
+      theme="primary"
+    />,
+    <IconButton
+      key="thumbs-up"
+      icon="thumbs-up"
+      size={size}
+      variant="outlined"
+      theme="primary"
+      selected
+    />,
+    <IconButton
+      key="double-thumbs-up"
+      icon="double-thumbs-up"
+      size={size}
+      variant="outlined"
+      theme="primary"
+    />,
   ];
 };
 

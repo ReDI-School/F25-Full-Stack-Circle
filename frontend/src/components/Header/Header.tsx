@@ -21,10 +21,14 @@ const defaultLanguage = selectOptions.find((option) => option.value === 'en');
 export const Header = ({ type }: HeaderProps) => {
   const isPrivate = type === 'private';
   const isPublic = type === 'public';
+  const logoLink = isPublic ? routePaths.landingPage().path : routePaths.browse().path;
 
   return (
     <header className={styles.header}>
-      <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
+      <Link to={logoLink} className={styles.logo}>
+        <img src={RediflixLogo} alt="Rediflix Logo" />
+      </Link>
+
       {isPrivate ? (
         <>
           <NavigationMenu className={styles.navigation} navItems={navigationItems} />

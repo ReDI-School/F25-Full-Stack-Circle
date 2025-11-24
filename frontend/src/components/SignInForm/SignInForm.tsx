@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router';
 
 import { routePaths } from '../../routes/routePaths';
@@ -12,7 +12,7 @@ import styles from './SignInForm.module.css';
 
 const SignInForm = () => {
   const {
-    control,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignInFormData>({
@@ -38,37 +38,24 @@ const SignInForm = () => {
     <div className={styles.formWrap}>
       <h3 className={styles.formTitle}>Sign In</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <InputField
-              value={value}
-              onChange={onChange}
-              type="Email"
-              state={errors.email ? 'Error' : 'Default'}
-              errorMessage={errors.email?.message}
-              onBlur={onBlur}
-            />
-          )}
-        />
-        <Controller
-          name="password"
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <InputField
-              value={value}
-              onChange={onChange}
-              type="Password"
-              state={errors.password ? 'Error' : 'Default'}
-              errorMessage={errors.password?.message}
-              onBlur={onBlur}
-            />
-          )}
-        />
-        <Button type="submit" className={styles.mb16} stretch>
-          Sign In
-        </Button>
+        <div className={styles.formContainer}>
+          <InputField
+            {...register('email')}
+            type="email"
+            state={errors.email ? 'error' : 'default'}
+            errorMessage={errors.email?.message}
+          />
+          <InputField
+            {...register('password')}
+            type="password"
+            state={errors.password ? 'error' : 'default'}
+            errorMessage={errors.password?.message}
+          />
+          <Button type="submit" className={styles.mb16} stretch>
+            Sign In
+          </Button>
+        </div>
+
         <span className={styles.or}>OR</span>
         <Button
           onClick={handleSignInCodeClick}
@@ -81,13 +68,8 @@ const SignInForm = () => {
         <Button onClick={handleForgotPasswordClick} className={styles.forgotPassword}>
           Forgot Password?
         </Button>
-        <Controller
-          name="rememberMe"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <Checkbox checked={value ?? false} onChange={(checked: boolean) => onChange(checked)} />
-          )}
-        />
+        <Checkbox {...register('rememberMe')} />
+
         <div className={styles.newToRediflix}>
           <span className={styles.newToRediflixText}>New to Rediflix?</span>{' '}
           <Link to={routePaths.signUp().path} className={styles.newToRediflixLink}>

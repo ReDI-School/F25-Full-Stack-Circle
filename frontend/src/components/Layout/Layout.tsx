@@ -18,14 +18,22 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { isMatched: isAuthPage } = useRoutesListMatch(authRoutes);
   const { isMatched: isLandingPage } = useRoutesListMatch([routePaths.landingPage().path]);
 
-  const headerType = isAuthPage ? 'auth' : isLandingPage ? 'public' : 'private';
+  let headerType: 'auth' | 'public' | 'private';
+
+  if (isAuthPage) {
+    headerType = 'auth';
+  } else if (isLandingPage) {
+    headerType = 'public';
+  } else {
+    headerType = 'private';
+  }
 
   return (
     <div className={styledLayout({ isAuthPage })}>
       <div className={styles.container}>
         <Header type={headerType} />
-        {children}
       </div>
+      {children}
     </div>
   );
 };
