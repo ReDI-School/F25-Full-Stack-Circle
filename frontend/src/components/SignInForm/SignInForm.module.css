@@ -78,7 +78,7 @@
 .recaptchaTextLink {
   color: var(--secondary-blue-100);
   text-decoration: none;
-  
+
   &:hover {
     text-decoration: underline;
   }
