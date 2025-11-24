@@ -1,4 +1,4 @@
-import { VideoType, Prisma } from 'generated/prisma';
+import { VideoType, Prisma } from '@prisma/client';
 import prisma from 'src/libs/prisma';
 
 export class TitleService {
@@ -53,3 +53,5 @@ export class TitleService {
     return await prisma.title.delete({ where: { id } });
   }
 }
+
+//
