@@ -4,7 +4,7 @@ import KidsShowcase from '../../assets/images/kids-showcase.png';
 import TvShowcase from '../../assets/images/tv-showcase.png';
 import type { Layout } from './ContentBlock.types';
 
-export const ContentBlockConfig = [
+export const contentBlockConfig = [
   {
     headline: 'Enjoy on your TV',
     description:

@@ -1,20 +1,26 @@
-import { ContentBlock } from '../../components/ContentBlock';
-import { ContentBlockConfig } from '../../components/ContentBlock/constants';
-import { LandingPageEmail } from '../../components/LandingPageEmail';
+import { ContentBlock, LandingPageEmail, contentBlockConfig } from '../../components';
+import styles from './Landing.module.css';
 
 const LandingPage = () => {
   return (
     <>
-      <LandingPageEmail />
-      {ContentBlockConfig.map(({ headline, description, image, layout }) => (
-        <ContentBlock
-          key={headline}
-          headline={headline}
-          description={description}
-          image={image}
-          layout={layout}
-        />
-      ))}
+      <section className={`${styles.landingSection} ${styles.first}`}>
+        <LandingPageEmail />
+      </section>
+      <section className={styles.landingSection}>
+        {contentBlockConfig.map(({ headline, description, image, layout }) => (
+          <ContentBlock
+            key={headline}
+            headline={headline}
+            description={description}
+            image={image}
+            layout={layout}
+          />
+        ))}
+      </section>
+      <section className={styles.landingSection}>
+        <LandingPageEmail hideTitle hideSubtitle />
+      </section>
     </>
   );
 };
