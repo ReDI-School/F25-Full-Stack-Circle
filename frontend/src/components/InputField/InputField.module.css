@@ -78,7 +78,7 @@
     box-shadow: none;
   }
 
- .label {
+  .label {
     color: var(--error);
   }
 }

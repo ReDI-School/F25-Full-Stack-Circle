@@ -73,5 +73,5 @@ jobs:
         working-directory: backend
 
       - name: Run Build
-        run: npm run build
+        run: npm run build:ci
         working-directory: backend
