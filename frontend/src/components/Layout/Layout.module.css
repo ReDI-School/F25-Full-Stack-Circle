@@ -1,8 +1,17 @@
 .layout {
   width: 100%;
   min-height: 100vh;
-  /* display: flex; */
-  /* place-content: center; */
-  /* place-items: center; */
-  box-sizing: border-box;
+}
+
+.layout.auth {
+  /* background-image is added in the Layout.tsx file, since Vite doesn't process relative paths in production */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
