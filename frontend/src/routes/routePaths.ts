@@ -7,6 +7,7 @@ export const routePaths = {
   language: () => ({ label: 'Browse By Language', path: '/language' }),
   signIn: () => ({ label: 'Sign In', path: '/signin' }),
   signUp: () => ({ label: 'Sign Up', path: '/signup' }),
+  activePlayer: () => ({label: "Active Player", path: '/videos/:id'})
 };
 
 export const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
