@@ -15,10 +15,21 @@ export class CategoryService {
   }
 
   // Category relates to Title, and has the fields: id, name, age_restriction, title_id, and timestamps.
-  async createCategory(data: { name: string; 
-    age_restriction: 'TVY' | 'TVY7' | 'G' | 'TVG' | 'PG' | 'TVPG' | 'PG13' | 'TV14' | 'R' | 'TVMA' | 'NC17'; 
-    title_id: number;
-    }) {
+  async createCategory(data: {
+    name: string;
+    age_restriction:
+      | 'TVY'
+      | 'TVY7'
+      | 'G'
+      | 'TVG'
+      | 'PG'
+      | 'TVPG'
+      | 'PG13'
+      | 'TV14'
+      | 'R'
+      | 'TVMA'
+      | 'NC17';
+  }) {
     return await prisma.category.create({
       data,
       include: {
@@ -27,7 +38,24 @@ export class CategoryService {
     });
   }
 
-  async updateCategory(id: number, data: { name?: string; age_restriction?: 'TVY' | 'TVY7' | 'G' | 'TVG' | 'PG' | 'TVPG' | 'PG13' | 'TV14' | 'R' | 'TVMA' | 'NC17'; }) {
+  async updateCategory(
+    id: number,
+    data: {
+      name?: string;
+      age_restriction?:
+        | 'TVY'
+        | 'TVY7'
+        | 'G'
+        | 'TVG'
+        | 'PG'
+        | 'TVPG'
+        | 'PG13'
+        | 'TV14'
+        | 'R'
+        | 'TVMA'
+        | 'NC17';
+    }
+  ) {
     return await prisma.category.update({
       where: { id },
       data,

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CategoryService } from '../services/categoryService';
-import { AgeRestriction } from '@prisma/client'; 
+import { AgeRestriction } from '@prisma/client';
 
 const categoryService = new CategoryService();
 
@@ -34,8 +34,8 @@ export class CategoryController {
 
   async createCategory(req: Request, res: Response) {
     try {
-      const { name, age_restriction, title_id } = req.body;
-      if (!name || !age_restriction || !title_id) {
+      const { name, age_restriction } = req.body;
+      if (!name || !age_restriction) {
         return res.status(400).json({ error: 'Missing required data' });
       }
       if (typeof name !== 'string') {
@@ -44,14 +44,10 @@ export class CategoryController {
       if (!(Object.values(AgeRestriction) as string[]).includes(age_restriction)) {
         return res.status(400).json({ error: "Field 'age_restriction' has invalid value." });
       }
-      if (isNaN(Number(title_id))) {
-        return res.status(400).json({ error: "Field 'title_id' must be a valid number." });
-      }
 
       const category = await categoryService.createCategory({
         name,
         age_restriction,
-        title_id: Number(title_id),
       });
       res.status(201).json({ category });
     } catch (error) {
@@ -63,7 +59,7 @@ export class CategoryController {
   async updateCategory(req: Request, res: Response) {
     try {
       const id = Number(req.params.id);
-      const { name, age_restriction, title_id } = req.body;
+      const { name, age_restriction } = req.body;
 
       if (isNaN(id)) {
         return res.status(400).json({ error: 'Invalid category ID' });
@@ -72,7 +68,6 @@ export class CategoryController {
       const updateData: Partial<{
         name: string;
         age_restriction: AgeRestriction;
-        title_id: number;
       }> = {};
 
       if (name !== undefined) {
@@ -87,13 +82,6 @@ export class CategoryController {
           return res.status(400).json({ error: "Field 'age_restriction' has invalid value." });
         }
         updateData.age_restriction = age_restriction;
-      }
-
-      if (title_id !== undefined) {
-        if (isNaN(Number(title_id))) {
-          return res.status(400).json({ error: "Field 'title_id' must be a valid number." });
-        }
-        updateData.title_id = Number(title_id);
       }
 
       const category = await categoryService.updateCategory(id, updateData);
