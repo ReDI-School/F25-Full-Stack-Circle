@@ -22,6 +22,7 @@ const styledWrapper = cva(styles.videoPlayerWrapper, {
 
 const VideoPlayerWrapper = ({
   src,
+  title = '',
   playing,
   light,
   playIcon,
@@ -281,7 +282,7 @@ const VideoPlayerWrapper = ({
             showThumb: true,
             color: 'red',
           }}
-          title="Movie Title"
+          title={title}
           volumeSliderProps={{
             value: state.volume,
             onChange: (value: number) => handleVolumeChange(value),

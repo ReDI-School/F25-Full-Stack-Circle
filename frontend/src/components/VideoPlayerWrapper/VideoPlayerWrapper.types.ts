@@ -7,7 +7,7 @@ interface VideoPlayerWrapperProps {
   /**
    * The title of the video.
    */
-  title: string;
+  title?: string;
 
   /**
    * Set to true or false to play or pause the media.
