@@ -44,7 +44,7 @@ const VideoPlayerWrapper = ({
     start: false,
     volume,
     fullscreen: fullscreen,
-    showControls: true,
+    showControls: false,
     light: light,
   };
 
@@ -55,40 +55,26 @@ const VideoPlayerWrapper = ({
   };
 
   const handleOnStart = () => {
-    console.log('OnStart');
     setState((prev) => ({ ...prev, start: true }));
   };
 
-  const handleOnPlay = () => {
-    console.log('OnPlay');
-  };
+  const handleOnPlay = () => {};
 
-  const handleOnPlaying = () => {
-    console.log('OnPlaying');
-  };
+  const handleOnPlaying = () => {};
 
   const handleOnReady = () => {
-    console.log('OnReady');
     if (playerRef.current) {
       playerRef.current.currentTime = state.currentTime;
     }
   };
 
-  const handleOnPause = () => {
-    console.log('OnPause');
-  };
+  const handleOnPause = () => {};
 
-  const handleOnRateChange = () => {
-    console.log('onRateChange');
-  };
+  const handleOnRateChange = () => {};
 
-  const handleOnSeeking = () => {
-    console.log('onSeeking');
-  };
+  const handleOnSeeking = () => {};
 
-  const handleOnSeeked = () => {
-    console.log('onSeeked');
-  };
+  const handleOnSeeked = () => {};
 
   const handleOnEnded = () => {
     const player = playerRef.current;
@@ -101,12 +87,9 @@ const VideoPlayerWrapper = ({
     });
   };
 
-  const handleOnError = () => {
-    console.log('onError');
-  };
+  const handleOnError = () => {};
 
   const handleOnTimeUpdate = () => {
-    console.log('OnTimeUpdate');
     const player = playerRef.current;
 
     setState((prev) => {
@@ -119,7 +102,6 @@ const VideoPlayerWrapper = ({
   };
 
   const handleOnProgress = () => {
-    console.log('OnHandleProgress');
     const player = playerRef.current;
 
     setState((prev) => {
@@ -132,7 +114,6 @@ const VideoPlayerWrapper = ({
   };
 
   const handleOnDurationChange = () => {
-    console.log('OnDurationChange');
     const player = playerRef.current;
 
     setState((prev) => {
@@ -214,8 +195,8 @@ const VideoPlayerWrapper = ({
     const wrapper = wrapperRef.current;
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (!wrapper || !state.fullscreen) return;
-
+    if (!wrapper) return;
+    // if (!wrapper || !state.fullscreen) return;
     const handleWrapperOnMouseMove = () => {
       clearTimeout(timeout);
       setState((prev) => ({ ...prev, showControls: true }));
@@ -232,7 +213,8 @@ const VideoPlayerWrapper = ({
 
       clearTimeout(timeout);
     };
-  }, [state.fullscreen, state.showControls]);
+  }, [state.showControls]);
+  // }, [state.fullscreen, state.showControls]);
 
   return (
     <div

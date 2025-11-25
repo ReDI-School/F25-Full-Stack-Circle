@@ -1,8 +1,13 @@
 interface VideoPlayerWrapperProps {
   /**
-   * The url or path of a video.
+   * The url or path of the video.
    */
   src: string;
+
+  /**
+   * The title of the video.
+   */
+  title: string;
 
   /**
    * Set to true or false to play or pause the media.
