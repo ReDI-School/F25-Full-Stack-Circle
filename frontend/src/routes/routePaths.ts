@@ -1,21 +1,47 @@
-export const routePaths = {
-  landingPage: () => ({ label: 'Landing Page', path: '/' }),
-  shows: () => ({ label: 'TV Shows', path: 'shows' }),
-  news: () => ({ label: 'News & Popular', path: 'news' }),
-  myList: () => ({ label: 'My List', path: 'list' }),
-  language: () => ({ label: 'Browse By Language', path: 'language' }),
-  signIn: () => ({ label: 'Sign In', path: 'signin' }),
-  signUp: () => ({ label: 'Sign Up', path: 'signup' }),
-  browse: () => ({ label: 'Browse', path: 'browse' }),
+export type RouteConfig = {
+  label: string;
+  path: string;
+  isAuth?: boolean;
+  isHiddenFromNav?: boolean;
 };
 
-export const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
+export type RoutePaths = {
+  [K in RouteKey]: () => RouteConfig;
+};
 
-const hiddenNavItems = new Set([...authRoutes, routePaths.landingPage().path]);
+export type RouteKey =
+  | 'landingPage'
+  | 'shows'
+  | 'news'
+  | 'myList'
+  | 'language'
+  | 'signIn'
+  | 'signUp'
+  | 'browse';
 
-export const navigationItems = Object.entries(routePaths)
-  .filter(([, getRoute]) => !hiddenNavItems.has(getRoute().path))
-  .map(([, getRoute]) => ({
-    label: getRoute().label,
-    path: getRoute().path,
+const routeConfigs: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
+  landingPage: { label: 'Landing Page', path: '/', isHiddenFromNav: true },
+  shows: { label: 'TV Shows', path: 'shows' },
+  news: { label: 'News & Popular', path: 'news' },
+  myList: { label: 'My List', path: 'list' },
+  language: { label: 'Browse By Language', path: 'language' },
+  signIn: { label: 'Sign In', path: 'signin', isAuth: true, isHiddenFromNav: true },
+  signUp: { label: 'Sign Up', path: 'signup', isAuth: true, isHiddenFromNav: true },
+  browse: { label: 'Browse', path: 'browse' },
+};
+
+export const routePaths: RoutePaths = Object.entries(routeConfigs).reduce((acc, [key, config]) => {
+  acc[key as RouteKey] = () => config as RouteConfig;
+  return acc;
+}, {} as RoutePaths);
+
+export const authRoutes = Object.entries(routeConfigs)
+  .filter(([, config]) => config.isAuth)
+  .map(([, config]) => config.path);
+
+export const navigationItems = Object.values(routeConfigs)
+  .filter((config) => !config.isHiddenFromNav)
+  .map((config) => ({
+    label: config.label,
+    path: config.path,
   }));

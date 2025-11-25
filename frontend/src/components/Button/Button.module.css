@@ -13,7 +13,7 @@
   height: 40px;
   width: fit-content;
   display: flex;
-  flex-direction: row; /* changed from column to accomodate icon and label */
+  flex-direction: row; /* changed from column to accommodate icon and label */
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
