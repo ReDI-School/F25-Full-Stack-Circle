@@ -4,7 +4,7 @@
 }
 
 .layout.auth {
-  background: url('src/assets/images/auth-bg-image.png') no-repeat center top / cover;
+  background: url('../../assets/images/auth-bg-image.png') no-repeat center top / cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
