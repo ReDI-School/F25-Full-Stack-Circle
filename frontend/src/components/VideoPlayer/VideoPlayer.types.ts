@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { RefObject } from 'react';
 
 interface VideoPlayerProps {
   /**
@@ -7,9 +7,9 @@ interface VideoPlayerProps {
   src: string;
 
   /**
-   * The reference to the Video Player. Used to control the states of the Video Player. 
+   * The reference to the Video Player. Used to control the states of the Video Player.
    */
-  playerRef: RefObject<HTMLVideoElement | null>
+  playerRef: RefObject<HTMLVideoElement | null>;
 
   /**
    * Set to true or false to play or pause the media.
@@ -57,7 +57,7 @@ interface VideoPlayerProps {
    * Element or component to use as the play icon in light mode.
    */
   playIcon?: React.ReactElement;
-  
+
   /**
    *  Called when user clicks the light mode preview.
    */

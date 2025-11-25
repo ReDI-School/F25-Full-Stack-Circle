@@ -1,6 +1,6 @@
 import type { VideoPlayerProps } from './VideoPlayer.types';
 import ReactPlayer from 'react-player';
- 
+
 const Video = ({
   src,
   playerRef,
@@ -26,7 +26,6 @@ const Video = ({
   onProgress,
   onDurationChange,
 }: VideoPlayerProps) => {
-   
   return (
     <ReactPlayer
       ref={playerRef}
