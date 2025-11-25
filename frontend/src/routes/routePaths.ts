@@ -3,6 +3,7 @@ export type RouteConfig = {
   path: string;
   isAuth?: boolean;
   isHiddenFromNav?: boolean;
+  isPrivate?: boolean;
 };
 
 export type RoutePaths = {
@@ -21,13 +22,13 @@ export type RouteKey =
 
 const routeConfigs: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   landingPage: { label: 'Landing Page', path: '/', isHiddenFromNav: true },
-  shows: { label: 'TV Shows', path: 'shows' },
-  news: { label: 'News & Popular', path: 'news' },
-  myList: { label: 'My List', path: 'list' },
-  language: { label: 'Browse By Language', path: 'language' },
-  signIn: { label: 'Sign In', path: 'signin', isAuth: true, isHiddenFromNav: true },
-  signUp: { label: 'Sign Up', path: 'signup', isAuth: true, isHiddenFromNav: true },
-  browse: { label: 'Browse', path: 'browse' },
+  shows: { label: 'TV Shows', path: '/shows' },
+  news: { label: 'News & Popular', path: '/news' },
+  myList: { label: 'My List', path: '/list' },
+  language: { label: 'Browse By Language', path: '/language' },
+  signIn: { label: 'Sign In', path: '/signin', isAuth: true, isHiddenFromNav: true },
+  signUp: { label: 'Sign Up', path: '/signup', isAuth: true, isHiddenFromNav: true },
+  browse: { label: 'Browse', path: '/browse', isPrivate: true },
 };
 
 export const routePaths: RoutePaths = Object.entries(routeConfigs).reduce((acc, [key, config]) => {

@@ -21,7 +21,9 @@ const defaultLanguage = selectOptions.find((option) => option.value === 'en');
 export const Header = ({ type }: HeaderProps) => {
   const isPrivate = type === 'private';
   const isPublic = type === 'public';
-  const logoLink = isPublic ? routePaths.landingPage().path : routePaths.browse().path;
+  const isAuth = type === 'auth';
+
+  const logoLink = isPublic || isAuth ? routePaths.landingPage().path : routePaths.browse().path;
 
   return (
     <header className={styles.header}>
