@@ -3,6 +3,4 @@ export interface PlaybackSpeedProps {
   value?: number;
   /** Handler called when playback speed changes */
   onChange?: (value: number) => void;
-  /** Optional: Additional CSS class */
-  className?: string;
 }

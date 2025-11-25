@@ -4,7 +4,7 @@ import type { PlaybackSpeedProps } from './PlaybackSpeed.types';
 
 const PLAYBACK_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5];
 
-const PlaybackSpeed: React.FC<PlaybackSpeedProps> = ({ value = 1, onChange, className = '' }) => {
+const PlaybackSpeed: React.FC<PlaybackSpeedProps> = ({ value = 1, onChange }) => {
   const [currentSpeed, setCurrentSpeed] = useState(value);
 
   // Map speed values to slider positions (0-4)
@@ -29,7 +29,7 @@ const PlaybackSpeed: React.FC<PlaybackSpeedProps> = ({ value = 1, onChange, clas
   const currentIndex = speedToIndex(currentSpeed);
 
   return (
-    <div className={`${styles.playbackSpeedContainer} ${className}`.trim()}>
+    <div className={`${styles.playbackSpeedContainer}`.trim()}>
       <div className={styles.sliderWrapper}>
         <input
           type="range"
