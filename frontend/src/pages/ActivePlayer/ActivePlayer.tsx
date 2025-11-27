@@ -1,45 +1,49 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
+import { useConfig } from '../../hooks';
 import { VideoPlayerWrapper } from '../../components/VideoPlayerWrapper';
-
-// mock data
-const videos: VideoType[] = [
-  {
-    id: 1,
-    src: 'https://vimeo.com/1124449787',
-    title: 'Robots',
-  },
-  {
-    id: 2,
-    src: 'https://vimeo.com/524933864',
-    title: 'Vimeo Ad',
-  },
-];
-
-type VideoType = {
-  id: number;
-  src: string;
-  title: string;
-};
+import type { VideoData } from '../../api/video/videoApi.types';
+import styles from './ActivePlayer.module.css';
 
 const ActivePlayer = () => {
-  const [video, setVideo] = useState<VideoType>();
+  const [video, setVideo] = useState<VideoData>();
+  const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const { id } = useParams();
+  const { config, loadingConfig } = useConfig();
 
   useEffect(() => {
     const fetchVideo = async () => {
-      // mock fetching of data
-      const video = videos.find((video) => video.id === Number(id));
-      if (video) setVideo(video);
+      if (loadingConfig) return;
+      if (!id) return;
+      try {
+        const response = await fetch(`${config?.apiUrl}/videos/${Number(id)}`);
+        const data = await response.json();
+
+        if (data.error) {
+          return setErrorMessage(data.error);
+        }
+
+        if (data.video) {
+          setVideo(data.video);
+          setErrorMessage(null);
+        } else {
+          setErrorMessage('No Video data.');
+        }
+      } catch (error) {
+        setErrorMessage(error instanceof Error ? error.message : 'Something went wrong');
+      }
     };
 
     fetchVideo();
-  }, [id]);
+  }, [id, config?.apiUrl, loadingConfig]);
 
-  if (!video) return <VideoPlayerWrapper src={''} title={''} size="full" playing />;
+  if (loadingConfig) return <p className={styles.message}>Loading Video ...</p>;
 
-  return <VideoPlayerWrapper src={video.src} title={video.title} size="full" playing />;
+  if (errorMessage) return <p className={styles.message}>{errorMessage}</p>;
+
+  if (!video) return;
+  return <VideoPlayerWrapper volume={1} src={video.url} title={video.title.name} size="full" playing />;
 };
 
 export default ActivePlayer;

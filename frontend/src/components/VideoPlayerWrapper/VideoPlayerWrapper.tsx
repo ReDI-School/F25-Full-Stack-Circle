@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { cva } from 'class-variance-authority';
-import ReactPlayer from 'react-player';
 import styles from './VideoPlayerWrapper.module.css';
 import { Video } from '../VideoPlayer/index';
 import { VideoControlBar } from '../VideoControlBar/index';
@@ -262,7 +261,6 @@ const VideoPlayerWrapper = ({
         onDurationChange={handleOnDurationChange}
       />
 
-      <ReactPlayer />
       {!state.light && state.showControls && (
         <VideoControlBar
           isPlaying={state.playing}
