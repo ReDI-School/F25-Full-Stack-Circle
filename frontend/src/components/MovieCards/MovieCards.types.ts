@@ -16,6 +16,7 @@ export interface MovieCardData {
   progress?: number;
   rank?: number;
   seasonInfo?: string;
+  language?: string;
 }
 
 export interface MovieCardsProps {
