@@ -3,16 +3,14 @@ import { useState } from 'react';
 
 import Button from '../../components/Button/Button';
 
-import { NavigationMenu } from '../../components/NavigationMenu';
 import { useUsers } from '../../hooks/useUsers';
 import type { User } from '../../config/user.types';
-import { useConfig } from '../../hooks';
 
 import styles from './Home.module.css';
 import { userAPI } from '../../config/usersAPI';
 
 const Home = () => {
-  const { users, loading, error } = useUsers();
+  const { users, isLoading, error } = useUsers();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -36,6 +34,7 @@ const Home = () => {
         ...formData,
         accountId,
       });
+
       console.log('Created new user: ', newUser);
 
       setFormData({ name: '', email: '', password: '' });
@@ -50,12 +49,12 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <div>
-        {loading && <div>Loading users...</div>}
+        {isLoading && <div>IsLoading users...</div>}
         {error && <div>Error fetching users</div>}
-        {!loading && !error && (
+        {!isLoading && !error && (
           <>
             {users?.length ? (
-              users.map((user: User) => <div key={user.id || user.name}>{user.email}</div>)
+              users.map(({ id, name, email }: User) => <div key={id || name}>{email}</div>)
             ) : (
               <div>No users found</div>
             )}
