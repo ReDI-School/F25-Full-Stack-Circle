@@ -43,7 +43,7 @@ const InputField: React.FC<InputFieldProps> = ({
   const [internalValue, setInternalValue] = useState<string>(value ?? '');
   useEffect(() => {
     if (value !== undefined && value !== internalValue) setInternalValue(value);
-  }, [value, internalValue]);
+  }, [value]);
 
   const resolvedLabel = placeholder ?? placeholderForType(type);
 
