@@ -43,7 +43,9 @@ const ActivePlayer = () => {
   if (errorMessage) return <p className={styles.message}>{errorMessage}</p>;
 
   if (!video) return;
-  return <VideoPlayerWrapper volume={1} src={video.url} title={video.title.name} size="full" playing />;
+  return (
+    <VideoPlayerWrapper volume={1} src={video.url} title={video.title.name} size="full" playing />
+  );
 };
 
 export default ActivePlayer;
