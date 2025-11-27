@@ -6,21 +6,24 @@ const Checkbox = ({
   checked,
   onChange,
   'aria-label': ariaLabel,
+  ...props
 }: CheckboxProps) => {
+  const { ...inputProps } = props;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.checked);
+    onChange?.(e);
   };
 
   return (
     <label className={styles.checkboxContainer}>
       <input
+        {...inputProps}
         type="checkbox"
         checked={checked}
         aria-label={ariaLabel || label}
         onChange={handleChange}
         className={styles.checkboxInput}
       />
-      <span className={styles.checkmark}></span>
+      <span className={styles.checkMark}></span>
       {label && <span className={styles.label}>{label}</span>}
     </label>
   );
