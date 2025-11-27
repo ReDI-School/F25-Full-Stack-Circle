@@ -1,77 +1,89 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 import Button from '../../components/Button/Button';
-import { useConfig } from '../../hooks';
+
+import { useUsers } from '../../hooks/useUsers';
+import type { User } from '../../config/user.types';
 
 import styles from './Home.module.css';
-
-interface User {
-  name: string;
-  email: string;
-}
+import { userAPI } from '../../config/usersAPI';
 
 const Home = () => {
-  const [users, setUsers] = useState<User[]>([
-    {
-      name: 'Fabio',
-      email: 'test@fabio.com',
-    },
-    {
-      name: 'Perial',
-      email: 'dperial44@gmail.com',
-    },
-    {
-      name: 'Christheo',
-      email: 'christheo.guipo@gmail.com',
-    },
-    {
-      name: 'Marina',
-      email: 'maryna.seidel@yahoo.de',
-    },
-    {
-      name: 'Lyubomir',
-      email: 'lakovski@gmail.com',
-    },
-    // add your name
-  ]);
-  const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
-  const { config, loadingConfig } = useConfig();
-
+  const { users, isLoading, error } = useUsers();
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [creating, setCreating] = useState(false);
 
   const handleSignIn = () => {
     navigate('/signin');
   };
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (loadingConfig || loadingUsers) return;
+  const accountId = 'cmhawq6mp000001q7jzr3ikbl';
+  const handleCreateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.email || !formData.password) {
+      alert('Email and password are required');
+      return;
+    }
 
-      const response = await fetch(`${config?.apiUrl}/users`);
-      const data = await response.json();
-      setUsers(data.users);
-      setLoadingUsers(false);
-    };
+    try {
+      setCreating(true);
+      const newUser = await userAPI.create({
+        ...formData,
+        accountId,
+      });
 
-    fetchUsers();
-  }, [config, loadingConfig, loadingUsers]);
+      console.log('Created new user: ', newUser);
+
+      setFormData({ name: '', email: '', password: '' });
+    } catch (err) {
+      console.error('Error creating user:', err);
+      alert('Failed to create user');
+    } finally {
+      setCreating(false);
+    }
+  };
 
   return (
     <div className={styles.home}>
       <div>
-        {loadingUsers ? (
-          <div>Redi team</div>
-        ) : (
+        {isLoading && <div>IsLoading users...</div>}
+        {error && <div>Error fetching users</div>}
+        {!isLoading && !error && (
           <>
-            {users.length > 0 ? (
-              users.map((user) => <div key={user.name}>{user.email}</div>)
+            {users?.length ? (
+              users.map(({ id, name, email }: User) => <div key={id || name}>{email}</div>)
             ) : (
-              <div>Finally</div>
+              <div>No users found</div>
             )}
           </>
         )}
       </div>
+      <form onSubmit={handleCreateUser} style={{ marginTop: 20 }}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        />
+        <Button type="submit" disabled={creating}>
+          {creating ? 'Creating...' : 'Create User'}
+        </Button>
+      </form>
       <Button onClick={handleSignIn}>Sign In</Button>
     </div>
   );

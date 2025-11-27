@@ -1,8 +1,7 @@
-interface UserIconProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+interface UserIconProps extends React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> {
   size?: 'big' | 'small';
   userName?: string | React.ReactNode;
   avatar?: string | React.ReactNode;
