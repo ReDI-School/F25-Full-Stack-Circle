@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
+import styles from './LandingPageEmail.module.css';
 import { Button } from '../Button';
 import InputField from '../InputField';
-
-import styles from './LandingPageEmail.module.css';
 
 const LandingPageEmail = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +12,7 @@ const LandingPageEmail = () => {
   };
 
   return (
-    <section className={styles.container}>
+    <div className={styles.container}>
       <h1 className={styles.textL}>Unlimited movies, TV shows, and more</h1>
       <h4 className={styles.textM}>Watch anywhere. Cancel anytime.</h4>
       <h5 className={styles.textS}>
@@ -25,7 +24,7 @@ const LandingPageEmail = () => {
           Get Started
         </Button>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -154,6 +154,11 @@
   height: 48px;
 }
 
+/* fullWidth alias kept for compatibility: reuse .stretch behavior */
+.fullWidth {
+  width: 100%;
+}
+
 /* Focus visible for accessibility */
 .button:focus-visible,
 .primary:focus-visible,
