@@ -4,7 +4,10 @@
 }
 
 .layout.auth {
-  background: url('src/assets/images/auth-bg-image.png') no-repeat center top / cover;
+  /* background-image is added in the Layout.tsx file, since Vite doesn't process relative paths in production */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
 }
 
 .container {

@@ -2,8 +2,10 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import userRouter from './routes/userRoutes';
+import videoRouter from './routes/videoRoutes';
 import titleRouter from './routes/titleRoutes';
 import seasonRoutes from './routes/seasonRoutes';
+import categoryRouter from './routes/categoryRoutes';
 
 const app = express();
 
@@ -40,8 +42,10 @@ app.use(
 
 // Routes
 app.use('/users', userRouter);
+app.use('/videos', videoRouter);
 app.use('/titles', titleRouter);
 app.use('/seasons', seasonRoutes);
+app.use('/category', categoryRouter);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {
