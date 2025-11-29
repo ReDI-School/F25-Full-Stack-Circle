@@ -1,3 +1,4 @@
+import type { PlaybackSpeedProps } from '../PlaybackSpeed';
 import type { ProgressBarProps } from '../ProgressBar/index';
 import type { VolumeSliderProps } from '../VolumeSlider/index';
 
@@ -11,6 +12,11 @@ interface VideoControlBarProps {
    * The Progress bar component's props.
    */
   volumeSliderProps: VolumeSliderProps;
+
+  /**
+   * The Playback Speed component's props.
+   */
+  playbackSpeedProps: PlaybackSpeedProps;
 
   /**
    * The Title of the video.

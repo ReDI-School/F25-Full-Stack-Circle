@@ -46,6 +46,7 @@ const VideoPlayerWrapper = ({
     fullscreen: fullscreen,
     showControls: false,
     light: light,
+    playbackSpeed: playbackRate,
   };
 
   const [state, setState] = useState(initialState);
@@ -151,6 +152,10 @@ const VideoPlayerWrapper = ({
     setState((prev) => ({ ...prev, volume: value }));
   };
 
+  const handlePlaybackSpeedChange = (value: number) => {
+    setState((prev) => ({ ...prev, playbackSpeed: value }));
+  };
+
   const handleSetNewValue = (newValue: number) => {
     const player = playerRef.current;
 
@@ -230,7 +235,7 @@ const VideoPlayerWrapper = ({
         light={state.light}
         playIcon={playIcon}
         volume={state.volume}
-        playbackRate={playbackRate}
+        playbackRate={state.playbackSpeed}
         // Called when user clicks the light mode preview
         onClickPreview={handleOnClickPreview}
         // Called when media is loaded and ready to play.
@@ -267,11 +272,11 @@ const VideoPlayerWrapper = ({
           onPlayButtonClick={handleClickPlay}
           onCaptionButtonClick={() => {}}
           onEpisodeListButtonClick={() => {}}
+          onRewindButtonClick={handleClickRewind}
           onForwardButtonClick={handleClickForward}
           onFullscreenButtonClick={handleClickFullscreen}
           onNextButtonClick={() => {}}
           onPlaybackButtonClick={() => {}}
-          onRewindButtonClick={handleClickRewind}
           progressBarProps={{
             value: state.currentTime,
             loaded: state.loaded,
@@ -284,6 +289,10 @@ const VideoPlayerWrapper = ({
           volumeSliderProps={{
             value: state.volume,
             onChange: (value: number) => handleVolumeChange(value),
+          }}
+          playbackSpeedProps={{
+            value: state.playbackSpeed,
+            onChange: (value: number) => handlePlaybackSpeedChange(value),
           }}
         />
       )}
