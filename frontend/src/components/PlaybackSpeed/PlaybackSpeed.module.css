@@ -112,7 +112,9 @@
   font-size: 16px;
   color: #808080;
   text-align: center;
-  transition: color 0.2s ease, font-weight 0.2s ease;
+  transition:
+    color 0.2s ease,
+    font-weight 0.2s ease;
 }
 
 .speedLabel.active {
