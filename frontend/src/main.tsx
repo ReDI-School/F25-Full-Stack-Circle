@@ -11,8 +11,9 @@ import SignUp from './pages/SignUp/SignUp.tsx';
 import './assets/css/global.css';
 import './assets/css/reset.css';
 import { routePaths } from './routes/routePaths.ts';
+import ActivePlayer from './pages/ActivePlayer/ActivePlayer.tsx';
 
-const { landingPage, home, signIn, signUp } = routePaths;
+const { landingPage, home, signIn, signUp, activePlayer } = routePaths;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path={home().path} element={<Home />} />
           <Route path={signIn().path} element={<SignIn />} />
           <Route path={signUp().path} element={<SignUp />} />
+          <Route path={activePlayer().path} element={<ActivePlayer />} />
         </Routes>
       </Layout>
     </BrowserRouter>

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Video from './VideoPlayer';
+import VideoPlayerWrapper from './VideoPlayerWrapper';
 import Local from '../../assets/video/sample-video.mp4';
 import Image from '../../assets/images/logo.svg';
 import { IconButton } from '../IconButton';
 
-const meta: Meta<typeof Video> = {
-  title: 'Components/VideoPlayer',
-  component: Video,
+const meta: Meta<typeof VideoPlayerWrapper> = {
+  title: 'Components/VideoPlayerWrapper',
+  component: VideoPlayerWrapper,
   tags: ['autodocs'],
 };
 
@@ -14,7 +14,7 @@ const playIconComponent = <IconButton icon="play" theme="secondary" variant="out
 
 export default meta;
 
-type Story = StoryObj<typeof Video>;
+type Story = StoryObj<typeof VideoPlayerWrapper>;
 
 export const Vimeo: Story = {
   args: {
@@ -30,6 +30,7 @@ export const VimeoPlayIconWithThumbnail: Story = {
     light:
       'https://i.vimeocdn.com/video/2066328655-4be9e0a8e8c43c2e1d24bb918cee4072980b9a7d473960ace1111ad2ded75073-d?mw=2000&mh=1127&q=70',
     playIcon: playIconComponent,
+    size: 'full',
   },
 };
 
@@ -47,5 +48,37 @@ export const LocalVideo: Story = {
 export const Youtube: Story = {
   args: {
     src: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
+  },
+};
+
+export const VimeoSmall: Story = {
+  args: {
+    src: 'https://vimeo.com/524933864',
+    playing: true,
+    size: 'small',
+  },
+};
+
+export const VimeoMedium: Story = {
+  args: {
+    src: 'https://vimeo.com/524933864',
+    playing: true,
+    size: 'medium',
+  },
+};
+
+export const VimeoLarge: Story = {
+  args: {
+    src: 'https://vimeo.com/524933864',
+    playing: true,
+    size: 'large',
+  },
+};
+
+export const VimeoFull: Story = {
+  args: {
+    src: 'https://vimeo.com/524933864',
+    playing: true,
+    size: 'full',
   },
 };
