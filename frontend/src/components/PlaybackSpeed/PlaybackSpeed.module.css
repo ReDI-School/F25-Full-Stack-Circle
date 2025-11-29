@@ -1,0 +1,127 @@
+.playbackSpeedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #2b2b2b;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 500px;
+}
+
+.title {
+  font-family: 'NetflixSans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 24px;
+  text-align: left;
+  width: 100%;
+}
+
+.sliderWrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.playbackSlider {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Track styling */
+.playbackSlider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  background: #5a5a5a;
+  border-radius: 2px;
+}
+
+.playbackSlider::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  background: #5a5a5a;
+  border-radius: 2px;
+}
+
+/* Thumb styling */
+.playbackSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -8.5px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  border: 2px solid #2b2b2b;
+}
+
+.playbackSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.playbackSlider::-webkit-slider-thumb:active {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.playbackSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #2b2b2b;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.playbackSlider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.playbackSlider::-moz-range-thumb:active {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.labelsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 12px;
+  position: relative;
+  padding: 0 12px;
+}
+
+.speedLabel {
+  font-family: 'NetflixSans', sans-serif;
+  font-size: 16px;
+  color: #808080;
+  text-align: center;
+  transition:
+    color 0.2s ease,
+    font-weight 0.2s ease;
+}
+
+.speedLabel.active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.speedLabel.normal {
+  font-weight: 400;
+}
