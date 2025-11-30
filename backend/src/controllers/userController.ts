@@ -8,7 +8,7 @@ export class UserController {
     try {
       const users = await userService.getAllUsers();
 
-      res.json(users);
+      res.json({ users });
     } catch (error) {
       console.error('Error fetching users:', error);
 
