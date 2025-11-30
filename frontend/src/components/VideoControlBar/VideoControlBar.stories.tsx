@@ -23,6 +23,12 @@ const Template: StoryFn<VideoControlBarProps> = (args: VideoControlBarProps) => 
   };
 
   const [volume, setVolume] = useState(args.volumeSliderProps.value);
+  const [playbackSpeed, setPlaybackSpeed] = useState(args.playbackSpeedProps.value);
+
+  const handlePlaybackSpeedChange = (value: number) => {
+    setPlaybackSpeed(value);
+  };
+
   const handleVolumeChange = (newValue: number) => {
     setVolume(newValue);
   };
@@ -83,6 +89,11 @@ const Template: StoryFn<VideoControlBarProps> = (args: VideoControlBarProps) => 
           value: volume,
           onChange: handleVolumeChange,
         }}
+        playbackSpeedProps={{
+          ...args.playbackSpeedProps,
+          value: playbackSpeed,
+          onChange: handlePlaybackSpeedChange,
+        }}
         onPlayButtonClick={handleOnPlayButtonClick}
         onCaptionButtonClick={handleOnCaptionButtonClick}
         onRewindButtonClick={handleOnRewindButtonClick}
@@ -108,5 +119,8 @@ Default.args = {
     showThumb: true,
     loaded: 80,
     duration: 4000,
+  },
+  playbackSpeedProps: {
+    value: 1,
   },
 };
