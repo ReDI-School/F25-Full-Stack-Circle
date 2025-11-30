@@ -27,7 +27,7 @@ const VideoPlayerWrapper = ({
   playIcon,
   width = '100%',
   height = '100%',
-  volume = 1,
+  volume = 0,
   playbackRate,
   currentTime = 0,
   size = 'medium',
@@ -201,7 +201,7 @@ const VideoPlayerWrapper = ({
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!wrapper) return;
-    // if (!wrapper || !state.fullscreen) return;
+    // if (!wrapper || !state.fullscreen) return; Use this to hide/show controlBar only in fullscreen
     const handleWrapperOnMouseMove = () => {
       clearTimeout(timeout);
       setState((prev) => ({ ...prev, showControls: true }));
@@ -219,7 +219,7 @@ const VideoPlayerWrapper = ({
       clearTimeout(timeout);
     };
   }, [state.showControls]);
-  // }, [state.fullscreen, state.showControls]);
+  // }, [state.fullscreen, state.showControls]); Use this to hide/show controlBar only in fullscreen
 
   return (
     <div

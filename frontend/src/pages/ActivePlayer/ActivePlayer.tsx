@@ -44,7 +44,7 @@ const ActivePlayer = () => {
 
   if (!video) return;
   return (
-    <VideoPlayerWrapper volume={1} src={video.url} title={video.title.name} size="full" playing />
+    <VideoPlayerWrapper volume={0} src={video.url} title={video.title.name} size="full" playing />
   );
 };
 

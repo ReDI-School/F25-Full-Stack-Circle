@@ -6,11 +6,12 @@ import { VideoControlButton } from '../VideoControlButton';
 import { VolumeSlider } from '../VolumeSlider';
 import { PlaybackSpeed } from '../PlaybackSpeed';
 import { useEffect, useRef, useState } from 'react';
+import { Button } from '../Button';
+import { useLocation, useNavigate } from 'react-router';
 
 const styledVideoControl = cva(styles.videoControl);
 const styledGridWrapper = cva(styles.gridWrapper);
 const styledControlButtonWrapper = cva(styles.controlButtonWrapper);
-const styledPlaybackSpeedWrapper = cva(styles.playbackSpeedWrapper);
 
 const VideoControlBar = ({
   progressBarProps,
@@ -23,12 +24,14 @@ const VideoControlBar = ({
   onForwardButtonClick,
   onNextButtonClick,
   onEpisodeListButtonClick,
-  onCaptionButtonClick,
   onFullscreenButtonClick,
 }: VideoControlBarProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const timeoutId = useRef<ReturnType<typeof setTimeout>>(undefined);
   const [showPlaybackSpeed, setShowPlaybackSpeed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const onPlaybackButtonClick = () => {
     setShowPlaybackSpeed((prev) => !prev);
   };
@@ -39,7 +42,7 @@ const VideoControlBar = ({
     clearTimeout(timeoutId.current);
     timeoutId.current = setTimeout(() => {
       setShowPlaybackSpeed(false);
-    }, 500);
+    }, 300);
   };
 
   useEffect(() => {
@@ -57,28 +60,49 @@ const VideoControlBar = ({
     };
   }, []);
 
+  const handleBackButtonClick = () => {
+    if (location.key === 'default') {
+      // If there is no history to go back to, return to home
+      navigate('/home');
+    } else {
+      navigate(-1); // Go back
+    }
+  };
+
   return (
     <div className={styledVideoControl()}>
-      <ProgressBar {...progressBarProps} />
-      <div ref={wrapperRef} className={styledGridWrapper()}>
-        {showPlaybackSpeed && (
-          <div className={styledPlaybackSpeedWrapper()}>
-            <PlaybackSpeed {...playbackSpeedProps} onChange={handlePlaybackSpeedChange} />
+      <div>
+        <Button
+          className={styles.backButton}
+          iconPosition="before"
+          size="small"
+          icon="back"
+          onClick={handleBackButtonClick}
+        >
+          Back
+        </Button>
+      </div>
+      <div className={styles.bottomControlsWrapper}>
+        <ProgressBar {...progressBarProps} />
+        <div ref={wrapperRef} className={styledGridWrapper()}>
+          {showPlaybackSpeed && (
+            <div className={styles.playbackSpeedWrapper}>
+              <PlaybackSpeed {...playbackSpeedProps} onChange={handlePlaybackSpeedChange} />
+            </div>
+          )}
+          <div className={styledControlButtonWrapper()}>
+            <VideoControlButton icon={isPlaying ? 'pause' : 'play'} onClick={onPlayButtonClick} />
+            <VideoControlButton icon="rewind" onClick={onRewindButtonClick} />
+            <VideoControlButton icon="forward" onClick={onForwardButtonClick} />
+            <VolumeSlider {...volumeSliderProps} />
           </div>
-        )}
-        <div className={styledControlButtonWrapper()}>
-          <VideoControlButton icon={isPlaying ? 'pause' : 'play'} onClick={onPlayButtonClick} />
-          <VideoControlButton icon="rewind" onClick={onRewindButtonClick} />
-          <VideoControlButton icon="forward" onClick={onForwardButtonClick} />
-          <VolumeSlider {...volumeSliderProps} />
-        </div>
-        <span>{title}</span>
-        <div className={styledControlButtonWrapper()}>
-          <VideoControlButton icon="next" onClick={onNextButtonClick} />
-          <VideoControlButton icon="episode-list" onClick={onEpisodeListButtonClick} />
-          <VideoControlButton icon="caption" onClick={onCaptionButtonClick} />
-          <VideoControlButton icon="playback" onClick={onPlaybackButtonClick} />
-          <VideoControlButton icon="fullscreen" onClick={onFullscreenButtonClick} />
+          <span>{title}</span>
+          <div className={styledControlButtonWrapper()}>
+            <VideoControlButton icon="next" onClick={onNextButtonClick} />
+            <VideoControlButton icon="episode-list" onClick={onEpisodeListButtonClick} />
+            <VideoControlButton icon="playback" onClick={onPlaybackButtonClick} />
+            <VideoControlButton icon="fullscreen" onClick={onFullscreenButtonClick} />
+          </div>
         </div>
       </div>
     </div>
