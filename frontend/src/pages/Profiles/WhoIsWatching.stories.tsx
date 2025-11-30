@@ -13,5 +13,5 @@ export default meta;
 type Story = StoryObj<typeof WhoIsWatching>;
 
 export const Default: Story = {
-  render: () => <WhoIsWatching />,
+  render: () => <WhoIsWatching onUserClick={() => {}} />,
 };
