@@ -85,7 +85,10 @@ const SignInForm = () => {
           name="rememberMe"
           control={control}
           render={({ field: { value, onChange } }) => (
-            <Checkbox checked={value ?? false} onChange={(checked: boolean) => onChange(checked)} />
+            <Checkbox
+              checked={value ?? false}
+              onChange={(event) => onChange(event.target.checked)}
+            />
           )}
         />
         <div className={styles.newToRediflix}>
