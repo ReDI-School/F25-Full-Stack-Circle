@@ -4,4 +4,8 @@ interface User {
   avatar: string;
 }
 
-export type { User };
+interface WhoIsWatchingProps {
+  onUserClick: VoidFunction;
+}
+
+export type { User, WhoIsWatchingProps };
