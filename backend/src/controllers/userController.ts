@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { UserService } from '../services/userService';
 import { handleError } from '../utils/errorHandler';
-import { validateEmail, validateId, validatePassword } from '../utils/validation';
+import { validateId } from '../utils/validation';
 
 const userService = new UserService();
 
@@ -41,38 +41,24 @@ export class UserController {
 
   async createUser(req: Request, res: Response) {
     try {
-      const { email, password, name, accountId } = req.body;
+      const { name, accountId } = req.body;
 
-      if (!email || !password || !accountId) {
-        return res.status(400).json({
-          error: 'Email, password, and accountId are required',
-        });
-      }
+      const trimmedName = name?.trim();
 
-      if (!validateEmail(email)) {
+      if (!trimmedName || !accountId) {
         return res.status(400).json({
-          error: 'Invalid email format',
-        });
-      }
-
-      const passwordValidation = validatePassword(password);
-      if (!passwordValidation.isValid) {
-        return res.status(400).json({
-          error: passwordValidation.error,
+          error: 'Name and accountId are required',
         });
       }
 
       const user = await userService.createUser({
-        email: email.trim(),
-        password,
-        name: name?.trim(),
+        name: trimmedName,
         accountId,
       });
 
       res.status(201).json({ user });
     } catch (error) {
       handleError(error, res, {
-        uniqueConstraint: 'Email already exists',
         foreignKeyConstraint: 'Invalid account ID',
       });
     }
@@ -88,24 +74,23 @@ export class UserController {
         });
       }
 
-      const { email, name } = req.body;
+      const { name } = req.body;
+      const trimmedName = name?.trim();
 
-      if (email && !validateEmail(email)) {
+      if (!trimmedName) {
         return res.status(400).json({
-          error: 'Invalid email format',
+          error: 'Name is required',
         });
       }
 
       const user = await userService.updateUser(id, {
-        email: email?.trim(),
-        name: name?.trim(),
+        name: trimmedName,
       });
 
       res.json({ user });
     } catch (error) {
       handleError(error, res, {
         recordNotFound: 'User not found',
-        uniqueConstraint: 'Email already exists',
       });
     }
   }
