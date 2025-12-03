@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import ReactModal from 'react-modal';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
 import { Layout } from './components';
@@ -14,6 +15,8 @@ import './assets/css/reset.css';
 import { routePaths } from './routes/routePaths.ts';
 
 const { landingPage, signIn, signUp, accountHomePage } = routePaths;
+
+ReactModal.setAppElement('#root');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

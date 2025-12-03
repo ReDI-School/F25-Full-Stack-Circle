@@ -8,6 +8,9 @@ const meta: Meta<typeof LandingPageEmail> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    backgrounds: {
+      default: 'dark',
+    },
   },
   decorators: [
     (Story) => (

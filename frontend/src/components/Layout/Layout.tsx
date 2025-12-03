@@ -1,5 +1,6 @@
 import { cva } from 'class-variance-authority';
 
+import authBgImage from '../../assets/images/auth-bg-image.png';
 import useRoutesListMatch from '../../hooks/useRouteListMatch';
 import { authRoutes, routePaths } from '../../routes/routePaths';
 
@@ -33,7 +34,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return isAccountHomePage ? (
     <div className={styledLayout({ isAuthPage })}>{content}</div>
   ) : (
-    <div className={styledLayout({ isAuthPage })}>
+    <div
+      className={styledLayout({ isAuthPage })}
+      style={isAuthPage ? { backgroundImage: `url(${authBgImage})` } : undefined}
+    >
       <div className={styles.container}>{content}</div>
     </div>
   );
