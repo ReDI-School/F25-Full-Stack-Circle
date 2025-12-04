@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import WhoIsWatching from './WhoIsWatching';
+import Profiles from './Profiles';
 
-const meta: Meta<typeof WhoIsWatching> = {
+const meta: Meta<typeof Profiles> = {
   title: 'Components/WhoIsWatching',
-  component: WhoIsWatching,
+  component: Profiles,
   decorators: [(Story) => <Story />],
   tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<typeof WhoIsWatching>;
+type Story = StoryObj<typeof Profiles>;
 
 export const Default: Story = {
-  render: () => <WhoIsWatching onUserClick={() => {}} />,
+  render: () => <Profiles onProfileClick={() => {}} />,
 };

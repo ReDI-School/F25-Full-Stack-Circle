@@ -19,5 +19,6 @@ export const useOnClickOutside = (
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, handler, ...dependencies]);
 };

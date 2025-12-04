@@ -1,3 +1,4 @@
+import type { PlaybackSpeedProps } from '../PlaybackSpeed';
 import type { ProgressBarProps } from '../ProgressBar/index';
 import type { VolumeSliderProps } from '../VolumeSlider/index';
 
@@ -13,6 +14,11 @@ interface VideoControlBarProps {
   volumeSliderProps: VolumeSliderProps;
 
   /**
+   * The Playback Speed component's props.
+   */
+  playbackSpeedProps: PlaybackSpeedProps;
+
+  /**
    * The Title of the video.
    */
   title: string;
@@ -20,7 +26,7 @@ interface VideoControlBarProps {
   /**
    * The state of the video. This will toggle Play icon to Pause icon and vice versa.
    */
-  isPlaying: boolean;
+  isPlaying: boolean | undefined;
 
   /**
    * The event that triggers when the Play/Pause button is clicked.
