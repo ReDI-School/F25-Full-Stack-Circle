@@ -1,27 +1,29 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useAuthContext } from '../../contexts/auth/authContext';
 import { routePaths } from '../../routes/routePaths';
 import { signInSchema, type SignInFormData } from '../../utils/validation';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import InputField from '../InputField';
 
+import { INPUT_STATES, INPUT_TYPES } from '../InputField/InputField.types';
+
 import styles from './SignInForm.module.css';
 
 const SignInForm = () => {
-  const { login } = useAuth();
+  const { login } = useAuthContext();
 
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
-    control,
     handleSubmit,
-    formState: { errors },
+    register,
+    formState: { errors, isSubmitting },
   } = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
     mode: 'onBlur',
@@ -34,13 +36,14 @@ const SignInForm = () => {
 
   const onSubmit: SubmitHandler<SignInFormData> = async (data) => {
     try {
-      setError(null);
-      setIsLoading(true);
+      if (serverError) setServerError(null);
       await login({ email: data.email, password: data.password });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to sign in. Please try again.');
-    } finally {
-      setIsLoading(false);
+      setServerError(
+        err instanceof AxiosError
+          ? err.response?.data.error
+          : 'Failed to sign in. Please try again.'
+      );
     }
   };
 
@@ -56,37 +59,21 @@ const SignInForm = () => {
     <div className={styles.formWrap}>
       <h3 className={styles.formTitle}>Sign In</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <InputField
-              value={value}
-              onChange={onChange}
-              type="Email"
-              state={errors.email ? 'Error' : 'Default'}
-              errorMessage={errors.email?.message}
-              onBlur={onBlur}
-            />
-          )}
+        <InputField
+          {...register('email')}
+          type={INPUT_TYPES.EMAIL}
+          state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+          errorMessage={errors.email?.message}
         />
-        <Controller
-          name="password"
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <InputField
-              value={value}
-              onChange={onChange}
-              type="Password"
-              state={errors.password ? 'Error' : 'Default'}
-              errorMessage={errors.password?.message}
-              onBlur={onBlur}
-            />
-          )}
+        <InputField
+          {...register('password')}
+          type={INPUT_TYPES.PASSWORD}
+          state={errors.password ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+          errorMessage={errors.password?.message}
         />
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        <Button type="submit" className={styles.mb16} stretch disabled={isLoading}>
-          {isLoading ? 'Signing In...' : 'Sign In'}
+        {serverError && <p className={styles.errorMessage}>{serverError}</p>}
+        <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
+          {isSubmitting ? 'Signing In...' : 'Sign In'}
         </Button>
         <span className={styles.or}>OR</span>
         <Button
@@ -100,16 +87,7 @@ const SignInForm = () => {
         <Button onClick={handleForgotPasswordClick} className={styles.forgotPassword}>
           Forgot Password?
         </Button>
-        <Controller
-          name="rememberMe"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <Checkbox
-              checked={value ?? false}
-              onChange={(event) => onChange(event.target.checked)}
-            />
-          )}
-        />
+        <Checkbox {...register('rememberMe')} />
         <div className={styles.newToRediflix}>
           <span className={styles.newToRediflixText}>New to Rediflix?</span>{' '}
           <Link to={routePaths.signUp().path} className={styles.newToRediflixLink}>

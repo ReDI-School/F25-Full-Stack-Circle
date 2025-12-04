@@ -1,11 +1,23 @@
-import { Modal } from '../../components';
+import { useEffect } from 'react';
+
+import { Modal } from '../../components/Modal';
 import { useStateToggleHandlers } from '../../hooks';
-import WhoIsWatching from '../Profiles/WhoIsWatching';
+import Profiles from '../Profiles/Profiles';
 
 import styles from './Home.module.css';
 
+const PROFILES_MODAL_KEY = 'isProfilesModalShown';
+
 const Home = () => {
-  const [isModalOpen, , closeModal] = useStateToggleHandlers(true); //TODO: Show only after sign in
+  const [isModalOpen, openModal, closeModal] = useStateToggleHandlers(false);
+
+  useEffect(() => {
+    const wasShownPreviously = sessionStorage.getItem(PROFILES_MODAL_KEY);
+    if (!wasShownPreviously) {
+      openModal();
+      sessionStorage.setItem(PROFILES_MODAL_KEY, 'true');
+    }
+  }, [openModal]);
 
   return (
     <>
@@ -13,7 +25,7 @@ const Home = () => {
         <h1>Home</h1>
       </div>
       <Modal isOpen={isModalOpen}>
-        <WhoIsWatching onUserClick={closeModal} />
+        <Profiles onProfileClick={closeModal} />
       </Modal>
     </>
   );
