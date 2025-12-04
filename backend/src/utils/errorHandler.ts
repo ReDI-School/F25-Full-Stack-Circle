@@ -59,7 +59,7 @@ const getFieldName = (error: PrismaClientKnownRequestError): string | null => {
 export const handlePrismaError = (
   error: unknown,
   res: Response,
-  customMessages?: ErrorHandlerConfig
+  customMessages: ErrorHandlerConfig = {}
 ): boolean => {
   if (!(error instanceof PrismaClientKnownRequestError)) return false;
 
