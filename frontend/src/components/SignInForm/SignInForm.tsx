@@ -1,7 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router';
 
+import { useAuth } from '../../hooks/useAuth';
 import { routePaths } from '../../routes/routePaths';
 import { signInSchema, type SignInFormData } from '../../utils/validation';
 import { Button } from '../Button';
@@ -11,6 +13,11 @@ import InputField from '../InputField';
 import styles from './SignInForm.module.css';
 
 const SignInForm = () => {
+  const { login } = useAuth();
+
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -24,7 +31,18 @@ const SignInForm = () => {
       rememberMe: false,
     },
   });
-  const onSubmit: SubmitHandler<SignInFormData> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<SignInFormData> = async (data) => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      await login({ email: data.email, password: data.password });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to sign in. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSignInCodeClick = () => {
     console.log('Sign-In Code clicked');
@@ -66,8 +84,9 @@ const SignInForm = () => {
             />
           )}
         />
-        <Button type="submit" className={styles.mb16} stretch>
-          Sign In
+        {error && <p className={styles.errorMessage}>{error}</p>}
+        <Button type="submit" className={styles.mb16} stretch disabled={isLoading}>
+          {isLoading ? 'Signing In...' : 'Sign In'}
         </Button>
         <span className={styles.or}>OR</span>
         <Button

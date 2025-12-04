@@ -1,6 +1,6 @@
 export const routePaths = {
   landingPage: () => ({ label: 'Landing Page', path: '/' }),
-  home: () => ({ label: 'Home', path: '/home' }),
+  home: () => ({ label: 'Home', path: '/browse' }),
   shows: () => ({ label: 'TV Shows', path: '/shows' }),
   news: () => ({ label: 'News & Popular', path: '/news' }),
   myList: () => ({ label: 'My List', path: '/list' }),
@@ -12,11 +12,11 @@ export const routePaths = {
 
 export const authRoutes = [routePaths.signIn().path, routePaths.signUp().path];
 
-const hiddenNavItems = [...authRoutes, routePaths.landingPage().path];
-
-export const navigationItems = Object.entries(routePaths)
-  .filter(([, getRoute]) => !hiddenNavItems.includes(getRoute().path))
-  .map(([, getRoute]) => ({
-    label: getRoute().label,
-    path: getRoute().path,
-  }));
+const hiddenNavItems = new Set([...authRoutes, routePaths.landingPage().path]);
+const protectedRoutes = Object.entries(routePaths).filter(
+  ([, getRoute]) => !hiddenNavItems.has(getRoute().path)
+);
+export const navigationItems = protectedRoutes.map(([, getRoute]) => ({
+  label: getRoute().label,
+  path: getRoute().path,
+}));

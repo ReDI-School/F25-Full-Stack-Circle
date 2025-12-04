@@ -1,15 +1,22 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import { Link } from 'react-router';
 
+import { useAuth } from '../../hooks/useAuth';
+import { routePaths } from '../../routes/routePaths';
 import { signUpSchema, type SignUpFormData } from '../../utils/validation';
 import { Button } from '../Button';
 import InputField from '../InputField';
 
-import { Link } from 'react-router';
-import { routePaths } from '../../routes/routePaths';
 import styles from './SignUpForm.module.css';
 
 const SignUpForm = () => {
+  const { signUp } = useAuth();
+
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -23,7 +30,18 @@ const SignUpForm = () => {
       password2: '',
     },
   });
-  const onSubmit: SubmitHandler<SignUpFormData> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      await signUp({ email: data.email, password: data.password1 });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to sign up. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className={styles.formWrap}>
@@ -73,8 +91,9 @@ const SignUpForm = () => {
             />
           )}
         />
-        <Button type="submit" className={styles.mb16} stretch>
-          Sign Up
+        {error && <div className={styles.errorMessage}>{error}</div>}
+        <Button type="submit" className={styles.mb16} stretch disabled={isLoading}>
+          {isLoading ? 'Signing Up...' : 'Sign Up'}
         </Button>
         <span className={styles.alreadyHaveAnAccountText}>Already have an account?</span>{' '}
         <Link to={routePaths.signIn().path} className={styles.alreadyHaveAnAccountLink}>
