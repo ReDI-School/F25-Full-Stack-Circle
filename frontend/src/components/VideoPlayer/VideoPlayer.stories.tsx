@@ -30,7 +30,6 @@ export const VimeoPlayIconWithThumbnail: Story = {
     light:
       'https://i.vimeocdn.com/video/2066328655-4be9e0a8e8c43c2e1d24bb918cee4072980b9a7d473960ace1111ad2ded75073-d?mw=2000&mh=1127&q=70',
     playIcon: playIconComponent,
-    currentTime: 70,
   },
 };
 
@@ -48,37 +47,5 @@ export const LocalVideo: Story = {
 export const Youtube: Story = {
   args: {
     src: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
-  },
-};
-
-export const VimeoSmall: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'small',
-  },
-};
-
-export const VimeoMedium: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'medium',
-  },
-};
-
-export const VimeoLarge: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'large',
-  },
-};
-
-export const VimeoFull: Story = {
-  args: {
-    src: 'https://vimeo.com/524933864',
-    playing: true,
-    size: 'full',
   },
 };
