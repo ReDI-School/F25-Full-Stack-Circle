@@ -1,23 +1,23 @@
 import { Button } from '../../components';
 import { UserIcon } from '../../components/UserIcon';
-import type { User, WhoIsWatchingProps } from './WhoIsWatching.types';
+import type { Profile, ProfilesProps } from './Profiles.types';
 
-import styles from './WhoIsWatching.module.css';
+import styles from './Profiles.module.css';
 
-const users: User[] = [
-  { id: '1', name: 'Ahmad', avatar: '01' },
+const profiles: Profile[] = [
+  { id: '1', name: 'ReDi', avatar: '01' },
   { id: '2', name: 'Koubrse', avatar: '02' },
   { id: '3', name: 'Chikas', avatar: '03' },
 ];
 
-const WhoIsWatching = ({ onUserClick }: WhoIsWatchingProps) => {
+const Profiles = ({ onProfileClick }: ProfilesProps) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Who's watching?</h1>
       <ul className={styles.list}>
-        {users.map((user) => (
-          <li key={user.id} className={styles.item}>
-            <UserIcon userName={user.name} avatar={user.avatar} onClick={onUserClick} />
+        {profiles.map((profile) => (
+          <li key={profile.id} className={styles.item}>
+            <UserIcon userName={profile.name} avatar={profile.avatar} onClick={onProfileClick} />
           </li>
         ))}
         <UserIcon userName="Add Profile" avatar="47" />
@@ -27,4 +27,4 @@ const WhoIsWatching = ({ onUserClick }: WhoIsWatchingProps) => {
   );
 };
 
-export default WhoIsWatching;
+export default Profiles;
