@@ -19,9 +19,7 @@ model Account {
 
 model User {
   id           Int            @id @default(autoincrement())
-  email        String         @unique
-  name         String?
-  password     String
+  name         String
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   UserReaction UserReaction[]

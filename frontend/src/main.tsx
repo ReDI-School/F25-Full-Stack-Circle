@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import ReactModal from 'react-modal';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, useRoutes } from 'react-router';
 
 import { Layout } from './components';
 // import Home from './pages/Home/Home.tsx';
@@ -17,6 +17,11 @@ import { routePaths } from './routes/routePaths.ts';
 const { landingPage, signIn, signUp, accountHomePage } = routePaths;
 
 ReactModal.setAppElement('#root');
+
+export const App = () => {
+  const element = useRoutes(routes);
+  return <Layout>{element}</Layout>;
+};
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
