@@ -109,5 +109,3 @@ enum VideoType {
   MOVIE
   SERIES
 }
-
-//
