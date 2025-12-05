@@ -1,12 +1,3 @@
-export const routePaths = {
-  landingPage: () => ({ label: 'Landing Page', path: '/' }),
-  accountHomePage: () => ({ label: 'Account', path: '/home' }),
-  shows: () => ({ label: 'TV Shows', path: '/shows' }),
-  news: () => ({ label: 'News & Popular', path: '/news' }),
-  myList: () => ({ label: 'My List', path: '/list' }),
-  language: () => ({ label: 'Browse By Language', path: '/language' }),
-  signIn: () => ({ label: 'Sign In', path: '/signin' }),
-  signUp: () => ({ label: 'Sign Up', path: '/signup' }),
 export type RouteConfig = {
   label: string;
   path: string;
@@ -50,7 +41,7 @@ export const routesConfig: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   },
   home: {
     label: 'Home',
-    path: '/browse',
+    path: '/home',
     isPrivate: true,
   },
   shows: {
