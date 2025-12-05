@@ -1,6 +1,6 @@
 .intro {
-  min-height: 100vh;
-  width: 100%;
+  min-height: 810px;
+  width: var(--normalize-width);
   position: relative;
   padding-top: 155px;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: var(--content-block-max-width-desktop);
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -34,10 +34,10 @@
   align-items: center;
   gap: var(--space-1);
   svg {
-    height: 100%;
+    height: var(--normalize-height);
     max-width: 30px;
   }
-  span {
+  p {
     text-transform: uppercase;
     color: var(--text-secondary);
     letter-spacing: var(--space-1);
@@ -88,7 +88,7 @@
       left: 0;
       top: 0;
       width: var(--space-1);
-      height: 100%;
+      height: var(--normalize-height);
       background: var(--primary-white);
     }
   }

@@ -23,12 +23,12 @@ export const Header = ({ type }: HeaderProps) => {
   const isPublic = type === 'public';
 
   return (
-    <header className={styles.header}>
-      <div className={styles.wrapper}>
-        <div className={styles.headerWrapper}>
-          <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
-          {isPrivate ? (
-            <>
+    <>
+      {isPrivate ? (
+        <header className={styles.headerPublic}>
+          <div className={styles.wrapper}>
+            <div className={styles.headerWrapper}>
+              <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
               <NavigationMenu className={styles.navigation} navItems={navigationItems} />
               <div className={styles.iconButtons}>
                 <Button className={styles.iconButton} aria-label="Search" icon="search" iconOnly />
@@ -44,20 +44,23 @@ export const Header = ({ type }: HeaderProps) => {
                   <img src={SmallAvatarIcon} alt="User profile" className={styles.avatar} />
                 </Button>
               </div>
-            </>
-          ) : (
-            isPublic && (
-              <div className={styles.selectors}>
-                <Select options={selectOptions} selected={defaultLanguage} />
-                <Link to={routePaths.signIn().path} className={styles.signInLink}>
-                  Sign In
-                </Link>
-              </div>
-            )
+            </div>
+          </div>
+        </header>
+      ) : (
+        <header className={styles.header}>
+          <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
+          {isPublic && (
+            <div className={styles.selectors}>
+              <Select options={selectOptions} selected={defaultLanguage} />
+              <Link to={routePaths.signIn().path} className={styles.signInLink}>
+                Sign In
+              </Link>
+            </div>
           )}
-        </div>
-      </div>
-    </header>
+        </header>
+      )}
+    </>
   );
 };
 

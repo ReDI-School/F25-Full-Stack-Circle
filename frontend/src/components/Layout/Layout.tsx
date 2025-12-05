@@ -43,16 +43,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// return (
-//   <div className={styledLayout({ isAuthPage })}>
-//     <div className={styles.container}>
-//       <div className={styles.pageWrapper}>
-//         <Header type={headerType} />
-//         <main className={styles.main}>{children}</main>
-//       </div>
-//     </div>
-//   </div>
-// );
-// };
-
 export default Layout;

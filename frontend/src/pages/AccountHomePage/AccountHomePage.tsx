@@ -1,7 +1,7 @@
 import { Button, MaturityRating } from '../../components';
 import Logo from '../../assets/icons/netflix-logo.svg?react';
 import Replay from '../../assets/icons/replay-icon.svg?react';
-import heroUrl from '../../assets/images/hero.webp';
+import heroUrl from '../../assets/images/hero-2.jpg';
 
 import styles from './AccountHomePage.module.css';
 import { ShowsCarousel } from '../../components/ShowsCarousel';
@@ -40,7 +40,7 @@ const AccountHomePage = () => {
             <div className={styles.mainText}>
               <div className={styles.logoWrapper}>
                 <Logo />
-                <span>Series</span>
+                <p>Series</p>
               </div>
               <h1 className={styles.mainHeader}>
                 House
