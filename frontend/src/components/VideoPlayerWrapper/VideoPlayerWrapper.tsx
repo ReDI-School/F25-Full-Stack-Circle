@@ -32,6 +32,9 @@ const VideoPlayerWrapper = ({
   currentTime = 0,
   size = 'medium',
   fullscreen = false,
+  episodes,
+  onEpisodeClick,
+  currentEpisodeId,
 }: VideoPlayerWrapperProps) => {
   const playerRef = useRef<HTMLVideoElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -221,6 +224,21 @@ const VideoPlayerWrapper = ({
   }, [state.showControls]);
   // }, [state.fullscreen, state.showControls]); Use this to hide/show controlBar only in fullscreen
 
+  const handleVideoClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (state.light) {
+      return;
+    }
+
+    const target = e.target as HTMLElement;
+    const controlBar = target.closest('[class*="videoControl"]');
+    
+    if (controlBar) {
+      return;
+    }
+    
+    handleClickPlay();
+  };
+
   return (
     <div
       ref={wrapperRef}
@@ -266,6 +284,21 @@ const VideoPlayerWrapper = ({
         onDurationChange={handleOnDurationChange}
       />
 
+      {!state.light && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1,
+            cursor: 'pointer',
+          }}
+          onClick={handleVideoClick}
+        />
+      )}
+
       {!state.light && state.showControls && (
         <VideoControlBar
           isPlaying={state.playing}
@@ -277,6 +310,9 @@ const VideoPlayerWrapper = ({
           onFullscreenButtonClick={handleClickFullscreen}
           onNextButtonClick={() => {}}
           onPlaybackButtonClick={() => {}}
+          episodes={episodes}
+          onEpisodeClick={onEpisodeClick}
+          currentEpisodeId={currentEpisodeId}
           progressBarProps={{
             value: state.currentTime,
             loaded: state.loaded,

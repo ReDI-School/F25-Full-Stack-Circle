@@ -25,6 +25,7 @@ export * from './SignUpForm';
 export * from './UserIcon';
 export * from './VideoControlBar';
 export * from './VideoControlButton';
+export * from './VideoDialog';
 export * from './VideoPlayer';
 export * from './VideoQualityLabel';
 export * from './VolumeSlider';

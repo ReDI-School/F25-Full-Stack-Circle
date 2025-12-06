@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactModal from 'react-modal';
 import { Video } from '../VideoPlayer';
 import { EpisodeList } from '../EpisodeList';
+import { VideoDialog } from '../VideoDialog';
 import type { ShowDetailsDialogProps } from './ShowDetailsDialog.types';
 import styles from './ShowDetailsDialog.module.css';
 import PlayIcon from '../../assets/icons/playIconBlack.svg?react';
@@ -26,7 +27,6 @@ const defaultProps = {
   genres: ['TV Dramas', 'Japanese', 'TV Thrillers'],
   mood: 'Dark, Suspenseful, Exciting',
   currentEpisodeId: 1,
-  onPlay: () => console.log('Play clicked'),
   onMyList: () => console.log('My List clicked'),
   onRate: () => console.log('Rate clicked'),
   onEpisodeClick: (episode: {
@@ -47,7 +47,7 @@ const ShowDetailsDialog = ({
   description,
   episodes,
 }: ShowDetailsDialogProps) => {
-
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
   const synopsis = description;
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
 
@@ -131,7 +131,15 @@ const ShowDetailsDialog = ({
           <h1 className={styles.title}>{title}</h1>
 
           <div className={styles.actionButtons}>
-            <button className={styles.playButton} onClick={defaultProps.onPlay} type="button">
+            <button
+              className={styles.playButton}
+              onClick={() => {
+                if (videoUrl) {
+                  setIsVideoDialogOpen(true);
+                }
+              }}
+              type="button"
+            >
               <PlayIcon className={styles.playIcon} />
               Play
             </button>
@@ -226,6 +234,21 @@ const ShowDetailsDialog = ({
           </div>
         )}
       </div>
+
+      {videoUrl && (
+        <VideoDialog
+          isOpen={isVideoDialogOpen}
+          onClose={() => setIsVideoDialogOpen(false)}
+          videoUrl={videoUrl}
+          title={title}
+          episodes={episodes}
+          onEpisodeClick={(episode) => {
+            defaultProps.onEpisodeClick(episode);
+            setIsVideoDialogOpen(false);
+          }}
+          currentEpisodeId={defaultProps.currentEpisodeId}
+        />
+      )}
     </ReactModal>
   );
 };

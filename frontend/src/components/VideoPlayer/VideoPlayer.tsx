@@ -26,29 +26,34 @@ const Video = ({
   onTimeUpdate,
   onProgress,
   onDurationChange,
+  onClick,
 }: VideoPlayerProps) => {
   return (
-    <ReactPlayer
-      ref={playerRef}
-      style={{ aspectRatio: '16/9' }}
-      width={width}
-      height={height}
-      src={src}
-      playing={playing}
-      loop={loop}
-      light={light}
-      playIcon={playIcon}
-      volume={volume}
-      playbackRate={playbackRate}
-      preload="auto"
-      controls={false}
-      config={{
-        vimeo: {
-          byline: false,
-          portrait: false,
-          controls: false,
-        },
-      }}
+    <div 
+      onClick={onClick} 
+      style={{ width: '100%', height: '100%', position: 'relative' }}
+    >
+      <ReactPlayer
+        ref={playerRef}
+        style={{ aspectRatio: '16/9' }}
+        width={width}
+        height={height}
+        src={src}
+        playing={playing}
+        loop={loop}
+        light={light}
+        playIcon={playIcon}
+        volume={volume}
+        playbackRate={playbackRate}
+        preload="auto"
+        controls={false}
+        config={{
+          vimeo: {
+            byline: false,
+            portrait: false,
+            controls: false,
+          },
+        }}
       // Called when user clicks the light mode preview
       onClickPreview={onClickPreview}
       // Called when media is loaded and ready to play.
@@ -78,6 +83,7 @@ const Video = ({
       // Callback containing duration of the media, in seconds
       onDurationChange={onDurationChange}
     />
+    </div>
   );
 };
 

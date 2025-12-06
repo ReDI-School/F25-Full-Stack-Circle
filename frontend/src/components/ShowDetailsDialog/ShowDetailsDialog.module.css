@@ -65,6 +65,7 @@
   background-repeat: no-repeat;
   overflow: hidden;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-sizing: border-box;
 }
 
 .videoBackground {
@@ -78,9 +79,24 @@
 }
 
 .videoBackground > * {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
+  min-width: 100%;
+}
+
+.videoBackground :global(div) {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100%;
+}
+
+.videoBackground :global(video),
+.videoBackground :global(iframe) {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  min-width: 100%;
 }
 
 .heroSection::before {
