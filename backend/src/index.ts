@@ -1,6 +1,7 @@
+import cors from 'cors';
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
-import cors from 'cors';
+import authRouter from './routes/authRoutes';
 import userRouter from './routes/userRoutes';
 import videoRouter from './routes/videoRoutes';
 import titleRouter from './routes/titleRoutes';
@@ -42,6 +43,7 @@ app.use(
 );
 
 // Routes
+app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/videos', videoRouter);
 app.use('/titles', titleRouter);

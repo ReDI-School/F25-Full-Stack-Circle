@@ -1,5 +1,5 @@
-import type { VideoData } from './videoApi.types';
 import { config } from '../../config';
+import type { VideoData } from './videoApi.types';
 
 const { apiUrl } = await config();
 const BASE_URL = apiUrl + '/videos';
