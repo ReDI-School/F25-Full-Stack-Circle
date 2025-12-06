@@ -7,7 +7,6 @@ import { VolumeSlider } from '../VolumeSlider';
 import { PlaybackSpeed } from '../PlaybackSpeed';
 import { useEffect, useRef, useState } from 'react';
 import type { Episode } from '../EpisodeList/EpisodeList.types';
-import { Button } from '../Button';
 
 const styledVideoControl = cva(styles.videoControl);
 const styledGridWrapper = cva(styles.gridWrapper);
@@ -98,30 +97,8 @@ const VideoControlBar = ({
     setShowEpisodeList(false);
   };
 
-  const handleBackButtonClick = () => {
-    if (location.key === 'default') {
-      // If there is no history to go back to, return to home
-      navigate('/browse');
-    } else {
-      navigate(-1); // Go back
-    }
-  };
-
   return (
     <div className={styledVideoControl()}>
-      <div>
-        <Button
-          className={styles.backButton}
-          variant="secondary"
-          iconPosition="before"
-          size="small"
-          icon="back"
-          iconOnly
-          onClick={handleBackButtonClick}
-        >
-          Back
-        </Button>
-      </div>
       <div className={styles.bottomControlsWrapper}>
         <ProgressBar {...progressBarProps} />
         <div ref={wrapperRef} className={styledGridWrapper()}>
