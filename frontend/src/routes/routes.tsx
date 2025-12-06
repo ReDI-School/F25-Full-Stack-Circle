@@ -1,6 +1,6 @@
 import type { RouteObject } from 'react-router';
 
-import Home from '../pages/Home/Home.tsx';
+import AccountHomePage from '../pages/AccountHomePage/AccountHomePage.tsx';
 import LandingPage from '../pages/Landing/Landing.tsx';
 import Language from '../pages/Language/Language.tsx';
 import Logout from '../pages/Logout/Logout.tsx';
@@ -16,7 +16,7 @@ const routeComponents: Record<keyof typeof routesConfig, React.ReactElement> = {
   landingPage: <LandingPage />,
   signIn: <SignIn />,
   signUp: <SignUp />,
-  home: <Home />,
+  home: <AccountHomePage />,
   shows: <Shows />,
   news: <News />,
   myList: <MyList />,
