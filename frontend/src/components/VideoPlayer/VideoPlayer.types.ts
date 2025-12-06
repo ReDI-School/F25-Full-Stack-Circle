@@ -127,6 +127,11 @@ interface VideoPlayerProps {
    * Callback containing duration of the media, in seconds.
    */
   onDurationChange?: () => void;
+
+  /**
+   * Called when the video player is clicked.
+   */
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export type { VideoPlayerProps };
