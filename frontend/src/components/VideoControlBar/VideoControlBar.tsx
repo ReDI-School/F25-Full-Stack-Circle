@@ -63,7 +63,7 @@ const VideoControlBar = ({
   const handleBackButtonClick = () => {
     if (location.key === 'default') {
       // If there is no history to go back to, return to home
-      navigate('/home');
+      navigate('/browse');
     } else {
       navigate(-1); // Go back
     }
@@ -74,9 +74,11 @@ const VideoControlBar = ({
       <div>
         <Button
           className={styles.backButton}
+          variant="secondary"
           iconPosition="before"
           size="small"
           icon="back"
+          iconOnly
           onClick={handleBackButtonClick}
         >
           Back
