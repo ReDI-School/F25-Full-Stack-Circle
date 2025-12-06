@@ -7,6 +7,10 @@ import seasonRoutes from './routes/seasonRoutes';
 import titleRouter from './routes/titleRoutes';
 import userRouter from './routes/userRoutes';
 import videoRouter from './routes/videoRoutes';
+import titleRouter from './routes/titleRoutes';
+import seasonRoutes from './routes/seasonRoutes';
+import categoryRouter from './routes/categoryRoutes';
+import populateDataRouter from './routes/populateDataRoutes';
 
 const app = express();
 
@@ -48,6 +52,7 @@ app.use('/videos', videoRouter);
 app.use('/titles', titleRouter);
 app.use('/seasons', seasonRoutes);
 app.use('/category', categoryRouter);
+app.use('/populateData', populateDataRouter);
 
 // Health check
 app.get('/', (req: Request, res: Response) => {
