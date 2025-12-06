@@ -61,15 +61,16 @@ const VideoControlBar = ({
       const wrapper = wrapperRef.current;
       const episodeList = episodeListRef.current;
       const target = e.target as HTMLElement;
-      
+
       if (wrapper && !wrapper.contains(target)) {
         setShowPlaybackSpeed(false);
       }
-      
+
       if (showEpisodeList && episodeList && !episodeList.contains(target)) {
         const clickedButton = target.closest('button');
-        const isEpisodeListButton = clickedButton && 
-          Array.from(clickedButton.querySelectorAll('*')).some(el => 
+        const isEpisodeListButton =
+          clickedButton &&
+          Array.from(clickedButton.querySelectorAll('*')).some((el) =>
             el.getAttribute('class')?.includes('episode-list')
           );
         if (!isEpisodeListButton) {

@@ -9,4 +9,3 @@ export interface VideoDialogProps {
   onEpisodeClick?: (episode: Episode) => void;
   currentEpisodeId?: string | number;
 }
-

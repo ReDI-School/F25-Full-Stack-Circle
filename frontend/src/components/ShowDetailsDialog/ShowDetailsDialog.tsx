@@ -71,15 +71,16 @@ const ShowDetailsDialog = ({
     return value;
   };
 
-  const heroStyle = !videoUrl && defaultProps.backgroundImage
-    ? {
-        backgroundImage: `url(${defaultProps.backgroundImage})`,
-      }
-    : !videoUrl
-    ? {
-        backgroundColor: 'var(--bg-secondary)',
-      }
-    : {};
+  const heroStyle =
+    !videoUrl && defaultProps.backgroundImage
+      ? {
+          backgroundImage: `url(${defaultProps.backgroundImage})`,
+        }
+      : !videoUrl
+        ? {
+            backgroundColor: 'var(--bg-secondary)',
+          }
+        : {};
 
   return (
     <ReactModal
@@ -168,7 +169,9 @@ const ShowDetailsDialog = ({
           <div className={styles.leftColumn}>
             <div className={styles.basicInfo}>
               {defaultProps.isNew && <span className={styles.newBadge}>New</span>}
-              {defaultProps.seasons && <span className={styles.infoText}>{defaultProps.seasons} Seasons</span>}
+              {defaultProps.seasons && (
+                <span className={styles.infoText}>{defaultProps.seasons} Seasons</span>
+              )}
               {defaultProps.year && <span className={styles.infoText}>{defaultProps.year}</span>}
               {defaultProps.isHD && <span className={styles.badge}>HD</span>}
               {defaultProps.hasAudioDescription && <span className={styles.badge}>AD</span>}
@@ -254,4 +257,3 @@ const ShowDetailsDialog = ({
 };
 
 export default ShowDetailsDialog;
-

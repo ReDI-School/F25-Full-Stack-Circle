@@ -231,11 +231,11 @@ const VideoPlayerWrapper = ({
 
     const target = e.target as HTMLElement;
     const controlBar = target.closest('[class*="videoControl"]');
-    
+
     if (controlBar) {
       return;
     }
-    
+
     handleClickPlay();
   };
 

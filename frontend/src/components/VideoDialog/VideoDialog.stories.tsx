@@ -66,7 +66,7 @@ export const YoutubeVideo: Story = {
 export const WithoutTitle: Story = {
   render: (args) => <VideoDialogWrapper {...args} />,
   args: {
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    videoUrl:
+      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
   },
 };
-

@@ -8,4 +8,3 @@ export interface ShowDetailsDialogProps {
   description: string;
   episodes?: Episode[];
 }
-

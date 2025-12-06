@@ -54,7 +54,8 @@ export const WithCustomEpisodes: Story = {
         number: 1,
         thumbnail: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80',
         title: 'Episode 1: The Beginning',
-        description: 'The story begins as our heroes embark on an epic journey filled with adventure and mystery.',
+        description:
+          'The story begins as our heroes embark on an epic journey filled with adventure and mystery.',
         duration: '45m',
       },
       {
@@ -62,7 +63,8 @@ export const WithCustomEpisodes: Story = {
         number: 2,
         thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80',
         title: 'Episode 2: The Challenge',
-        description: 'Facing their greatest challenge yet, the team must work together to overcome impossible odds.',
+        description:
+          'Facing their greatest challenge yet, the team must work together to overcome impossible odds.',
         duration: '50m',
       },
       {
@@ -70,11 +72,10 @@ export const WithCustomEpisodes: Story = {
         number: 3,
         thumbnail: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80',
         title: 'Episode 3: The Revelation',
-        description: 'Secrets are revealed that change everything, forcing our heroes to question everything they know.',
+        description:
+          'Secrets are revealed that change everything, forcing our heroes to question everything they know.',
         duration: '48m',
       },
     ],
   },
 };
-
-
