@@ -18,6 +18,7 @@ export * from './NavigationMenu';
 export * from './ProgressBar';
 export * from './RatingGroup';
 export * from './Select';
+export * from './ShowDetailsDialog';
 export * from './ShowsCarousel';
 export * from './SignInForm';
 export * from './SignUpForm';

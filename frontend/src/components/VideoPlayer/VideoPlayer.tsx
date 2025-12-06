@@ -5,6 +5,7 @@ const Video = ({
   src,
   playerRef,
   playing,
+  loop,
   light,
   playIcon,
   width = '100%',
@@ -34,6 +35,7 @@ const Video = ({
       height={height}
       src={src}
       playing={playing}
+      loop={loop}
       light={light}
       playIcon={playIcon}
       volume={volume}
