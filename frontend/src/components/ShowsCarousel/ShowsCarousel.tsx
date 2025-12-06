@@ -1,8 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './ShowsCarousel.module.css';
 import type { ShowsCarouselProps } from './ShowsCarousel.types';
+import { MovieCards } from '../MovieCards';
 
-export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, images, className }) => {
+export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
+  title,
+  movieCard,
+  className,
+}) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const spacing = 8;
   const [steps, setSteps] = useState(1);
@@ -56,7 +61,7 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, images, cla
       container.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', calculateSteps);
     };
-  }, [images, steps]);
+  }, [steps]);
 
   const scroll = (direction: 'left' | 'right') => {
     const container = carouselRef.current;
@@ -80,6 +85,9 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, images, cla
         </button>
 
         <div className={styles.carousel} ref={carouselRef}>
+          <MovieCards {...movieCard} />
+        </div>
+        {/* <div className={styles.carousel} ref={carouselRef}>
           {images.map((src, idx) => (
             <img
               key={idx}
@@ -89,7 +97,7 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, images, cla
               draggable={false}
             />
           ))}
-        </div>
+        </div> */}
 
         <button
           className={`${styles.navButton} ${styles.right}`}
