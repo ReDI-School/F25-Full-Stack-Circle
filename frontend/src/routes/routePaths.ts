@@ -41,7 +41,7 @@ export const routesConfig: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   },
   home: {
     label: 'Home',
-    path: '/browse',
+    path: '/home',
     isPrivate: true,
   },
   shows: {
