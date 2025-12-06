@@ -32,5 +32,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
-  }
+  },
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
