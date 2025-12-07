@@ -4,7 +4,9 @@ const prisma = new PrismaClient();
 
 export class VideoService {
   async getAllVideos() {
-    return await prisma.video.findMany();
+    return await prisma.video.findMany({
+      include: { title: { include: { category: true } }, season: true },
+    });
   }
 
   async getVideoById(id: number) {

@@ -8,7 +8,7 @@ export type MovieCardVariant =
   | 'continueWatching';
 
 export interface MovieCardData {
-  id: string;
+  id: number;
   title?: string;
   duration?: string;
   thumbnail: string;
@@ -22,6 +22,6 @@ export interface MovieCardData {
 export interface MovieCardsProps {
   cards: MovieCardData[];
   variant?: MovieCardVariant;
-  onCardClick?: (id: string) => void;
-  onPlayClick?: (id: string) => void;
+  onCardClick?: (id: number) => void;
+  onPlayClick?: (id: number) => void;
 }
