@@ -3,11 +3,7 @@ import styles from './ShowsCarousel.module.css';
 import type { ShowsCarouselProps } from './ShowsCarousel.types';
 import { MovieCards } from '../MovieCards';
 
-export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({
-  title,
-  movieCard,
-  className,
-}) => {
+export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, className }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const spacing = 8;
   const [steps, setSteps] = useState(1);
