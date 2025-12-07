@@ -145,7 +145,8 @@ const VideoPlayerWrapper = ({
   const handleClickForward = () => {
     const player = playerRef.current;
     setState((prev) => {
-      const newTime = Math.min(prev.duration, prev.currentTime + 10);
+      const newTime = Math.min(prev.duration - 0.1, prev.currentTime + 10);
+
       if (player) player.currentTime = newTime;
       return { ...prev, currentTime: newTime };
     });
