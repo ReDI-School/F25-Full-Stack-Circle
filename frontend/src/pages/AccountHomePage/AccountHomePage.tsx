@@ -14,37 +14,7 @@ import { ShowsCarousel } from '../../components/ShowsCarousel';
 import { mockShows } from '../../mock/mockShows';
 import { useEffect, useRef, useState } from 'react';
 import { useConfig } from '../../hooks';
-
-interface Title {
-  id: number;
-  name: string;
-  type: 'MOVIE' | 'SERIES';
-  season: [
-    {
-      id: number;
-      number: number;
-      thumbnail: string;
-      video: [
-        {
-          id: number;
-          name?: string;
-          image?: string | null;
-          duration: number;
-          url: string;
-          episode_number?: number;
-        },
-      ];
-    },
-  ];
-  video: {
-    id: number;
-    name?: string;
-    image?: string | null;
-    duration: number;
-    url: string;
-    episode_number?: number;
-  };
-}
+import type { Title } from '../../api/title/titleApi.types';
 
 const AccountHomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -147,6 +117,7 @@ const AccountHomePage = () => {
         title.season.flatMap((s) =>
           s.video.map((v) => ({
             id: v.id,
+            url: v.url,
             title: v.name ?? '',
             description: '',
             duration: String(v.duration),
@@ -202,16 +173,20 @@ const AccountHomePage = () => {
       </section>
       <section className={styles.carousels}>
         <div style={{ paddingLeft: `${leftOffset}px` }} className={styles.wrapCarousel}>
-          {title && (
-            <ShowDetailsDialog
-              videoUrl={title.type === 'MOVIE' ? title.video.url : title.season[0].video[0].url}
-              description=""
-              title={title.name}
-              isOpen={openDialog}
-              onClose={() => setOpenDialog(false)}
-              episodes={episodeList}
-            />
-          )}
+          <ShowDetailsDialog
+            videoUrl={
+              title ? (title.type === 'MOVIE' ? title.video.url : title.season[0].video[0].url) : ''
+            }
+            description={title ? title.synopsis : ''}
+            title={title ? title.name : ''}
+            titleObject={title}
+            isOpen={openDialog}
+            onClose={() => {
+              setOpenDialog(false);
+              setTitle(undefined);
+            }}
+            episodes={episodeList}
+          />
           {titles &&
             titles.length > 0 &&
             mockShows.map((category, id) => (

@@ -83,18 +83,6 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, 
         <div className={styles.carousel} ref={carouselRef}>
           <MovieCards {...movieCard} />
         </div>
-        {/* <div className={styles.carousel} ref={carouselRef}>
-          {images.map((src, idx) => (
-            <img
-              key={idx}
-              src={src}
-              alt={`show-${idx}`}
-              className={styles.image}
-              draggable={false}
-            />
-          ))}
-        </div> */}
-
         <button
           className={`${styles.navButton} ${styles.right}`}
           onClick={() => scroll('right')}
