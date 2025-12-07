@@ -1,4 +1,10 @@
-import { Button, MaturityRating, type MovieCardData } from '../../components';
+import {
+  Button,
+  MaturityRating,
+  ShowDetailsDialog,
+  type Episode,
+  type MovieCardData,
+} from '../../components';
 import Logo from '../../assets/icons/netflix-logo.svg?react';
 import Replay from '../../assets/icons/replay-icon.svg?react';
 import heroUrl from '../../assets/images/hero-2.jpg';
@@ -9,32 +15,46 @@ import { mockShows } from '../../mock/mockShows';
 import { useEffect, useRef, useState } from 'react';
 import { useConfig } from '../../hooks';
 
+interface Title {
+  id: number;
+  name: string;
+  type: 'MOVIE' | 'SERIES';
+  season: [
+    {
+      id: number;
+      number: number;
+      thumbnail: string;
+      video: [
+        {
+          id: number;
+          name?: string;
+          image?: string | null;
+          duration: number;
+          url: string;
+          episode_number?: number;
+        },
+      ];
+    },
+  ];
+  video: {
+    id: number;
+    name?: string;
+    image?: string | null;
+    duration: number;
+    url: string;
+    episode_number?: number;
+  };
+}
+
 const AccountHomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [leftOffset, setLeftOffset] = useState(0);
   const { config, loadingConfig } = useConfig();
-  const [titles, setTitles] = useState<
-    {
-      id: number;
-      name: string;
-      type: 'MOVIE' | 'SERIES';
-      season: [
-        {
-          id: number;
-          number: number;
-          thumbnail: string;
-        },
-      ];
-      video: {
-        id: number;
-        name?: string;
-        image?: string | null;
-        duration: number;
-        url: string;
-        episode_number?: number;
-      };
-    }[]
-  >();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [title, setTitle] = useState<Title>();
+  const [titles, setTitles] = useState<Title[]>();
+  const [episodeList, setEpisodeList] = useState<Episode[] | undefined>(undefined);
+
   let movieCardData: MovieCardData[] = [];
 
   if (titles && titles.length > 0) {
@@ -97,6 +117,47 @@ const AccountHomePage = () => {
     fetchTitles();
   }, [config?.apiUrl, loadingConfig]);
 
+  const handleCardClick = (id: number) => {
+    const fetchTitle = async () => {
+      if (loadingConfig) return;
+      try {
+        const response = await fetch(`${config?.apiUrl}/titles/${id}`);
+        const data = await response.json();
+        if (data.error) {
+          return console.error(data.error);
+        }
+
+        if (data.title) {
+          setTitle(data.title);
+        } else {
+          console.error('No title data.');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTitle();
+    setOpenDialog(true);
+  };
+
+  useEffect(() => {
+    if (title && title.type === 'SERIES') {
+      setEpisodeList(
+        title.season.flatMap((s) =>
+          s.video.map((v) => ({
+            id: v.id,
+            title: v.name ?? '',
+            description: '',
+            duration: String(v.duration),
+            thumbnail: v.image ?? '',
+            number: v.episode_number ?? 0,
+          }))
+        )
+      );
+    } else setEpisodeList(undefined);
+  }, [title]);
+
   return (
     <>
       <section
@@ -141,6 +202,16 @@ const AccountHomePage = () => {
       </section>
       <section className={styles.carousels}>
         <div style={{ paddingLeft: `${leftOffset}px` }} className={styles.wrapCarousel}>
+          {title && (
+            <ShowDetailsDialog
+              videoUrl={title.type === 'MOVIE' ? title.video.url : title.season[0].video[0].url}
+              description=""
+              title={title.name}
+              isOpen={openDialog}
+              onClose={() => setOpenDialog(false)}
+              episodes={episodeList}
+            />
+          )}
           {titles &&
             titles.length > 0 &&
             mockShows.map((category, id) => (
@@ -151,6 +222,7 @@ const AccountHomePage = () => {
                 movieCard={{
                   cards: [...movieCardData],
                   variant: 'default',
+                  onCardClick: (id) => handleCardClick(id),
                 }}
                 className={styles.carousel}
               />

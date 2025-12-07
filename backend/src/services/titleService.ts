@@ -9,7 +9,7 @@ export class TitleService {
   async getTitleByIdIncludeAll(id: number) {
     const title = await prisma.title.findUnique({
       where: { id },
-      include: { category: true, season: true, video: true },
+      include: { category: true, season: { include: { video: true } }, video: true },
     });
 
     return title;
