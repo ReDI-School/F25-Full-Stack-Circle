@@ -140,6 +140,7 @@ span {
 
 .backButton {
   margin-top: 1rem;
+  background-color: transparent;
 }
 
 .bottomControlsWrapper {

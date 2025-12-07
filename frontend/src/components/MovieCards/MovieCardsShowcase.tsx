@@ -6,18 +6,18 @@ import styles from './MovieCards.module.css';
 const thumb = (w: number, h: number) =>
   `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><rect width='100%' height='100%' fill='%23232323'/><rect width='100%' height='36' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23393939'/><stop offset='1' stop-color='%23232323' stop-opacity='0'/></linearGradient></defs></svg>`;
 
-const defaultCards: MovieCardData[] = [{ id: 'd-1', title: 'Default', thumbnail: thumb(200, 112) }];
+const defaultCards: MovieCardData[] = [{ id: 1, title: 'Default', thumbnail: thumb(200, 112) }];
 
 const moreLikeThisCards: MovieCardData[] = [
   {
-    id: 'mlt-1',
+    id: 1,
     title: 'More Like This 1',
     thumbnail: thumb(220, 124),
     isNew: true,
     duration: '2h 18m',
   },
   {
-    id: 'mlt-2',
+    id: 2,
     title: 'More Like This 2',
     thumbnail: thumb(220, 124),
     isNew: true,
@@ -27,12 +27,12 @@ const moreLikeThisCards: MovieCardData[] = [
 
 const episodePreviewCards: MovieCardData[] = [
   {
-    id: 'ep-1',
+    id: 1,
     title: 'Ep 1',
     thumbnail: thumb(120, 67),
   },
   {
-    id: 'ep-2',
+    id: 1,
     title: 'Ep 2',
     thumbnail: thumb(120, 67),
   },
@@ -40,7 +40,7 @@ const episodePreviewCards: MovieCardData[] = [
 
 const trailerPreviewCards: MovieCardData[] = [
   {
-    id: 'tp-1',
+    id: 1,
     title: 'Trailer',
     thumbnail: thumb(200, 112),
     seasonInfo: 'Season 1 Trailer 1: House of Ninjas',
@@ -49,7 +49,7 @@ const trailerPreviewCards: MovieCardData[] = [
 
 const playerPreviewCards: MovieCardData[] = [
   {
-    id: 'pp-1',
+    id: 1,
     title: 'Player',
     thumbnail: thumb(200, 112),
     duration: '51:29',
@@ -58,7 +58,7 @@ const playerPreviewCards: MovieCardData[] = [
 
 const top10Cards: MovieCardData[] = [
   {
-    id: 't10-1',
+    id: 1,
     title: 'Top 10',
     thumbnail: thumb(150, 200),
     rank: 1,
@@ -68,7 +68,7 @@ const top10Cards: MovieCardData[] = [
 
 const continueWatchingCards: MovieCardData[] = [
   {
-    id: 'cw-1',
+    id: 1,
     title: 'Continue Watching',
     thumbnail: thumb(200, 112),
     progress: 85,
@@ -76,11 +76,11 @@ const continueWatchingCards: MovieCardData[] = [
 ];
 
 const MovieCardsShowcase: React.FC = () => {
-  const handleCardClick = (id: string) => {
+  const handleCardClick = (id: number) => {
     console.log('Card click:', id);
   };
 
-  const handlePlayClick = (id: string) => {
+  const handlePlayClick = (id: number) => {
     console.log('Play click:', id);
   };
 

@@ -9,6 +9,7 @@ import News from '../pages/News/News.tsx';
 import Shows from '../pages/Shows/Shows.tsx';
 import SignIn from '../pages/SignIn/SignIn.tsx';
 import SignUp from '../pages/SignUp/SignUp.tsx';
+import ActivePlayer from '../pages/ActivePlayer/ActivePlayer.tsx';
 import { ProtectedRoute } from './ProtectedRoute';
 import { routesConfig } from './routePaths';
 
@@ -21,6 +22,7 @@ const routeComponents: Record<keyof typeof routesConfig, React.ReactElement> = {
   news: <News />,
   myList: <MyList />,
   language: <Language />,
+  activePlayer: <ActivePlayer />,
   logout: <Logout />,
 };
 
