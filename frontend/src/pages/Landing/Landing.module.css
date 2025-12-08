@@ -1,5 +1,21 @@
+.landingSection {
+  width: 100%;
+}
+
+.landingSection.first {
+  padding-top: var(--header-height);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .accordion {
   margin-top: 10rem;
+  margin-inline: auto;
+  max-width: 1264px;
 
   h2 {
     text-align: center;

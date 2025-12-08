@@ -47,38 +47,42 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className={styles.formWrap}>
-      <h1 className={styles.formTitle}>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <InputField
-          {...register('email')}
-          type={INPUT_TYPES.EMAIL}
-          state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
-          errorMessage={errors.email?.message}
-        />
-        <InputField
-          {...register('password1')}
-          type={INPUT_TYPES.PASSWORD}
-          placeholder="New password"
-          state={errors.password1 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
-          errorMessage={errors.password1?.message}
-        />
-        <InputField
-          {...register('password2')}
-          type={INPUT_TYPES.PASSWORD}
-          placeholder="Confirm new password"
-          state={errors.password2 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
-          errorMessage={errors.password2?.message}
-        />
-        {serverError && <p className={styles.errorMessage}>{serverError}</p>}
-        <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
-          {isSubmitting ? 'Signing Up...' : 'Sign Up'}
-        </Button>
-        <span className={styles.alreadyHaveAnAccountText}>Already have an account?</span>{' '}
-        <Link to={routePaths.signIn().path} className={styles.alreadyHaveAnAccountLink}>
-          Sign in
-        </Link>
-      </form>
+    <div className={styles.pageWrapper}>
+      <div className={styles.formWrap}>
+        <h1 className={styles.formTitle}>Sign Up</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.fieldsContainer}>
+            <InputField
+              {...register('email')}
+              type={INPUT_TYPES.EMAIL}
+              state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.email?.message}
+            />
+            <InputField
+              {...register('password1')}
+              type={INPUT_TYPES.PASSWORD}
+              placeholder="New password"
+              state={errors.password1 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.password1?.message}
+            />
+            <InputField
+              {...register('password2')}
+              type={INPUT_TYPES.PASSWORD}
+              placeholder="Confirm new password"
+              state={errors.password2 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.password2?.message}
+            />
+            {serverError && <p className={styles.errorMessage}>{serverError}</p>}
+            <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
+              {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+            </Button>
+          </div>
+          <span className={styles.alreadyHaveAnAccountText}>Already have an account?</span>{' '}
+          <Link to={routePaths.signIn().path} className={styles.alreadyHaveAnAccountLink}>
+            Sign in
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ interface Episode {
   thumbnail: string;
   title: string;
   description?: string;
-  duration?: string;
+  duration?: number;
 }
 
 interface EpisodeListProps {

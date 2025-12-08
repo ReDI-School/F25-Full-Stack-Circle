@@ -4,6 +4,9 @@
   cursor: pointer;
   gap: var(--space-3);
   position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   border: none;
   background-color: transparent;

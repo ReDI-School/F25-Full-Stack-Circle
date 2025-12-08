@@ -16,13 +16,24 @@
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
 }
 
+.headerPublic .wrapper {
+  max-width: 100%;
+  width: 100%;
+}
+
 .header {
   width: 100%;
-  height: 92px;
+  max-width: 1200px;
+  height: var(--header-height);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
 }
 
 .headerWrapper {
@@ -40,7 +51,7 @@
   display: flex;
   align-items: center;
   padding: var(--space-1) var(--space-6);
-  height: 40px;
+  height: 32px;
   border-radius: var(--radius-base);
   cursor: pointer;
   font-family: var(--font-family);
@@ -56,6 +67,7 @@
 .logo {
   height: 40px;
   margin-left: 12px;
+  flex-shrink: 0;
 }
 
 .logo + .navigation {

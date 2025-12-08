@@ -1,19 +1,12 @@
 import { useState, useMemo } from 'react';
 
 import Select from '../../components/Select/Select';
-import MovieCards from '../../components/MovieCards/MovieCards';
-import type { MovieCardData } from '../../components/MovieCards/MovieCards.types';
 
 import styles from './BrowseByLanguage.module.css';
+import { sharedStyles } from '../../shared';
 
-const mockMovies: MovieCardData[] = [
-  { id: 1, title: 'The Matrix', language: 'English', thumbnail: '/posters/matrix.jpg' },
-  { id: 2, title: 'Amélie', language: 'French', thumbnail: '/posters/amelie.jpg' },
-  { id: 3, title: 'Spirited Away', language: 'Japanese', thumbnail: '/posters/spiritedaway.jpg' },
-  { id: 4, title: 'Roma', language: 'Spanish', thumbnail: '/posters/roma.jpg' },
-  { id: 5, title: 'Parasite', language: 'Korean', thumbnail: '/posters/parasite.jpg' },
-  { id: 6, title: 'The Matrix2', language: 'Arabic', thumbnail: '/posters/matrix.jpg' },
-];
+import { mockData as mockMovies } from '../../mock/mockData';
+import ShowCardsContainer from '../../components/ShowCardsContainer';
 
 const mockCategories = ['Original Language', 'Dubbing', 'Subtitles'];
 const mockLanguages = ['English', 'Arabic', 'Japanese', 'Spanish', 'Korean'];
@@ -30,7 +23,12 @@ const LanguagePage = () => {
 
   const filteredMovies = useMemo(() => {
     return mockMovies
-      .filter((movie) => movie.language === selectedLanguage)
+      .filter((movie) => {
+        if (Array.isArray(movie.language)) {
+          return movie.language.includes(selectedLanguage);
+        }
+        return movie.language === selectedLanguage;
+      })
       .filter((movie) =>
         selectedCategory === 'Original Language'
           ? true
@@ -42,47 +40,52 @@ const LanguagePage = () => {
   }, [selectedLanguage, selectedCategory]);
 
   return (
-    <div className={styles.languagePage}>
-      <div className={styles.filtersBar}>
-        <h1 className={styles.languagePageTitle}>Browse by Language</h1>
-        <span>Select Your Preferences</span>
-        <div className={styles.filtersBarDropdown}>
-          <Select
-            id="category-select"
-            options={categoryOptions}
-            selected={categoryOptions.find((o) => o.value === selectedCategory) ?? null}
-            onChange={(o) => setSelectedCategory(o.value)}
-            placeholder={selectedCategory}
-          />
+    <div className={sharedStyles.pageContainer}>
+      <div className={styles.languagePage}>
+        <div className={styles.filtersBar}>
+          <h1 className={styles.languagePageTitle}>Browse by Language</h1>
+          <div className={styles.filtersBarContent}>
+            <span>Select Your Preferences</span>
+
+            <div className={styles.filtersBarDropdown}>
+              <Select
+                id="category-select"
+                options={categoryOptions}
+                selected={categoryOptions.find((o) => o.value === selectedCategory) ?? null}
+                onChange={(o) => setSelectedCategory(o.value)}
+                placeholder={selectedCategory}
+              />
+            </div>
+
+            <div className={styles.filtersBarDropdown}>
+              <Select
+                id="language-select"
+                options={languageOptions}
+                selected={languageOptions.find((o) => o.value === selectedLanguage) ?? null}
+                onChange={(o) => setSelectedLanguage(o.value)}
+                placeholder={selectedLanguage}
+              />
+            </div>
+
+            <span>Sort by</span>
+            <div className={styles.filtersBarDropdown}>
+              <Select
+                id="sort-select"
+                options={sortOptions}
+                selected={sortOptions.find((o) => o.value === selectedSort) ?? null}
+                onChange={(o) => setSelectedSort(o.value)}
+                placeholder={selectedSort}
+              />
+            </div>
+          </div>
         </div>
 
-        <div className={styles.filtersBarDropdown}>
-          <Select
-            id="language-select"
-            options={languageOptions}
-            selected={languageOptions.find((o) => o.value === selectedLanguage) ?? null}
-            onChange={(o) => setSelectedLanguage(o.value)}
-            placeholder={selectedLanguage}
-          />
-        </div>
-
-        <span>Sort by</span>
-        <div className={styles.filtersBarDropdown}>
-          <Select
-            id="sort-select"
-            options={sortOptions}
-            selected={sortOptions.find((o) => o.value === selectedSort) ?? null}
-            onChange={(o) => setSelectedSort(o.value)}
-            placeholder={selectedSort}
-          />
-        </div>
+        {filteredMovies.length > 0 ? (
+          <ShowCardsContainer cards={filteredMovies} />
+        ) : (
+          <div className={styles.noMovies}>No movies found for selected filters.</div>
+        )}
       </div>
-
-      {filteredMovies.length > 0 ? (
-        <MovieCards cards={filteredMovies} />
-      ) : (
-        <div className={styles.noMovies}>No movies found for selected filters.</div>
-      )}
     </div>
   );
 };

@@ -56,56 +56,61 @@ const SignInForm = () => {
   };
 
   return (
-    <div className={styles.formWrap}>
-      <h3 className={styles.formTitle}>Sign In</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <InputField
-          {...register('email')}
-          type={INPUT_TYPES.EMAIL}
-          state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
-          errorMessage={errors.email?.message}
-        />
-        <InputField
-          {...register('password')}
-          type={INPUT_TYPES.PASSWORD}
-          state={errors.password ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
-          errorMessage={errors.password?.message}
-        />
-        {serverError && <p className={styles.errorMessage}>{serverError}</p>}
-        <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
-          {isSubmitting ? 'Signing In...' : 'Sign In'}
-        </Button>
-        <span className={styles.or}>OR</span>
-        <Button
-          onClick={handleSignInCodeClick}
-          className={styles.signInCodeButton}
-          variant="secondary"
-          stretch
-        >
-          Use a Sign-In Code
-        </Button>
-        <Button onClick={handleForgotPasswordClick} className={styles.forgotPassword}>
-          Forgot Password?
-        </Button>
-        <Checkbox {...register('rememberMe')} />
-        <div className={styles.newToRediflix}>
-          <span className={styles.newToRediflixText}>New to Rediflix?</span>{' '}
-          <Link to={routePaths.signUp().path} className={styles.newToRediflixLink}>
-            Sign up now
-          </Link>
-        </div>
-        <p className={styles.recaptchaText}>
-          This page is protected by Google reCAPTCHA to ensure you're not a bot.{' '}
-          <a
-            href="https://cloud.google.com/security/products/recaptcha"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.recaptchaTextLink}
+    <div className={styles.pageWrapper}>
+      <div className={styles.formWrap}>
+        <h3 className={styles.formTitle}>Sign In</h3>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.fieldsContainer}>
+            <InputField
+              {...register('email')}
+              type={INPUT_TYPES.EMAIL}
+              state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.email?.message}
+            />
+            <InputField
+              {...register('password')}
+              type={INPUT_TYPES.PASSWORD}
+              state={errors.password ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.password?.message}
+            />
+
+            {serverError && <p className={styles.errorMessage}>{serverError}</p>}
+            <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
+              {isSubmitting ? 'Signing In...' : 'Sign In'}
+            </Button>
+          </div>
+          <span className={styles.or}>OR</span>
+          <Button
+            onClick={handleSignInCodeClick}
+            className={styles.signInCodeButton}
+            variant="secondary"
+            stretch
           >
-            Learn more.
-          </a>
-        </p>
-      </form>
+            Use a Sign-In Code
+          </Button>
+          <Button onClick={handleForgotPasswordClick} className={styles.forgotPassword}>
+            Forgot Password?
+          </Button>
+          <Checkbox {...register('rememberMe')} />
+          <div className={styles.newToRediflix}>
+            <span className={styles.newToRediflixText}>New to Rediflix?</span>{' '}
+            <Link to={routePaths.signUp().path} className={styles.newToRediflixLink}>
+              Sign up now
+            </Link>
+          </div>
+          <p className={styles.recaptchaText}>
+            This page is protected by Google reCAPTCHA to ensure you're not a bot.{' '}
+            <a
+              href="https://cloud.google.com/security/products/recaptcha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.recaptchaTextLink}
+            >
+              Learn more.
+            </a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,7 @@
-import { Accordion } from '../../components';
-import { ContentBlock } from '../../components/ContentBlock';
-import { ContentBlockConfig } from '../../components/ContentBlock/constants';
-import { LandingPageEmail } from '../../components/LandingPageEmail';
+import { ContentBlock, LandingPageEmail, contentBlockConfig, Accordion } from '../../components';
 import InputField from '../../components/InputField';
 import { INPUT_SIZES } from '../../components/InputField/InputField.types';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Footer/Footer';
 import styles from './Landing.module.css';
 
 const LandingPage = () => {
@@ -52,9 +48,11 @@ const LandingPage = () => {
   };
   return (
     <>
-      <LandingPageEmail />
-      {ContentBlockConfig.map(({ headline, description, image, layout }) => (
-        <>
+      <section className={`${styles.landingSection} ${styles.first}`}>
+        <LandingPageEmail />
+      </section>
+      <section className={styles.landingSection}>
+        {contentBlockConfig.map(({ headline, description, image, layout }) => (
           <ContentBlock
             key={headline}
             headline={headline}
@@ -62,8 +60,9 @@ const LandingPage = () => {
             image={image}
             layout={layout}
           />
-        </>
-      ))}
+        ))}
+      </section>
+
       <div id="faq" className={styles.accordion}>
         <h2>Frequently Asked Questions</h2>
         <Accordion items={items} />
@@ -77,7 +76,6 @@ const LandingPage = () => {
           Get Started
         </Button>
       </div>
-      <Footer />
     </>
   );
 };

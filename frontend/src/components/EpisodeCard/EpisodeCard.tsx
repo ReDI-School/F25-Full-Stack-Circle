@@ -18,8 +18,14 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
     : SHOWS[episode.thumbnail];
 
   const formatDuration = (value: number) => {
-    if (value >= 3600) return new Date(value * 1000).toISOString().slice(11, 19);
-    else return new Date(value * 1000).toISOString().slice(14, 19);
+    const totalMinutes = Math.floor(value / 60000);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    if (hours > 0) {
+      return `${hours}h ${minutes}min`;
+    }
+    return `${minutes}min`;
   };
 
   return (
@@ -37,7 +43,7 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({
           <div className={styles.details}>
             <h4>{episode.title}</h4>
             {episode.duration && (
-              <span className={styles.duration}>{formatDuration(Number(episode.duration))}</span>
+              <span className={styles.duration}>{formatDuration(episode.duration)}</span>
             )}
           </div>
           {episode.description && <p className={styles.description}>{episode.description}</p>}

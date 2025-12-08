@@ -4,8 +4,8 @@ import type { ShowsCarouselProps } from './ShowsCarousel.types';
 import { MovieCards } from '../MovieCards';
 
 export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, className }) => {
+  console.log('movieCard', movieCard);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const spacing = 8;
   const [steps, setSteps] = useState(1);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -16,43 +16,21 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, 
     const calculateSteps = () => {
       const pageWidth = container.clientWidth * 0.8;
       const totalWidth = container.scrollWidth;
-      const stepsCount = Math.ceil(totalWidth / pageWidth);
+      const stepsCount = Math.max(1, Math.ceil(totalWidth / pageWidth));
       setSteps(stepsCount);
+    };
+
+    const handleScroll = () => {
+      const { scrollLeft, clientWidth } = container;
+      const pageWidth = clientWidth * 0.8;
+      const step = Math.min(Math.round(scrollLeft / pageWidth), steps - 1);
+      setCurrentStep(step);
     };
 
     calculateSteps();
     window.addEventListener('resize', calculateSteps);
-
-    const handleScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-
-      // Infinite scroll logic
-      if (scrollLeft + clientWidth >= scrollWidth - 1) {
-        const first = container.firstElementChild as HTMLElement;
-        if (first) {
-          container.style.scrollBehavior = 'auto';
-          container.appendChild(first);
-          container.scrollLeft -= first.offsetWidth + spacing;
-          container.style.scrollBehavior = 'smooth';
-        }
-      }
-
-      if (scrollLeft <= 0) {
-        const last = container.lastElementChild as HTMLElement;
-        if (last) {
-          container.style.scrollBehavior = 'auto';
-          container.prepend(last);
-          container.scrollLeft += last.offsetWidth + spacing;
-          container.style.scrollBehavior = 'smooth';
-        }
-      }
-
-      const pageWidth = container.clientWidth * 0.8;
-      const step = Math.round(container.scrollLeft / pageWidth) % steps;
-      setCurrentStep(step);
-    };
-
     container.addEventListener('scroll', handleScroll);
+
     return () => {
       container.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', calculateSteps);
@@ -81,8 +59,9 @@ export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, 
         </button>
 
         <div className={styles.carousel} ref={carouselRef}>
-          <MovieCards {...movieCard} />
+          <MovieCards display="carousel" {...movieCard} />
         </div>
+
         <button
           className={`${styles.navButton} ${styles.right}`}
           onClick={() => scroll('right')}

@@ -57,7 +57,7 @@ export const WithCustomEpisodes: Story = {
         title: 'Episode 1: The Beginning',
         description:
           'The story begins as our heroes embark on an epic journey filled with adventure and mystery.',
-        duration: '45m',
+        duration: 2700000, // 45 minutes in milliseconds
       },
       {
         id: 2,
@@ -67,7 +67,7 @@ export const WithCustomEpisodes: Story = {
         title: 'Episode 2: The Challenge',
         description:
           'Facing their greatest challenge yet, the team must work together to overcome impossible odds.',
-        duration: '50m',
+        duration: 3000000, // 50 minutes in milliseconds
       },
       {
         id: 3,
@@ -77,7 +77,7 @@ export const WithCustomEpisodes: Story = {
         title: 'Episode 3: The Revelation',
         description:
           'Secrets are revealed that change everything, forcing our heroes to question everything they know.',
-        duration: '48m',
+        duration: 2880000, // 48 minutes in milliseconds
       },
     ],
   },

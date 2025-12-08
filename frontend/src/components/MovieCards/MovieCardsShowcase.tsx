@@ -14,14 +14,14 @@ const moreLikeThisCards: MovieCardData[] = [
     title: 'More Like This 1',
     thumbnail: thumb(220, 124),
     isNew: true,
-    duration: '2h 18m',
+    duration: 8280000, // 2h 18m in milliseconds
   },
   {
     id: 2,
     title: 'More Like This 2',
     thumbnail: thumb(220, 124),
     isNew: true,
-    duration: '2h 18m',
+    duration: 8280000, // 2h 18m in milliseconds
   },
 ];
 
@@ -52,7 +52,7 @@ const playerPreviewCards: MovieCardData[] = [
     id: 1,
     title: 'Player',
     thumbnail: thumb(200, 112),
-    duration: '51:29',
+    duration: 3089000, // 51:29 in milliseconds
   },
 ];
 
