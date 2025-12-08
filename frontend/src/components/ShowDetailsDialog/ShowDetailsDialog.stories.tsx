@@ -51,6 +51,7 @@ export const WithCustomEpisodes: Story = {
     episodes: [
       {
         id: 1,
+        url: 'https://vimeo.com/679974686',
         number: 1,
         thumbnail: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80',
         title: 'Episode 1: The Beginning',
@@ -60,6 +61,7 @@ export const WithCustomEpisodes: Story = {
       },
       {
         id: 2,
+        url: 'https://vimeo.com/679974686',
         number: 2,
         thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80',
         title: 'Episode 2: The Challenge',
@@ -69,6 +71,7 @@ export const WithCustomEpisodes: Story = {
       },
       {
         id: 3,
+        url: 'https://vimeo.com/679974686',
         number: 3,
         thumbnail: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80',
         title: 'Episode 3: The Revelation',

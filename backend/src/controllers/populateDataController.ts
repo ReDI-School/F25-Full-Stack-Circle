@@ -1,4 +1,4 @@
-import { $Enums, VideoType } from '@prisma/client';
+import { $Enums } from '@prisma/client';
 import { Request, Response } from 'express';
 import { PopulateDataService } from 'src/services/populateDataService';
 
@@ -8,12 +8,22 @@ export class PopulateDataController {
   async createManyTitle(req: Request, res: Response) {
     try {
       const body: {
-        title: [{ name: string; type: VideoType }];
+        title: [
+          {
+            name: string;
+            type: $Enums.VideoType;
+            maturity: $Enums.AgeRestriction;
+            cast: string[];
+            genre: $Enums.Genre[];
+            synopsis: string;
+          },
+        ];
         season: [{ title: string; thumbnail: string; number: number }];
         video: [
           {
-            duration: number;
             url: string;
+            image: string;
+            duration: number;
             episode_number: number;
             season_number: number;
             title: string;
@@ -21,7 +31,37 @@ export class PopulateDataController {
         ];
       } = req.body;
 
-      const titles = await populateDataService.createManyAndReturnTitles(body.title); // save all titles
+      // const titles = await populateDataService.createManyAndReturnTitles(body.title); // save all titles
+
+      let titles: {
+        name: string;
+        type: $Enums.VideoType;
+        cast: string[];
+        genre: $Enums.Genre[];
+        synopsis: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+        id: number;
+      }[] = [];
+
+      for (const t of body.title) {
+        const { maturity, ...rest } = t;
+        const title = await populateDataService.createTitle({
+          ...rest,
+          category: {
+            connectOrCreate: [
+              {
+                where: { age_restriction: maturity },
+                create: {
+                  name: maturity,
+                  age_restriction: maturity,
+                },
+              },
+            ],
+          },
+        });
+        titles.push(title);
+      }
 
       let seasons: Array<
         {
@@ -60,7 +100,9 @@ export class PopulateDataController {
       for (const v of body.video) {
         await populateDataService.createVideo({
           duration: v.duration,
+          image: v.image,
           url: v.url,
+          episode_number: v.episode_number,
           name:
             v.episode_number != null
               ? `${v.title}: S${v.season_number} Ep${v.episode_number}`

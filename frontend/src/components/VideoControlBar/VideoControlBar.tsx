@@ -34,6 +34,8 @@ const VideoControlBar = ({
   const [showPlaybackSpeed, setShowPlaybackSpeed] = useState(false);
   const [showEpisodeList, setShowEpisodeList] = useState(false);
 
+  const notYetImplemented = true;
+
   const onPlaybackButtonClick = () => {
     setShowPlaybackSpeed((prev) => !prev);
     setShowEpisodeList(false);
@@ -115,9 +117,13 @@ const VideoControlBar = ({
           </div>
           <span>{title}</span>
           <div className={styledControlButtonWrapper()}>
-            <VideoControlButton icon="next" onClick={onNextButtonClick} />
-            <VideoControlButton icon="episode-list" onClick={handleEpisodeListButtonClick} />
+            {!notYetImplemented && <VideoControlButton icon="next" onClick={onNextButtonClick} />}
+            {!notYetImplemented && (
+              <VideoControlButton icon="episode-list" onClick={handleEpisodeListButtonClick} />
+            )}
+
             <VideoControlButton icon="playback" onClick={onPlaybackButtonClick} />
+
             <VideoControlButton icon="fullscreen" onClick={onFullscreenButtonClick} />
           </div>
           {showEpisodeList && episodes && episodes.length > 0 && (

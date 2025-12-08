@@ -9,6 +9,10 @@ export class PopulateDataService {
     });
   }
 
+  async createTitle(data: Prisma.TitleCreateInput) {
+    return await prisma.title.create({ data });
+  }
+
   async createSeason(data: Prisma.SeasonCreateInput) {
     return await prisma.season.create({ data, include: { title: true } });
   }

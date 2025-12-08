@@ -60,6 +60,9 @@ model Title {
   id        Int        @id @default(autoincrement())
   name      String     @db.VarChar(255)
   type      VideoType
+  cast      String[]
+  genre     Genre[]
+  synopsis  String?
   category  Category[]
   season    Season[]
   video     Video?
@@ -81,7 +84,7 @@ model Season {
 model Category {
   id              Int            @id @default(autoincrement())
   name            String         @db.VarChar(255)
-  age_restriction AgeRestriction
+  age_restriction AgeRestriction @unique
   title           Title[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -109,4 +112,22 @@ enum AgeRestriction {
 enum VideoType {
   MOVIE
   SERIES
+}
+
+enum Genre {
+  Action
+  Adventure
+  Thriller
+  Fantasy
+  Comedy
+  Family
+  Documentary
+  Biography
+  Sports
+  Travel
+  Nature
+  Culture
+  Music
+  Horror
+  SciFi
 }
