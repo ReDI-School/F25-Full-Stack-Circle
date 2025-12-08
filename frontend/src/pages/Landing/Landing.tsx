@@ -2,7 +2,6 @@ import { ContentBlock, LandingPageEmail, contentBlockConfig, Accordion } from '.
 import InputField from '../../components/InputField';
 import { INPUT_SIZES } from '../../components/InputField/InputField.types';
 import { Button } from '../../components/Button';
-import Footer from '../../components/Footer/Footer';
 import styles from './Landing.module.css';
 
 const LandingPage = () => {
@@ -77,7 +76,6 @@ const LandingPage = () => {
           Get Started
         </Button>
       </div>
-      <Footer />
     </>
   );
 };

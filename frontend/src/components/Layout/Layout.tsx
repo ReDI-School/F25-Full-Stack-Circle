@@ -8,6 +8,7 @@ import { authRoutes, routePaths } from '../../routes/routePaths';
 import { Header } from '../Header';
 import styles from './Layout.module.css';
 import { useLocation } from 'react-router';
+import Footer from '../Footer/Footer';
 
 const styledLayout = cva(styles.layout, {
   variants: {
@@ -44,6 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.pageWrapper}>
       <Header type={headerType} />
       <main className={styles.main}>{children}</main>
+      <Footer />
     </div>
   );
 
