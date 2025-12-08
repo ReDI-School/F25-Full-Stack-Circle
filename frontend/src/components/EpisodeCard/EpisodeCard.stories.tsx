@@ -21,7 +21,7 @@ const placeholderEpisode = {
   title: 'The Offer',
   description:
     "While Haru Tawara develops a crush on a mysterious young woman at work, an unusual opportunity arises at his father's financially struggling brewery.",
-  duration: '55m',
+  duration: 5500000,
 };
 
 export const Default: Story = {

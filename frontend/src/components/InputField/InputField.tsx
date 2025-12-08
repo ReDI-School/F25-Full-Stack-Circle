@@ -71,7 +71,6 @@ const InputField: React.FC<InputFieldProps> = ({
     const next = e.target.value;
 
     if (value === undefined) setInternalValue(next);
-
     onChange?.(e);
   };
 

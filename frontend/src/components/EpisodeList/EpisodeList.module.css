@@ -33,6 +33,11 @@
   gap: 20px;
 }
 
+.episodeListTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+}
+
 .episodeItem {
   transition: transform var(--transition-base);
   border-radius: 8px;
@@ -43,7 +48,7 @@
   min-height: 120px;
   box-shadow: none;
   border-bottom: 1px solid #404040;
-  width: 754px;
+  width: 100%;
   margin: 0 auto;
 }
 

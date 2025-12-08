@@ -1,5 +1,4 @@
 .accordion {
-  background-color: var(--grey-850);
   display: flex;
   flex-direction: column;
   justify-content: center;

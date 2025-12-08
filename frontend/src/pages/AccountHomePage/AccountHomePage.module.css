@@ -12,7 +12,7 @@
 .container {
   max-width: var(--content-block-max-width-desktop);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--space-10);
 }
 
 .wrapper {
@@ -96,26 +96,28 @@
 
 .carousels {
   position: relative;
+  width: 100%;
 }
 
 .wrapCarousel {
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-11);
-  position: absolute;
+  position: relative;
   z-index: 999;
-  top: -170px;
-  > div:first-child {
-    background: none;
-    background: linear-gradient(
-      to bottom,
-      rgba(20, 20, 20, 0) 0%,
-      rgba(20, 20, 20, 0.15) 20%,
-      rgba(20, 20, 20, 0.35) 40%,
-      rgba(20, 20, 20, 0.58) 70%,
-      rgba(20, 20, 20, 1) 100%
-    );
-  }
+  margin-top: -170px;
+  padding-top: 150px;
+  background: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0) 0px,
+    rgba(20, 20, 20, 0.15) 17px,
+    rgba(20, 20, 20, 0.35) 34px,
+    rgba(20, 20, 20, 0.58) 60px,
+    rgba(20, 20, 20, 1) 170px
+  );
 
   &:last-child {
     padding-bottom: 45px;

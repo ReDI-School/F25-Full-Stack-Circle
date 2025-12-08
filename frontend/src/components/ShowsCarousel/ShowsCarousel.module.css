@@ -2,16 +2,16 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-family);
 }
 
 .titleButton {
+  padding-left: var(--space-10);
   background: none;
   border: none;
   color: var(--text-primary);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-bold);
   margin-bottom: var(--space-2);
   cursor: default;
@@ -31,9 +31,26 @@
 .carousel {
   display: flex;
   gap: var(--space-2);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   padding-bottom: var(--space-1);
+  padding-left: var(--space-10);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Override MovieCards flex-wrap to keep cards in a single line */
+.carousel :global(.movieCards) {
+  width: 100%;
+}
+
+.carousel :global(.cardsContainer) {
+  flex-wrap: nowrap !important;
 }
 
 .image {

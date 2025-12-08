@@ -1,0 +1,79 @@
+.footer {
+  border-top: var(--border-divider-width) solid var(--grey-825);
+  color: #b3b3b3;
+  padding: 48px 24px;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.topRow {
+  margin-bottom: 24px;
+}
+
+.helpText {
+  color: #b3b3b3;
+}
+
+.phoneLink {
+  color: #b3b3b3;
+  text-decoration: underline;
+  margin-left: 6px;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 16px 0 28px 0;
+}
+
+@media (max-width: 768px) {
+  .linksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.linkColumn {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkItem {
+  margin: 8px 0;
+}
+
+.link {
+  color: #b3b3b3;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+copyright {
+  color: #808080;
+}
+
+@media (max-width: 480px) {
+  .controlsRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

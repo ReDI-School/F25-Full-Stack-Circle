@@ -22,7 +22,7 @@ const EpisodeList: React.FC<EpisodeListProps> = ({
 
   return (
     <div className={`${styles.episodeListContainer} ${className}`}>
-      <h3>List of Episodes</h3>
+      <h3 className={styles.episodeListTitle}>Episodes</h3>
       <div className={styles.episodeListWrapper}>
         <ul className={styles.episodeList}>
           {episodes.map((episode) => {

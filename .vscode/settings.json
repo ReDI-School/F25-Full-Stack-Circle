@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "cSpell.words": ["rediflix", "Rediflix"],
+=======
+  "cSpell.words": ["netflix", "rediflix", "Rediflix"],
+>>>>>>> d2172d186a1f499f9594c18bdf9dbcc50da8efd3
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"

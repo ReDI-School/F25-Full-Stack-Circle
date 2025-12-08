@@ -2,12 +2,6 @@ import React from 'react';
 import type { MovieCardsProps, MovieCardData } from './MovieCards.types.ts';
 import styles from './MovieCards.module.css';
 import IconButton from '../IconButton/IconButton';
-import One from '../../assets/icons/one.svg?react';
-import Two from '../../assets/icons/two.svg?react';
-import Three from '../../assets/icons/three.svg?react';
-import Four from '../../assets/icons/four.svg?react';
-import Five from '../../assets/icons/five.svg?react';
-import Six from '../../assets/icons/six.svg?react';
 import { SHOWS } from '../../assets/shows/index.tsx';
 
 const MovieCards: React.FC<MovieCardsProps> = ({
@@ -15,6 +9,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
   variant = 'default',
   onCardClick,
   onPlayClick,
+  display = 'grid',
 }) => {
   // Keyboard activation helper for non-native interactive elements (fallback).
   // Kept for potential future non-native use, but all interactive elements below are native buttons.
@@ -25,11 +20,11 @@ const MovieCards: React.FC<MovieCardsProps> = ({
     }
   };
 
-  // Normalize duration (accepts minutes as number or preformatted string)
+  // Normalize duration (accepts milliseconds as number or preformatted string)
   const formatDuration = (d: unknown): string => {
     if (d == null || d === '') return '';
     if (typeof d === 'number' && Number.isFinite(d)) {
-      const mins = Math.round(d);
+      const mins = Math.round(d / 60000); // Convert milliseconds to minutes
       const h = Math.floor(mins / 60);
       const m = mins % 60;
       return h > 0 ? `${h}h ${m}m` : `${m}m`;
@@ -44,7 +39,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
   const formatTime = (d: unknown): string => {
     if (d == null || d === '') return '';
     if (typeof d === 'number' && Number.isFinite(d)) {
-      const total = Math.max(0, Math.round(d)); // assume seconds
+      const total = Math.max(0, Math.round(d / 1000)); // convert milliseconds to seconds
       const h = Math.floor(total / 3600);
       const m = Math.floor((total % 3600) / 60);
       const s = total % 60;
@@ -56,17 +51,6 @@ const MovieCards: React.FC<MovieCardsProps> = ({
     // For unexpected types, return empty string or log warning
     console.warn('Unexpected Time type:', typeof d, d);
     return '';
-  };
-
-  // get the rank icon URL
-  type IconName = 'one' | 'two' | 'three' | 'four' | 'five' | 'six';
-  const UrlMap: Record<IconName, React.FC<React.SVGProps<SVGSVGElement>>> = {
-    one: One,
-    two: Two,
-    three: Three,
-    four: Four,
-    five: Five,
-    six: Six,
   };
 
   const renderCard = (card: MovieCardData) => {
@@ -193,32 +177,17 @@ const MovieCards: React.FC<MovieCardsProps> = ({
           </div>
         );
       case 'top10': {
-        const rankName = (() => {
-          type RankLike = {
-            rank?: number | string;
-            position?: number | string;
-            order?: number | string;
-          };
-          const r =
-            (card as unknown as RankLike).rank ??
-            (card as unknown as RankLike).position ??
-            (card as unknown as RankLike).order ??
-            1;
-          const n = Number(r);
-          const idx = Number.isFinite(n) ? Math.min(Math.max(Math.trunc(n), 1), 6) : 1;
-          const names: IconName[] = ['one', 'two', 'three', 'four', 'five', 'six'];
-          const name = names[idx - 1];
-          console.log('Top10 rank resolved to number:', n, 'mapped to', name);
-          return name;
-        })();
+        // Get rank from card, default to 1 if not provided
+        const rank = card.rank ?? 1;
+        const rankNumber = Number(rank);
+        const validRank = Number.isFinite(rankNumber) ? Math.max(Math.trunc(rankNumber), 1) : 1;
 
         return (
           <div key={card.id} className={styles.cardTop10Row}>
             {/* Left: big rank pane */}
             <div className={styles.rankPane} aria-hidden="true">
-              {/* dynamic rank artwork (use mask so color is controlled by CSS) */}
-              <span className={styles.rankArt} aria-hidden="true">
-                {React.createElement(UrlMap[rankName])}
+              <span className={styles.rankText} aria-hidden="true">
+                {validRank}
               </span>
             </div>
             {/* Right: tile */}
@@ -263,7 +232,11 @@ const MovieCards: React.FC<MovieCardsProps> = ({
   return (
     <div className={styles.movieCards}>
       {/* <h2 className={styles.title}>Movie Cards</h2> */}
-      <div className={styles.cardsContainer}>{cards.map((card) => renderCard(card))}</div>
+      <div
+        className={display === 'carousel' ? styles.cardsContainerCarousel : styles.cardsContainer}
+      >
+        {cards.map((card) => renderCard(card))}
+      </div>
     </div>
   );
 };

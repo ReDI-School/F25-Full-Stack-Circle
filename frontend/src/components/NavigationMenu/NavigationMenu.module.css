@@ -35,7 +35,7 @@
 
 .active {
   font-family: 'Netflix Sans', var(--font-family);
-  font-weight: var(--font-medium);
+  font-weight: var(--font-bold);
   font-style: normal;
   font-size: var(--text-sm);
   line-height: var(--line-height-sm);

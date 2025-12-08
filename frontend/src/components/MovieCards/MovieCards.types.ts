@@ -10,13 +10,13 @@ export type MovieCardVariant =
 export interface MovieCardData {
   id: number;
   title?: string;
-  duration?: string;
+  duration?: number;
   thumbnail: string;
   isNew?: boolean;
   progress?: number;
   rank?: number;
   seasonInfo?: string;
-  language?: string;
+  language?: string | string[];
 }
 
 export interface MovieCardsProps {
@@ -24,4 +24,5 @@ export interface MovieCardsProps {
   variant?: MovieCardVariant;
   onCardClick?: (id: number) => void;
   onPlayClick?: (id: number) => void;
+  display?: 'grid' | 'carousel';
 }

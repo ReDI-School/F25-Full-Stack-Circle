@@ -16,6 +16,14 @@
   align-items: flex-start;
 }
 
+.cardsContainerCarousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
 /* Base card look shared by all variants */
 .cardDefault,
 .cardMoreLikeThis,
@@ -581,7 +589,7 @@ img.thumbnail {
 /* --- Top10 exact layout (pixel-perfect to mock) --- */
 .cardTop10Row {
   position: relative;
-  width: 215px; /* 106 (left) + 109 (poster width) */
+  width: 235px; /* 126 (left) + 109 (poster width) - adjusted for 2 digits */
   height: 154px; /* poster height */
 }
 
@@ -590,7 +598,7 @@ img.thumbnail {
   position: absolute;
   top: 0px;
   left: 18px;
-  width: 130px;
+  width: 150px; /* increased from 130px to accommodate 2 digits */
   height: 154px;
   overflow: hidden;
   border-radius: 8px 0 0 8px;
@@ -605,7 +613,6 @@ img.thumbnail {
 .rankArt {
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.28); /* tint of the numeral */
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: left center;
@@ -615,11 +622,30 @@ img.thumbnail {
   pointer-events: none;
 }
 
+/* Text-based rank for numbers 7+ (when we don't have icons) */
+.rankText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11rem; /* reduced from 12rem to better accommodate 2 digits */
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 4px rgba(255, 255, 255, 0.15);
+  text-stroke: 4px rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  line-height: 1;
+  padding-left: 8px;
+  letter-spacing: -0.05em; /* slight negative spacing for tighter 2-digit display */
+}
+
 /* Right poster tile */
 .cardTop10 {
   position: absolute;
   top: 0;
-  left: 106px; /* per spec */
+  left: 126px; /* adjusted from 106px to accommodate wider rank pane */
   width: 109px; /* per spec */
   height: 154px; /* per spec */
   overflow: hidden;
