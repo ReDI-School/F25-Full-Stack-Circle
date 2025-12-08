@@ -1,8 +1,6 @@
 import type { MovieCardData } from '../components';
 
-const BASE_URL = import.meta.env.VITE_APP_URL;
-
-console.log({ BASE_URL });
+const BASE_URL = import.meta.env.VITE_APP_URL || import.meta.env.NEXT_PUBLIC_VERCEL_URL;
 
 export const mockData: MovieCardData[] = [
   {
