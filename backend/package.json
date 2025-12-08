@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "prisma generate && tsx watch src/index.ts",
     "build": "prisma generate && prisma db push --accept-data-loss && tsc && tsc-alias",
+    "build:ci": "prisma generate && tsc && tsc-alias",
     "start": "node dist/index.js",
     "lint": "eslint src/ prisma/seed.ts",
     "format": "prettier --write .",
