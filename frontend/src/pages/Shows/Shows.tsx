@@ -1,6 +1,8 @@
+import { sharedStyles } from '../../shared';
+
 const Shows = () => {
   return (
-    <div>
+    <div className={sharedStyles.pageContainer}>
       <h1>TV Shows</h1>
     </div>
   );

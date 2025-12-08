@@ -1,6 +1,8 @@
+import { sharedStyles } from '../../shared';
+
 const MyList = () => {
   return (
-    <div>
+    <div className={sharedStyles.pageContainer}>
       <h1>My List</h1>
     </div>
   );

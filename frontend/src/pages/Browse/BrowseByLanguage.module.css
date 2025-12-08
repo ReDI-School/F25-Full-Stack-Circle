@@ -1,6 +1,5 @@
 .languagePageTitle {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: var(--text-3xl);
 }
 
 .filtersBar {
@@ -8,6 +7,13 @@
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
+}
+
+.filtersBarContent {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .filtersBarDropdown {
@@ -25,4 +31,10 @@
   margin-top: 2rem;
   color: #666;
   font-size: 1rem;
+}
+
+.languagePage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
 }
