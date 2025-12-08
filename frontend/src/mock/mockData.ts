@@ -2,6 +2,8 @@ import type { MovieCardData } from '../components';
 
 const BASE_URL = import.meta.env.VITE_APP_URL || import.meta.env.VITE_VERCEL_URL;
 
+console.log({ BASE_URL });
+
 export const mockData: MovieCardData[] = [
   {
     id: 1,

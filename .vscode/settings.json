@@ -1,9 +1,5 @@
 {
-  "cSpell.words": [
-    "netflix",
-    "rediflix",
-    "Rediflix"
-  ],
+  "cSpell.words": ["netflix", "rediflix", "Rediflix"],
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
