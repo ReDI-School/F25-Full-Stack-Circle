@@ -25,11 +25,11 @@ const MovieCards: React.FC<MovieCardsProps> = ({
     }
   };
 
-  // Normalize duration (accepts minutes as number or preformatted string)
+  // Normalize duration (accepts milliseconds as number or preformatted string)
   const formatDuration = (d: unknown): string => {
     if (d == null || d === '') return '';
     if (typeof d === 'number' && Number.isFinite(d)) {
-      const mins = Math.round(d);
+      const mins = Math.round(d / 60000); // Convert milliseconds to minutes
       const h = Math.floor(mins / 60);
       const m = mins % 60;
       return h > 0 ? `${h}h ${m}m` : `${m}m`;
@@ -44,7 +44,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
   const formatTime = (d: unknown): string => {
     if (d == null || d === '') return '';
     if (typeof d === 'number' && Number.isFinite(d)) {
-      const total = Math.max(0, Math.round(d)); // assume seconds
+      const total = Math.max(0, Math.round(d / 1000)); // convert milliseconds to seconds
       const h = Math.floor(total / 3600);
       const m = Math.floor((total % 3600) / 60);
       const s = total % 60;

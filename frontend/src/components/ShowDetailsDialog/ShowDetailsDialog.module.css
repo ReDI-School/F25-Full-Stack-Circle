@@ -284,6 +284,7 @@
 .episodeList {
   background-color: transparent;
   padding: 0;
+  padding-top: var(--space-8);
 }
 
 .episodesSection :global(.episodeListContainer) {

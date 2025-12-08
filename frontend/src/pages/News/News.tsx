@@ -1,12 +1,12 @@
-import MovieCards from '../../components/MovieCards/MovieCards';
 import { mockData } from '../../mock/mockData';
 import { sharedStyles } from '../../shared';
+import ShowCardsContainer from '../../components/ShowCardsContainer';
 
 const News = () => {
   return (
     <div className={sharedStyles.pageContainer}>
       <h1 className={sharedStyles.pageTitle}>News & Popular</h1>
-      <MovieCards cards={mockData.filter((movie) => movie.isTrending || movie.isNew)} />
+      <ShowCardsContainer cards={mockData.filter((movie) => movie.isTrending || movie.isNew)} />
     </div>
   );
 };

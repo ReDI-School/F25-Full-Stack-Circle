@@ -10,7 +10,7 @@ export type MovieCardVariant =
 export interface MovieCardData {
   id: number;
   title?: string;
-  duration?: string;
+  duration?: number;
   thumbnail: string;
   isNew?: boolean;
   progress?: number;

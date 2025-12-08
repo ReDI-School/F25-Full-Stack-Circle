@@ -44,8 +44,8 @@ const AccountHomePage = () => {
 
   function formatDuration(duration: number | undefined) {
     if (!duration) return undefined;
-    if (duration >= 3600) return new Date(duration * 1000).toISOString().slice(11, 19);
-    else return new Date(duration * 1000).toISOString().slice(14, 19);
+    if (duration >= 3600000) return new Date(duration).toISOString().slice(11, 19);
+    else return new Date(duration).toISOString().slice(14, 19);
   }
 
   useEffect(() => {

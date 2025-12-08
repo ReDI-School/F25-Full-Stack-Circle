@@ -46,7 +46,7 @@ const trailerPreviewCards: MovieCardData[] = [
 ];
 
 const playerPreviewCards: MovieCardData[] = [
-  { id: 12, title: 'Short Film', thumbnail: movieCardImg, duration: '51:29' },
+  { id: 12, title: 'Short Film', thumbnail: movieCardImg, duration: 3089000 }, // 51:29 in milliseconds
 ];
 
 const top10Cards: MovieCardData[] = [

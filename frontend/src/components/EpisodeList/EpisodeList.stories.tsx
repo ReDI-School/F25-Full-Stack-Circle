@@ -23,7 +23,7 @@ const placeholderEpisodes: Episode[] = [
     title: 'The Offer',
     description:
       "While Haru Tawara develops a crush on a mysterious young woman at work, an unusual opportunity arises at his father's financially struggling brewery.",
-    duration: '55m',
+    duration: 5500000, // 5500 seconds in milliseconds (about 91 min)
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const placeholderEpisodes: Episode[] = [
     title: 'The Trail',
     description:
       "Haru accompanies Karen to investigate a whistleblower's apartment. Meanwhile, several other Tawaras are tempted to step out of their ordinary lives.",
-    duration: '52m',
+    duration: 5200000, // 5200 seconds in milliseconds (about 86 min)
   },
 ];
 

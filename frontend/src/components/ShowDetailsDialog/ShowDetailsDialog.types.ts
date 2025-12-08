@@ -6,7 +6,7 @@ export interface ShowDetailsDialogProps {
   onClose: () => void;
   videoUrl?: string;
   title: string;
-  titleObject: Title | undefined;
+  titleObject?: Title;
   description: string;
   episodes?: Episode[];
 }

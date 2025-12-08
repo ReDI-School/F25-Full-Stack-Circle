@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 
 import Select from '../../components/Select/Select';
-import MovieCards from '../../components/MovieCards/MovieCards';
 
 import styles from './BrowseByLanguage.module.css';
 import { sharedStyles } from '../../shared';
 
 import { mockData as mockMovies } from '../../mock/mockData';
+import ShowCardsContainer from '../../components/ShowCardsContainer';
 
 const mockCategories = ['Original Language', 'Dubbing', 'Subtitles'];
 const mockLanguages = ['English', 'Arabic', 'Japanese', 'Spanish', 'Korean'];
@@ -81,7 +81,7 @@ const LanguagePage = () => {
         </div>
 
         {filteredMovies.length > 0 ? (
-          <MovieCards cards={filteredMovies} />
+          <ShowCardsContainer cards={filteredMovies} />
         ) : (
           <div className={styles.noMovies}>No movies found for selected filters.</div>
         )}
