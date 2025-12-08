@@ -57,7 +57,7 @@ const Footer = () => {
             <ul key={colIndex} className={styles.linkColumn}>
               {column.map((link) => (
                 <li key={link.label} className={styles.linkItem}>
-                  <a href={link.href ?? '#'} className={styles.link} target="_blank">
+                  <a href={link.href ?? '#'} className={styles.link}>
                     {link.label}
                   </a>
                 </li>
