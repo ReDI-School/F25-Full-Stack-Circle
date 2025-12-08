@@ -120,7 +120,7 @@ const AccountHomePage = () => {
             url: v.url,
             title: v.name ?? '',
             description: '',
-            duration: String(v.duration),
+            duration: v.duration,
             thumbnail: v.image ?? '',
             number: v.episode_number ?? 0,
           }))
