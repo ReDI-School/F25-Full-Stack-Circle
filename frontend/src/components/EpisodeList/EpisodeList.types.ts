@@ -1,5 +1,6 @@
 interface Episode {
   id: string | number;
+  url: string;
   number: number;
   thumbnail: string;
   title: string;

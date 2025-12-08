@@ -1,7 +1,9 @@
-import React, { useMemo, useState, useEffect } from 'react';
 import { cva } from 'class-variance-authority';
-import styles from './InputField.module.css';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import { INPUT_SIZES, INPUT_STATES, INPUT_TYPES, type InputFieldProps } from './InputField.types';
+
+import styles from './InputField.module.css';
 
 const styledContainer = cva(styles.container);
 const styledInputWrapper = cva(styles.inputWrapper, {
@@ -55,11 +57,14 @@ const InputField: React.FC<InputFieldProps> = ({
   ...props
 }) => {
   const [internalValue, setInternalValue] = useState<string>(value ?? '');
+
   const { ...inputProps } = props;
   const isFocused = state === INPUT_STATES.FOCUSED;
-  const hasError: boolean = state === INPUT_STATES.ERROR;
+  const hasError = state === INPUT_STATES.ERROR;
+
   const resolvedLabel = placeholder ?? placeholderForType(type);
   const resolvedErrorMessage = errorMessage ?? getDefaultErrorMessage(hasError, type);
+
   const errorId = useMemo(() => `input-error-${Math.random().toString(36).slice(2, 9)}`, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,8 +82,8 @@ const InputField: React.FC<InputFieldProps> = ({
     <div className={styledContainer()}>
       <div
         className={styledInputWrapper({
-          isFocused,
-          hasError,
+          isFocused: isFocused,
+          hasError: hasError,
         })}
       >
         <input
@@ -91,14 +96,12 @@ const InputField: React.FC<InputFieldProps> = ({
           onBlur={onBlur}
           disabled={disabled}
           required={required}
-          aria-describedby={hasError ? errorId : undefined}
           aria-label={resolvedLabel}
-          {...(hasError && { 'aria-invalid': 'true' })}
+          {...(hasError && { 'aria-invalid': 'true', 'aria-describedby': errorId })}
         />
         <label className={styles.label}>{resolvedLabel}</label>
         <span className={styles.divider} aria-hidden="true" />
       </div>
-
       {hasError && resolvedErrorMessage && (
         <div className={styles.errorText} id={errorId} role="alert" aria-live="polite">
           <span className={styles.errorIcon} aria-hidden="true">

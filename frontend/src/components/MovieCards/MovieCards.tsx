@@ -8,6 +8,7 @@ import Three from '../../assets/icons/three.svg?react';
 import Four from '../../assets/icons/four.svg?react';
 import Five from '../../assets/icons/five.svg?react';
 import Six from '../../assets/icons/six.svg?react';
+import { SHOWS } from '../../assets/shows/index.tsx';
 
 const MovieCards: React.FC<MovieCardsProps> = ({
   cards,
@@ -69,6 +70,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
   };
 
   const renderCard = (card: MovieCardData) => {
+    const thumbnail = card.thumbnail.startsWith('http') ? card.thumbnail : SHOWS[card.thumbnail];
     switch (variant) {
       case 'default':
         return (
@@ -79,7 +81,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
             aria-label={`Open ${card.title}`}
             onClick={() => onCardClick?.(card.id)}
           >
-            <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+            <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
           </button>
         );
 
@@ -260,7 +262,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
 
   return (
     <div className={styles.movieCards}>
-      <h2 className={styles.title}>Movie Cards</h2>
+      {/* <h2 className={styles.title}>Movie Cards</h2> */}
       <div className={styles.cardsContainer}>{cards.map((card) => renderCard(card))}</div>
     </div>
   );

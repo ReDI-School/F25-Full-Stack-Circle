@@ -9,7 +9,6 @@ const Checkbox = ({
   ...props
 }: CheckboxProps) => {
   const { ...inputProps } = props;
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e);
   };

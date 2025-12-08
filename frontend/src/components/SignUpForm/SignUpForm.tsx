@@ -1,19 +1,28 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
+import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { Link } from 'react-router';
 
+import { useAuthContext } from '../../contexts/auth/authContext';
+import { routePaths } from '../../routes/routePaths';
 import { signUpSchema, type SignUpFormData } from '../../utils/validation';
 import { Button } from '../Button';
 import InputField from '../InputField';
 
-import { Link } from 'react-router';
-import { routePaths } from '../../routes/routePaths';
+import { INPUT_STATES, INPUT_TYPES } from '../InputField/InputField.types';
+
 import styles from './SignUpForm.module.css';
 
 const SignUpForm = () => {
+  const { signUp } = useAuthContext();
+
+  const [serverError, setServerError] = useState<string | null>(null);
+
   const {
-    register,
     handleSubmit,
-    formState: { errors },
+    register,
+    formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
     mode: 'onBlur',
@@ -24,42 +33,56 @@ const SignUpForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<SignUpFormData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+    try {
+      if (serverError) setServerError(null);
+      await signUp({ email: data.email, password: data.password1 });
+    } catch (err) {
+      setServerError(
+        err instanceof AxiosError
+          ? err.response?.data.error
+          : 'Failed to sign up. Please try again.'
+      );
+    }
+  };
 
   return (
-    <div className={styles.formWrap}>
-      <h1 className={styles.formTitle}>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.formContainer}>
-          <InputField
-            {...register('email')}
-            type="email"
-            state={errors.email ? 'error' : 'default'}
-            errorMessage={errors.email?.message}
-          />
-          <InputField
-            {...register('password1')}
-            type="password"
-            placeholder="New password"
-            state={errors.password1 ? 'error' : 'default'}
-            errorMessage={errors.password1?.message}
-          />
-          <InputField
-            {...register('password2')}
-            type="password"
-            placeholder="Confirm new password"
-            state={errors.password2 ? 'error' : 'default'}
-            errorMessage={errors.password2?.message}
-          />
-          <Button type="submit" className={styles.mb16} stretch>
-            Sign Up
-          </Button>
-        </div>
-        <span className={styles.alreadyHaveAnAccountText}>Already have an account?</span>{' '}
-        <Link to={routePaths.signIn().path} className={styles.alreadyHaveAnAccountLink}>
-          Sign in
-        </Link>
-      </form>
+    <div className={styles.pageWrapper}>
+      <div className={styles.formWrap}>
+        <h1 className={styles.formTitle}>Sign Up</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.fieldsContainer}>
+            <InputField
+              {...register('email')}
+              type={INPUT_TYPES.EMAIL}
+              state={errors.email ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.email?.message}
+            />
+            <InputField
+              {...register('password1')}
+              type={INPUT_TYPES.PASSWORD}
+              placeholder="New password"
+              state={errors.password1 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.password1?.message}
+            />
+            <InputField
+              {...register('password2')}
+              type={INPUT_TYPES.PASSWORD}
+              placeholder="Confirm new password"
+              state={errors.password2 ? INPUT_STATES.ERROR : INPUT_STATES.DEFAULT}
+              errorMessage={errors.password2?.message}
+            />
+            {serverError && <p className={styles.errorMessage}>{serverError}</p>}
+            <Button type="submit" className={styles.mb16} stretch disabled={isSubmitting}>
+              {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+            </Button>
+          </div>
+          <span className={styles.alreadyHaveAnAccountText}>Already have an account?</span>{' '}
+          <Link to={routePaths.signIn().path} className={styles.alreadyHaveAnAccountLink}>
+            Sign in
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

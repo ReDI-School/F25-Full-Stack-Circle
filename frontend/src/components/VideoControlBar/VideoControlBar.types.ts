@@ -1,5 +1,7 @@
+import type { PlaybackSpeedProps } from '../PlaybackSpeed';
 import type { ProgressBarProps } from '../ProgressBar/index';
 import type { VolumeSliderProps } from '../VolumeSlider/index';
+import type { Episode } from '../EpisodeList/EpisodeList.types';
 
 interface VideoControlBarProps {
   /**
@@ -13,6 +15,11 @@ interface VideoControlBarProps {
   volumeSliderProps: VolumeSliderProps;
 
   /**
+   * The Playback Speed component's props.
+   */
+  playbackSpeedProps: PlaybackSpeedProps;
+
+  /**
    * The Title of the video.
    */
   title: string;
@@ -20,7 +27,7 @@ interface VideoControlBarProps {
   /**
    * The state of the video. This will toggle Play icon to Pause icon and vice versa.
    */
-  isPlaying: boolean;
+  isPlaying: boolean | undefined;
 
   /**
    * The event that triggers when the Play/Pause button is clicked.
@@ -61,6 +68,21 @@ interface VideoControlBarProps {
    * The event that triggers when the Fullscreen button is clicked.
    */
   onFullscreenButtonClick: () => void;
+
+  /**
+   * List of episodes to display in the episode list popup.
+   */
+  episodes?: Episode[];
+
+  /**
+   * The event that triggers when an episode is clicked.
+   */
+  onEpisodeClick?: (episode: Episode) => void;
+
+  /**
+   * The current episode ID.
+   */
+  currentEpisodeId?: string | number;
 }
 
 export type { VideoControlBarProps };

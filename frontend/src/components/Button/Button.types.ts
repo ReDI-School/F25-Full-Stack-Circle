@@ -1,8 +1,7 @@
-interface ButtonProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+interface ButtonProps extends React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> {
   children?: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'white' | 'outlined';
   size?: 'small' | 'medium' | 'large';

@@ -19,8 +19,10 @@ export type InputSize = (typeof INPUT_SIZES)[keyof typeof INPUT_SIZES];
 export type InputType = (typeof INPUT_TYPES)[keyof typeof INPUT_TYPES];
 export type InputState = (typeof INPUT_STATES)[keyof typeof INPUT_STATES];
 
-export interface InputFieldProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
+export interface InputFieldProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'type'
+> {
   /**
    * The size of the input field.
    * @default INPUT_SIZES.MEDIUM

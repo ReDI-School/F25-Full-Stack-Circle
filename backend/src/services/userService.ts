@@ -6,18 +6,21 @@ export class UserService {
   }
 
   async getUserById(id: number) {
-    return await prisma.user.findUnique({
-      where: { id },
-    });
+    return await prisma.user.findUnique({ where: { id } });
   }
 
-  async createUser(data: { email: string; name?: string }) {
+  async createUser(data: { name: string; accountId: string }) {
+    if (!data.accountId) throw new Error('Account Id is required');
+
     return await prisma.user.create({
-      data,
+      data: {
+        name: data.name,
+        account: { connect: { id: data.accountId } },
+      },
     });
   }
 
-  async updateUser(id: number, data: { email?: string; name?: string }) {
+  async updateUser(id: number, data: { name: string }) {
     return await prisma.user.update({
       where: { id },
       data,

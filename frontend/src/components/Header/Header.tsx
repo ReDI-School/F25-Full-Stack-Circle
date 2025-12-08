@@ -21,45 +21,46 @@ const defaultLanguage = selectOptions.find((option) => option.value === 'en');
 export const Header = ({ type }: HeaderProps) => {
   const isPrivate = type === 'private';
   const isPublic = type === 'public';
-  const isAuth = type === 'auth';
-
-  const logoLink = isPublic || isAuth ? routePaths.landingPage().path : routePaths.browse().path;
 
   return (
-    <header className={styles.header}>
-      <Link to={logoLink} className={styles.logo}>
-        <img src={RediflixLogo} alt="Rediflix Logo" />
-      </Link>
-
+    <>
       {isPrivate ? (
-        <>
-          <NavigationMenu className={styles.navigation} navItems={navigationItems} />
-          <div className={styles.iconButtons}>
-            <Button className={styles.iconButton} aria-label="Search" icon="search" iconOnly />
-            <Button
-              className={styles.iconButton}
-              aria-label="Notifications"
-              icon="notification"
-              iconOnly
-            />
+        <header className={styles.headerPublic}>
+          <div className={styles.wrapper}>
+            <div className={styles.headerWrapper}>
+              <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
+              <NavigationMenu className={styles.navigation} navItems={navigationItems} />
+              <div className={styles.iconButtons}>
+                <Button className={styles.iconButton} aria-label="Search" icon="search" iconOnly />
+                <Button
+                  className={styles.iconButton}
+                  aria-label="Notifications"
+                  icon="notification"
+                  iconOnly
+                />
+              </div>
+              <div className={styles.userProfile}>
+                <Button className={styles.profileButton} aria-label="User menu" icon="arrowDown">
+                  <img src={SmallAvatarIcon} alt="User profile" className={styles.avatar} />
+                </Button>
+              </div>
+            </div>
           </div>
-          <div className={styles.userProfile}>
-            <Button className={styles.profileButton} aria-label="User menu" icon="arrowDown">
-              <img src={SmallAvatarIcon} alt="User profile" className={styles.avatar} />
-            </Button>
-          </div>
-        </>
+        </header>
       ) : (
-        isPublic && (
-          <div className={styles.selectors}>
-            <Select options={selectOptions} selected={defaultLanguage} />
-            <Link to={routePaths.signIn().path} className={styles.signInLink}>
-              Sign In
-            </Link>
-          </div>
-        )
+        <header className={styles.header}>
+          <img src={RediflixLogo} alt="Rediflix Logo" className={styles.logo} />
+          {isPublic && (
+            <div className={styles.selectors}>
+              <Select options={selectOptions} selected={defaultLanguage} />
+              <Link to={routePaths.signIn().path} className={styles.signInLink}>
+                Sign In
+              </Link>
+            </div>
+          )}
+        </header>
       )}
-    </header>
+    </>
   );
 };
 

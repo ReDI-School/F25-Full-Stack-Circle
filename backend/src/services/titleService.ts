@@ -1,4 +1,4 @@
-import { VideoType, Prisma } from 'generated/prisma';
+import { VideoType, Prisma } from '@prisma/client';
 import prisma from 'src/libs/prisma';
 
 export class TitleService {
@@ -9,7 +9,7 @@ export class TitleService {
   async getTitleByIdIncludeAll(id: number) {
     const title = await prisma.title.findUnique({
       where: { id },
-      include: { category: true, season: true, video: true },
+      include: { category: true, season: { include: { video: true } }, video: true },
     });
 
     return title;
@@ -19,10 +19,33 @@ export class TitleService {
     const title = await this.getTitleByIdIncludeAll(id);
     if (!title) return;
 
-    const { name, type, category, season, video, createdAt, updatedAt } = title;
+    const { name, cast, genre, synopsis, type, category, season, video, createdAt, updatedAt } =
+      title;
 
-    const titleTypeMovie = { id, name, type, category, video, createdAt, updatedAt };
-    const titleTypeSeries = { id, name, type, category, season, createdAt, updatedAt };
+    const titleTypeMovie = {
+      id,
+      name,
+      cast,
+      genre,
+      synopsis,
+      type,
+      category,
+      video,
+      createdAt,
+      updatedAt,
+    };
+    const titleTypeSeries = {
+      id,
+      name,
+      cast,
+      genre,
+      synopsis,
+      type,
+      category,
+      season,
+      createdAt,
+      updatedAt,
+    };
 
     switch (title.type) {
       case VideoType.MOVIE:

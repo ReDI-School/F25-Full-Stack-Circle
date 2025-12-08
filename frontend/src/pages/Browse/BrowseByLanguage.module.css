@@ -1,0 +1,28 @@
+.languagePageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.filtersBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filtersBarDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtersBarLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.noMovies {
+  margin-top: 2rem;
+  color: #666;
+  font-size: 1rem;
+}
