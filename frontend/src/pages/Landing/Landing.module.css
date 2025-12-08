@@ -1,20 +1,25 @@
 .accordion {
-margin-top: 10rem;
+    margin-top: 10rem;
 
-h2 {
-    text-align: center;
-    margin-bottom: 2rem;
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 }
-}
+
 .text {
-text-align: center;
-margin: 2rem 0;
-text-wrap: pretty;
-}
-.emailContainer {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
-    justify-content: center;
+    text-align: center;
+    margin: 5rem 0 2rem 0;
+    text-wrap: pretty;
+    font-size: var(--text-xl);
+    font-weight: var(--space-2);
 
+}
+
+.emailContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-bottom: 5rem;
 }

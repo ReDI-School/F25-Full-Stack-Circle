@@ -2,10 +2,11 @@ import { Accordion } from '../../components';
 import { ContentBlock } from '../../components/ContentBlock';
 import { ContentBlockConfig } from '../../components/ContentBlock/constants';
 import { LandingPageEmail } from '../../components/LandingPageEmail';
-import styles from './Landing.module.css';
 import InputField from '../../components/InputField';
 import { INPUT_SIZES } from '../../components/InputField/InputField.types';
 import { Button } from '../../components/Button';
+import Footer from '../../components/Footer/Footer';
+import styles from './Landing.module.css';
 
 const LandingPage = () => {
   const items = [
@@ -47,7 +48,7 @@ const LandingPage = () => {
     },
   ];
   const handleGetStarted = () => {
-    console.log('Email submitted:');
+    console.log('Email submitted');
   };
   return (
     <>
@@ -63,19 +64,20 @@ const LandingPage = () => {
           />
         </>
       ))}
-      <div className={styles.accordion}>
+      <div id="faq" className={styles.accordion}>
         <h2>Frequently Asked Questions</h2>
         <Accordion items={items} />
       </div>
-      <h4 className={styles.text}>
+      <h5 className={styles.text}>
         Ready to watch? Enter your email to create or restart your membership.
-      </h4>
+      </h5>
       <div className={styles.emailContainer}>
         <InputField size={INPUT_SIZES.LARGE} />
         <Button size="large" icon="chevron" onClick={handleGetStarted}>
           Get Started
         </Button>
       </div>
+      <Footer />
     </>
   );
 };
