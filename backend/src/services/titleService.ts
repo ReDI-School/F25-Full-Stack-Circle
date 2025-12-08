@@ -19,10 +19,33 @@ export class TitleService {
     const title = await this.getTitleByIdIncludeAll(id);
     if (!title) return;
 
-    const { name, type, category, season, video, createdAt, updatedAt } = title;
+    const { name, cast, genre, synopsis, type, category, season, video, createdAt, updatedAt } =
+      title;
 
-    const titleTypeMovie = { id, name, type, category, video, createdAt, updatedAt };
-    const titleTypeSeries = { id, name, type, category, season, createdAt, updatedAt };
+    const titleTypeMovie = {
+      id,
+      name,
+      cast,
+      genre,
+      synopsis,
+      type,
+      category,
+      video,
+      createdAt,
+      updatedAt,
+    };
+    const titleTypeSeries = {
+      id,
+      name,
+      cast,
+      genre,
+      synopsis,
+      type,
+      category,
+      season,
+      createdAt,
+      updatedAt,
+    };
 
     switch (title.type) {
       case VideoType.MOVIE:
@@ -53,5 +76,3 @@ export class TitleService {
     return await prisma.title.delete({ where: { id } });
   }
 }
-
-//

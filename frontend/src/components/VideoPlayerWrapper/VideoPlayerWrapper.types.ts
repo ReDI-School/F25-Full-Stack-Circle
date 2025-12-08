@@ -1,3 +1,5 @@
+import type { Episode } from '../EpisodeList';
+
 interface VideoPlayerWrapperProps {
   /**
    * The url or path of the video.
@@ -75,26 +77,12 @@ interface VideoPlayerWrapperProps {
   /**
    * List of episodes for the episode list popup.
    */
-  episodes?: Array<{
-    id: string | number;
-    number: number;
-    thumbnail: string;
-    title: string;
-    description?: string;
-    duration?: string;
-  }>;
+  episodes?: Array<Episode>;
 
   /**
    * Callback when an episode is clicked.
    */
-  onEpisodeClick?: (episode: {
-    id: string | number;
-    number: number;
-    thumbnail: string;
-    title: string;
-    description?: string;
-    duration?: string;
-  }) => void;
+  onEpisodeClick?: (episode: Episode) => void;
 
   /**
    * Current episode ID.
