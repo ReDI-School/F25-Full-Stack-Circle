@@ -1,0 +1,218 @@
+import type { MovieCardData } from '../components';
+
+const BASE_URL = import.meta.env.VITE_APP_URL;
+
+console.log({ BASE_URL });
+
+export const mockData: MovieCardData[] = [
+  {
+    id: 1,
+    title: 'The Matrix',
+    language: ['English'],
+    thumbnail: `${BASE_URL}/images/show1.png`,
+  },
+  {
+    id: 2,
+    title: 'The Matrix',
+    language: ['English'],
+    thumbnail: `${BASE_URL}/images/show2.png`,
+  },
+  {
+    id: 3,
+    title: 'The Matrix',
+    language: ['English'],
+    thumbnail: `${BASE_URL}/images/show3.png`,
+  },
+  {
+    id: 4,
+    title: 'La Casa de Papel',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show4.png`,
+  },
+  {
+    id: 5,
+    title: 'Dark',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show5.png`,
+  },
+  {
+    id: 6,
+    title: 'Lupin',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show6.png`,
+  },
+  {
+    id: 7,
+    title: 'Squid Game',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show7.png`,
+  },
+  {
+    id: 8,
+    title: 'Sacred Games',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show8.png`,
+  },
+  {
+    id: 9,
+    title: 'Elite',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show9.png`,
+  },
+  {
+    id: 10,
+    title: 'Alice in Borderland',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show10.png`,
+  },
+  {
+    id: 11,
+    title: 'Suburra',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show11.png`,
+  },
+  {
+    id: 12,
+    title: 'Kingdom',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show12.png`,
+  },
+  {
+    id: 13,
+    title: 'Babylon Berlin',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show13.png`,
+  },
+  {
+    id: 14,
+    title: '3%',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show14.png`,
+  },
+  {
+    id: 15,
+    title: 'Call My Agent',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show15.png`,
+  },
+  {
+    id: 16,
+    title: 'Money Heist Korea',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show16.png`,
+  },
+  {
+    id: 17,
+    title: 'Delhi Crime',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show17.png`,
+  },
+  {
+    id: 18,
+    title: 'The Rain',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show18.png`,
+  },
+  {
+    id: 19,
+    title: 'Narcos Mexico',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show19.png`,
+  },
+  {
+    id: 20,
+    title: 'Erased',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show20.png`,
+  },
+  {
+    id: 21,
+    title: 'Gomorrah',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show21.png`,
+  },
+  {
+    id: 22,
+    title: 'Borgen',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show22.png`,
+  },
+  {
+    id: 23,
+    title: 'Coisa Mais Linda',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show23.png`,
+  },
+  {
+    id: 24,
+    title: 'The Protector',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show24.png`,
+  },
+  {
+    id: 25,
+    title: 'Into the Night',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show25.png`,
+  },
+  {
+    id: 26,
+    title: 'Biohackers',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show26.png`,
+  },
+  {
+    id: 27,
+    title: 'La Revolution',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show27.png`,
+  },
+  {
+    id: 28,
+    title: 'The Innocent',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show28.png`,
+  },
+  {
+    id: 29,
+    title: 'Katla',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show29.png`,
+  },
+  {
+    id: 30,
+    title: 'Warrior Nun',
+    language: ['English'],
+    thumbnail: `${BASE_URL}/images/show30.png`,
+  },
+  {
+    id: 31,
+    title: 'Sweet Home',
+    language: ['English', 'Korean'],
+    thumbnail: `${BASE_URL}/images/show31.png`,
+  },
+  {
+    id: 32,
+    title: 'Who Killed Sara',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show32.png`,
+  },
+  {
+    id: 33,
+    title: 'Barbarians',
+    language: ['English', 'Arabic'],
+    thumbnail: `${BASE_URL}/images/show33.png`,
+  },
+  {
+    id: 34,
+    title: 'Ragnarok',
+    language: ['English', 'Japanese'],
+    thumbnail: `${BASE_URL}/images/show34.png`,
+  },
+  {
+    id: 35,
+    title: 'The Chestnut Man',
+    language: ['English', 'Spanish'],
+    thumbnail: `${BASE_URL}/images/show35.png`,
+  },
+];
