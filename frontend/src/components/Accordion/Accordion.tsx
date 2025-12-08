@@ -1,16 +1,11 @@
 import type { AccordionProps } from './Accordion.types';
 import styles from './Accordion.module.css';
 
-const Accordion = ({ items, defaultOpenItem = '1' }: AccordionProps) => {
+const Accordion = ({ items }: AccordionProps) => {
   return (
     <div className={styles.accordion}>
       {items.map((item) => (
-        <details
-          key={item.id}
-          className={styles.accordionItem}
-          name="notes"
-          open={defaultOpenItem === item.id}
-        >
+        <details key={item.id} className={styles.accordionItem} name="notes">
           <summary>
             <p>{item.title}</p>
             <div className={styles.close}>

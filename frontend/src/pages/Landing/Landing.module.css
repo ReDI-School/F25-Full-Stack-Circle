@@ -1,0 +1,20 @@
+.accordion {
+margin-top: 10rem;
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+}
+.text {
+text-align: center;
+margin: 2rem 0;
+text-wrap: pretty;
+}
+.emailContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+    justify-content: center;
+
+}
