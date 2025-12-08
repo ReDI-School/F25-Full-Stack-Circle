@@ -5,9 +5,15 @@
   height: 100%;
   width: 100%;
   padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 10;
+  pointer-events: none;
+}
 
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+.videoControl > * {
+  pointer-events: auto;
 }
 
 .gridWrapper {
@@ -33,8 +39,108 @@ span {
   right: 0;
 }
 
+.episodeListWrapper {
+  position: absolute;
+  z-index: 100;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: var(--space-2);
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  width: 400px;
+  max-height: 500px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--grey-600);
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey-600) var(--bg-secondary);
+  box-sizing: border-box;
+}
+
+.episodeListWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.episodeListWrapper::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.episodeListWrapper::-webkit-scrollbar-thumb {
+  background: var(--grey-600);
+  border-radius: var(--radius-sm);
+}
+
+.episodeListWrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--grey-500);
+}
+
+.episodeListTitle {
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  margin: 0 0 var(--space-3) 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.episodeList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.episodeListItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.episodeListItem:hover {
+  background-color: var(--bg-secondary);
+}
+
+.episodeListItem.currentEpisode {
+  background-color: var(--bg-tertiary);
+}
+
+.episodeThumbnail {
+  width: 100px;
+  height: 60px;
+  min-width: 100px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.episodeTitle {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
 .backButton {
   margin-top: 1rem;
+  background-color: transparent;
 }
 
 .bottomControlsWrapper {

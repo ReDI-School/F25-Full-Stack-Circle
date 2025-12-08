@@ -10,11 +10,12 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model Account {
-  id           String            @id @default(cuid())
-  email        String            @unique
-  password     String
-  users User[]
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+  users    User[]
 }
 
 model User {
@@ -23,8 +24,8 @@ model User {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
   UserReaction UserReaction[]
-  accountId String
-  account Account @relation(fields: [accountId], references: [id])
+  accountId    String
+  account      Account        @relation(fields: [accountId], references: [id])
 }
 
 model UserReaction {
@@ -59,6 +60,9 @@ model Title {
   id        Int        @id @default(autoincrement())
   name      String     @db.VarChar(255)
   type      VideoType
+  cast      String[]
+  genre     Genre[]
+  synopsis  String?
   category  Category[]
   season    Season[]
   video     Video?
@@ -80,7 +84,7 @@ model Season {
 model Category {
   id              Int            @id @default(autoincrement())
   name            String         @db.VarChar(255)
-  age_restriction AgeRestriction
+  age_restriction AgeRestriction @unique
   title           Title[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -108,4 +112,22 @@ enum AgeRestriction {
 enum VideoType {
   MOVIE
   SERIES
+}
+
+enum Genre {
+  Action
+  Adventure
+  Thriller
+  Fantasy
+  Comedy
+  Family
+  Documentary
+  Biography
+  Sports
+  Travel
+  Nature
+  Culture
+  Music
+  Horror
+  SciFi
 }

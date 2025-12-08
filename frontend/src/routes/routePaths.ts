@@ -15,6 +15,7 @@ export type RouteKey =
   | 'news'
   | 'myList'
   | 'language'
+  | 'activePlayer'
   | 'logout';
 
 export type RoutePaths = {
@@ -41,7 +42,7 @@ export const routesConfig: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   },
   home: {
     label: 'Home',
-    path: '/browse',
+    path: '/home',
     isPrivate: true,
   },
   shows: {
@@ -62,6 +63,12 @@ export const routesConfig: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   language: {
     label: 'Browse By Language',
     path: '/language',
+    isPrivate: true,
+  },
+  activePlayer: {
+    label: 'Video Player',
+    path: '/videos/:id',
+    isHiddenFromNav: true,
     isPrivate: true,
   },
   logout: {

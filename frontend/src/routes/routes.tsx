@@ -1,6 +1,6 @@
 import type { RouteObject } from 'react-router';
 
-import Home from '../pages/Home/Home.tsx';
+import AccountHomePage from '../pages/AccountHomePage/AccountHomePage.tsx';
 import LandingPage from '../pages/Landing/Landing.tsx';
 import Language from '../pages/Language/Language.tsx';
 import Logout from '../pages/Logout/Logout.tsx';
@@ -9,6 +9,7 @@ import News from '../pages/News/News.tsx';
 import Shows from '../pages/Shows/Shows.tsx';
 import SignIn from '../pages/SignIn/SignIn.tsx';
 import SignUp from '../pages/SignUp/SignUp.tsx';
+import ActivePlayer from '../pages/ActivePlayer/ActivePlayer.tsx';
 import { ProtectedRoute } from './ProtectedRoute';
 import { routesConfig } from './routePaths';
 
@@ -16,11 +17,12 @@ const routeComponents: Record<keyof typeof routesConfig, React.ReactElement> = {
   landingPage: <LandingPage />,
   signIn: <SignIn />,
   signUp: <SignUp />,
-  home: <Home />,
+  home: <AccountHomePage />,
   shows: <Shows />,
   news: <News />,
   myList: <MyList />,
   language: <Language />,
+  activePlayer: <ActivePlayer />,
   logout: <Logout />,
 };
 

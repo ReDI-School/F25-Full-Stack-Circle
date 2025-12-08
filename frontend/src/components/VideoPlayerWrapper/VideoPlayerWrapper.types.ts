@@ -1,3 +1,5 @@
+import type { Episode } from '../EpisodeList';
+
 interface VideoPlayerWrapperProps {
   /**
    * The url or path of the video.
@@ -71,6 +73,21 @@ interface VideoPlayerWrapperProps {
    * Default: false
    */
   fullscreen?: boolean;
+
+  /**
+   * List of episodes for the episode list popup.
+   */
+  episodes?: Array<Episode>;
+
+  /**
+   * Callback when an episode is clicked.
+   */
+  onEpisodeClick?: (episode: Episode) => void;
+
+  /**
+   * Current episode ID.
+   */
+  currentEpisodeId?: string | number;
 }
 
 export type { VideoPlayerWrapperProps };

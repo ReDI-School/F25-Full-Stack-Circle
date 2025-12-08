@@ -17,6 +17,7 @@ type Story = StoryObj<typeof EpisodeList>;
 const placeholderEpisodes: Episode[] = [
   {
     id: 1,
+    url: 'https://vimeo.com/679974686',
     number: 1,
     thumbnail: 'https://placehold.co/600x400',
     title: 'The Offer',
@@ -26,6 +27,7 @@ const placeholderEpisodes: Episode[] = [
   },
   {
     id: 2,
+    url: 'https://vimeo.com/679974686',
     number: 2,
     thumbnail: 'https://placehold.co/600x400',
     title: 'The Trail',
