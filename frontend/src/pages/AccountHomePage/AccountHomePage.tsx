@@ -12,18 +12,20 @@ import heroUrl from '../../assets/images/hero-2.jpg';
 import styles from './AccountHomePage.module.css';
 import { ShowsCarousel } from '../../components/ShowsCarousel';
 import { mockShows } from '../../mock/mockShows';
+import { mockData, type MockData } from '../../mock/mockData';
 import { useEffect, useRef, useState } from 'react';
 import { useConfig } from '../../hooks';
 import type { Title } from '../../api/title/titleApi.types';
 
 const AccountHomePage = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [leftOffset, setLeftOffset] = useState(0);
   const { config, loadingConfig } = useConfig();
   const [openDialog, setOpenDialog] = useState(false);
   const [title, setTitle] = useState<Title>();
+  const [selectedMockShow, setSelectedMockShow] = useState<MockData>();
   const [titles, setTitles] = useState<Title[]>();
   const [episodeList, setEpisodeList] = useState<Episode[] | undefined>(undefined);
+  const [useMockData, setUseMockData] = useState(false);
 
   let movieCardData: MovieCardData[] = [];
 
@@ -40,6 +42,29 @@ const AccountHomePage = () => {
         title: title.name,
       } as unknown as MovieCardData;
     });
+  } else if (useMockData) {
+    // Use mockData when API returns no data
+    movieCardData = mockData.map((mock) => {
+      let duration: string | undefined = undefined;
+      if (mock.details?.duration) {
+        if (typeof mock.details.duration === 'number') {
+          duration = formatDuration(mock.details.duration);
+        } else {
+          duration = mock.details.duration;
+        }
+      }
+
+      return {
+        id: mock.id,
+        thumbnail: mock.thumbnail,
+        duration: duration,
+        isNew: mock.isNew,
+        progress: undefined,
+        rank: mock.rank,
+        seasonInfo: undefined,
+        title: mock.title,
+      } as MovieCardData;
+    });
   }
 
   function formatDuration(duration: number | undefined) {
@@ -49,21 +74,6 @@ const AccountHomePage = () => {
   }
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const updateLeftOffset = () => {
-      const leftOffset = el.getBoundingClientRect().left;
-      setLeftOffset(leftOffset);
-    };
-
-    updateLeftOffset();
-
-    window.addEventListener('resize', updateLeftOffset);
-    return () => window.removeEventListener('resize', updateLeftOffset);
-  }, []);
-
-  useEffect(() => {
     const fetchTitles = async () => {
       if (loadingConfig) return;
       try {
@@ -71,16 +81,21 @@ const AccountHomePage = () => {
         const data = await response.json();
 
         if (data.error) {
-          return console.error(data.error);
+          console.error(data.error);
+          setUseMockData(true);
+          return;
         }
 
-        if (data.titles) {
+        if (data.titles && data.titles.length > 0) {
           setTitles(data.titles);
+          setUseMockData(false);
         } else {
-          console.error('No Title data.');
+          console.error('No Title data. Using mock data.');
+          setUseMockData(true);
         }
       } catch (error) {
-        console.error(error);
+        console.error(error, 'Using mock data.');
+        setUseMockData(true);
       }
     };
 
@@ -88,31 +103,43 @@ const AccountHomePage = () => {
   }, [config?.apiUrl, loadingConfig]);
 
   const handleCardClick = (id: number) => {
-    const fetchTitle = async () => {
-      if (loadingConfig) return;
-      try {
-        const response = await fetch(`${config?.apiUrl}/titles/${id}`);
-        const data = await response.json();
-        if (data.error) {
-          return console.error(data.error);
-        }
-
-        if (data.title) {
-          setTitle(data.title);
-        } else {
-          console.error('No title data.');
-        }
-      } catch (error) {
-        console.error(error);
+    if (useMockData) {
+      // Use mockData
+      const show = mockData.find((item) => item.id === id);
+      if (show) {
+        setSelectedMockShow(show);
+        setTitle(undefined);
+        setOpenDialog(true);
       }
-    };
+    } else {
+      // Fetch from API
+      const fetchTitle = async () => {
+        if (loadingConfig) return;
+        try {
+          const response = await fetch(`${config?.apiUrl}/titles/${id}`);
+          const data = await response.json();
+          if (data.error) {
+            return console.error(data.error);
+          }
 
-    fetchTitle();
-    setOpenDialog(true);
+          if (data.title) {
+            setTitle(data.title);
+            setSelectedMockShow(undefined);
+          } else {
+            console.error('No title data.');
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchTitle();
+      setOpenDialog(true);
+    }
   };
 
   useEffect(() => {
-    if (title && title.type === 'SERIES') {
+    if (title?.type === 'SERIES') {
       setEpisodeList(
         title.season.flatMap((s) =>
           s.video.map((v) => ({
@@ -126,8 +153,26 @@ const AccountHomePage = () => {
           }))
         )
       );
-    } else setEpisodeList(undefined);
-  }, [title]);
+    } else if (selectedMockShow?.type === 'SERIES' && selectedMockShow.details?.episodes) {
+      setEpisodeList(selectedMockShow.details.episodes);
+    } else {
+      setEpisodeList(undefined);
+    }
+  }, [title, selectedMockShow]);
+
+  let videoUrl = '';
+  if (title) {
+    if (title.type === 'MOVIE') {
+      videoUrl = title.video.url;
+    } else {
+      videoUrl = title.season[0]?.video[0]?.url ?? '';
+    }
+  } else if (selectedMockShow?.details?.videoUrl) {
+    videoUrl = selectedMockShow.details.videoUrl;
+  }
+
+  const dialogTitle = title ? title.name : (selectedMockShow?.title ?? '');
+  const dialogDescription = title ? title.synopsis : (selectedMockShow?.details?.description ?? '');
 
   return (
     <>
@@ -157,8 +202,12 @@ const AccountHomePage = () => {
               return to shadowy missions to counteract a string of looming threats.
             </p>
             <div className={styles.buttonsWrapper}>
-              <Button children="Play" variant="white" icon="playBlack" iconPosition="before" />
-              <Button children="More Info" variant="secondary" icon="info" iconPosition="before" />
+              <Button variant="white" icon="playBlack" iconPosition="before">
+                Play
+              </Button>
+              <Button variant="secondary" icon="info" iconPosition="before">
+                More Info
+              </Button>
             </div>
           </div>
         </div>
@@ -172,36 +221,44 @@ const AccountHomePage = () => {
         </div>
       </section>
       <section className={styles.carousels}>
-        <div style={{ paddingLeft: `${leftOffset}px` }} className={styles.wrapCarousel}>
+        <div className={styles.wrapCarousel}>
           <ShowDetailsDialog
-            videoUrl={
-              title ? (title.type === 'MOVIE' ? title.video.url : title.season[0].video[0].url) : ''
-            }
-            description={title ? title.synopsis : ''}
-            title={title ? title.name : ''}
-            titleObject={title}
+            videoUrl={videoUrl}
+            description={dialogDescription}
+            title={dialogTitle}
             isOpen={openDialog}
             onClose={() => {
               setOpenDialog(false);
               setTitle(undefined);
+              setSelectedMockShow(undefined);
             }}
             episodes={episodeList}
           />
-          {titles &&
-            titles.length > 0 &&
-            mockShows.map((category, id) => (
-              <ShowsCarousel
-                key={id}
-                title={category.title}
-                images={category.images}
-                movieCard={{
-                  cards: [...movieCardData],
-                  variant: 'default',
-                  onCardClick: (id) => handleCardClick(id),
-                }}
-                className={styles.carousel}
-              />
-            ))}
+          {movieCardData.length > 0 &&
+            mockShows.map((category, index) => {
+              // Filter cards based on category IDs, maintaining the order from mockShows
+              const filteredCards = category.ids
+                ? category.ids
+                    .map((id) => movieCardData.find((card) => card.id === id))
+                    .filter((card): card is MovieCardData => card !== undefined)
+                : movieCardData;
+
+              // Only render carousel if it has cards
+              if (filteredCards.length === 0) return null;
+
+              return (
+                <ShowsCarousel
+                  key={`${category.title}-${index}`}
+                  title={category.title}
+                  movieCard={{
+                    cards: filteredCards,
+                    variant: category.title === 'Top 10' ? 'top10' : 'default', // 5 because we don't have icons for ranks 7+
+                    onCardClick: (id) => handleCardClick(id),
+                  }}
+                  className={styles.carousel}
+                />
+              );
+            })}
         </div>
       </section>
     </>

@@ -13,6 +13,7 @@ export type MockData = MovieCardData & {
   isInPrivateList?: boolean;
   isNew?: boolean;
   isTrending?: boolean;
+  rank?: number;
   type: VideoType;
   details?: Pick<ShowDetailsDialogProps, 'title' | 'description' | 'episodes' | 'videoUrl'> & {
     rating?: string;
@@ -157,6 +158,7 @@ export const mockData: MockData[] = [
     thumbnail: `${BASE_URL}/images/show3.png`,
     isInPrivateList: true,
     isNew: true,
+    rank: 9,
     type: VideoType.SERIES,
     details: {
       title: 'Suits',
@@ -281,6 +283,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show5.png`,
     isInPrivateList: true,
+    rank: 3,
     type: VideoType.SERIES,
     details: {
       title: 'Headspace Guide to Sleep',
@@ -403,6 +406,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show9.png`,
     isInPrivateList: false,
+    rank: 7,
     type: VideoType.SERIES,
     details: {
       title: 'Jurassic World: Camp Cretaceous',
@@ -505,6 +509,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show12.png`,
     isInPrivateList: false,
+    rank: 5,
     type: VideoType.SERIES,
     details: {
       title: 'Teenage Mutant Ninja Turtles',
@@ -588,6 +593,7 @@ export const mockData: MockData[] = [
     thumbnail: `${BASE_URL}/images/show14.png`,
     isInPrivateList: false,
     isNew: true,
+    rank: 10,
     type: VideoType.MOVIE,
     details: {
       title: 'Crouching Tiger, Hidden Dragon: Sword of Destiny',
@@ -753,6 +759,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show18.png`,
     isInPrivateList: false,
+    rank: 2,
     type: VideoType.MOVIE,
     details: {
       title: 'The Super Mario Bros. Movie',
@@ -897,6 +904,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show21.png`,
     isInPrivateList: false,
+    rank: 8,
     type: VideoType.MOVIE,
     details: {
       title: 'The Super Mario Bros. Movie',
@@ -1080,6 +1088,7 @@ export const mockData: MockData[] = [
     language: ['English', 'Korean'],
     thumbnail: `${BASE_URL}/images/show26.png`,
     isInPrivateList: false,
+    rank: 4,
     type: VideoType.SERIES,
     details: {
       title: 'Revenger',
@@ -1241,6 +1250,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show30.png`,
     isInPrivateList: false,
+    rank: 1,
     type: VideoType.MOVIE,
     details: {
       title: 'Lover, Stalker, Killer',
@@ -1333,6 +1343,7 @@ export const mockData: MockData[] = [
     language: ['English'],
     thumbnail: `${BASE_URL}/images/show34.png`,
     isInPrivateList: false,
+    rank: 6,
     type: VideoType.MOVIE,
     details: {
       title: 'Extraction 2',

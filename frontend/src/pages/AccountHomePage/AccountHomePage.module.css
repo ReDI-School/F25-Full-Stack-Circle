@@ -12,7 +12,7 @@
 .container {
   max-width: var(--content-block-max-width-desktop);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--space-10);
 }
 
 .wrapper {
@@ -96,9 +96,12 @@
 
 .carousels {
   position: relative;
+  width: 100%;
 }
 
 .wrapCarousel {
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-11);

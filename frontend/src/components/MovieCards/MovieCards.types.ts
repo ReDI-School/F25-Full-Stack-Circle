@@ -24,4 +24,5 @@ export interface MovieCardsProps {
   variant?: MovieCardVariant;
   onCardClick?: (id: number) => void;
   onPlayClick?: (id: number) => void;
+  display?: 'grid' | 'carousel';
 }
