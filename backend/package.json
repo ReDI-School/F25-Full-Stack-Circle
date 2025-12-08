@@ -22,7 +22,7 @@
     "prisma:push": "prisma db push --accept-data-loss",
     "prisma:studio": "prisma studio",
     "prisma:seed": "tsx prisma/seed.ts",
-    "postinstall": "prisma generate && prisma db push --accept-data-loss"
+    "postinstall": "prisma generate"
   },
   "engines": {
     "node": ">=22.0.0"
