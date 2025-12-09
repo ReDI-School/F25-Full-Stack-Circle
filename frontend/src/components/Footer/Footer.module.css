@@ -3,6 +3,7 @@
   color: #b3b3b3;
   padding: 48px 24px;
   font-size: 14px;
+  background-color: var(--transparent-black-60);
 }
 
 .container {

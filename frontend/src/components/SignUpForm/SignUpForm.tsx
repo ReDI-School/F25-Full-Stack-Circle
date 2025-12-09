@@ -4,13 +4,10 @@ import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router';
 
+import { Button, INPUT_STATES, INPUT_TYPES, InputField } from '../';
 import { useAuthContext } from '../../contexts/auth/authContext';
 import { routePaths } from '../../routes/routePaths';
 import { signUpSchema, type SignUpFormData } from '../../utils/validation';
-import { Button } from '../Button';
-import InputField from '../InputField';
-
-import { INPUT_STATES, INPUT_TYPES } from '../InputField/InputField.types';
 
 import styles from './SignUpForm.module.css';
 

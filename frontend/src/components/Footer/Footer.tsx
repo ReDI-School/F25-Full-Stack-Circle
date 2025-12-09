@@ -1,6 +1,7 @@
 import Select from '../../components/Select/Select';
-import styles from './Footer.module.css';
 import { languagesMap } from '../../constants/languages';
+
+import styles from './Footer.module.css';
 
 const footerLinks = [
   [

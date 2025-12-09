@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import { Button } from '../Button';
-import InputField from '../InputField';
-import { INPUT_SIZES } from '../InputField/InputField.types';
+import { Button, InputField } from '../';
+import { INPUT_SIZES } from '../InputField';
 
 import styles from './LandingPageEmail.module.css';
 

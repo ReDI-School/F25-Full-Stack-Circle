@@ -1,46 +1,44 @@
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.headerPublic {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding-top: 21px;
-  height: 92px;
-  z-index: 999;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-}
-
-.headerPublic .wrapper {
-  max-width: 100%;
-  width: 100%;
-}
-
 .header {
   width: 100%;
-  max-width: 1200px;
   height: var(--header-height);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  right: 0;
+  left: 0;
+  z-index: var(--z-fixed);
 }
 
-.headerWrapper {
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+.header.auth,
+.header.public {
+  position: absolute;
+}
+
+.header.auth .container,
+.header.public .container {
+  max-width: 1200px;
+}
+
+.header.private .container {
+  max-width: 100%;
+}
+
+.header.private {
+  background: linear-gradient(180deg, var(--transparent-black-70) 12.5%, transparent 100%);
+  transition: background-color var(--transition-slow);
+}
+
+.header.private.scrolled {
+  background: var(--bg-primary);
 }
 
 .signInLink {
@@ -51,7 +49,6 @@
   display: flex;
   align-items: center;
   padding: var(--space-1) var(--space-6);
-  height: 32px;
   border-radius: var(--radius-base);
   cursor: pointer;
   font-family: var(--font-family);
@@ -60,14 +57,8 @@
   transition: all var(--transition-base);
 }
 
-.signInLink:hover:hover:not(:disabled) {
+.signInLink:hover:not(:disabled) {
   background-color: var(--secondary-red-200);
-}
-
-.logo {
-  height: 40px;
-  margin-left: 12px;
-  flex-shrink: 0;
 }
 
 .logo + .navigation {
@@ -88,17 +79,6 @@
   margin-right: 12px;
 }
 
-.header button,
-.headerPublic button {
-  background: transparent;
-  cursor: pointer;
-}
-
-.header button:hover:not(:disabled),
-.headerPublic button:hover:not(:disabled) {
-  background: transparent;
-}
-
 .iconButtons {
   display: flex;
   flex-direction: row;
@@ -106,6 +86,21 @@
   gap: var(--space-4);
 }
 
+.iconButtons + .userProfile {
+  margin-left: var(--space-4);
+}
+
 .userProfile {
   flex-shrink: 0;
+}
+
+.profileButton {
+  padding: 0;
+}
+
+.profileButton,
+.iconButton,
+.profileButton:hover:not(:disabled),
+.iconButton:hover:not(:disabled) {
+  background: transparent;
 }
