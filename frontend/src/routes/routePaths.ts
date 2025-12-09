@@ -42,7 +42,7 @@ export const routesConfig: Record<RouteKey, Omit<RouteConfig, 'element'>> = {
   },
   home: {
     label: 'Home',
-    path: '/home',
+    path: '/browse',
     isPrivate: true,
   },
   shows: {
@@ -86,6 +86,10 @@ export const routePaths: RoutePaths = Object.entries(routesConfig).reduce((acc, 
 
 export const authRoutes = Object.entries(routesConfig)
   .filter(([, config]) => config.isAuth)
+  .map(([, config]) => config.path);
+
+export const publicRoutes = Object.entries(routesConfig)
+  .filter(([, config]) => !config.isPrivate)
   .map(([, config]) => config.path);
 
 export const navigationItems = Object.values(routesConfig)
