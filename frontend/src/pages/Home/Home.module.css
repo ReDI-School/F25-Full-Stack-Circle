@@ -3,9 +3,7 @@
   width: var(--normalize-width);
   position: relative;
   padding-top: 155px;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background: url('/images/hero-home.jpg') no-repeat top center / cover;
   z-index: 1;
 }
 

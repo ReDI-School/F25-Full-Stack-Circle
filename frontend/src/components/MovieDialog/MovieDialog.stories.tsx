@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import MovieDialog from './MovieDialog';
 
-export const mockTitles = [
+export const MockMovieData = [
   {
     id: 1,
     name: 'House of Ninjas',

@@ -14,6 +14,7 @@ ReactModal.setAppElement('#root');
 
 export const App = () => {
   const element = useRoutes(routes);
+
   return <Layout>{element}</Layout>;
 };
 
