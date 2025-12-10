@@ -1,12 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import Select from '../../components/Select/Select';
 
-import styles from './BrowseByLanguage.module.css';
 import { sharedStyles } from '../../shared';
+import styles from './BrowseByLanguage.module.css';
 
-import { mockData as mockMovies } from '../../mock/mockData';
 import ShowCardsContainer from '../../components/ShowCardsContainer';
+import { mockData as MockMovieData } from '../../mock/mockData';
 
 const mockCategories = ['Original Language', 'Dubbing', 'Subtitles'];
 const mockLanguages = ['English', 'Arabic', 'Japanese', 'Spanish', 'Korean'];
@@ -22,13 +22,12 @@ const LanguagePage = () => {
   const sortOptions = mockSortOptions.map((s) => ({ label: s, value: s }));
 
   const filteredMovies = useMemo(() => {
-    return mockMovies
-      .filter((movie) => {
-        if (Array.isArray(movie.language)) {
-          return movie.language.includes(selectedLanguage);
-        }
-        return movie.language === selectedLanguage;
-      })
+    return MockMovieData.filter((movie) => {
+      if (Array.isArray(movie.language)) {
+        return movie.language.includes(selectedLanguage);
+      }
+      return movie.language === selectedLanguage;
+    })
       .filter((movie) =>
         selectedCategory === 'Original Language'
           ? true

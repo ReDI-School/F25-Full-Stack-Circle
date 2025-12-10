@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: url('/images/hero-image.png') no-repeat center / cover;
 }
 
 .accordion {

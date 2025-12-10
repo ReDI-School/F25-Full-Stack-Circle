@@ -2,7 +2,8 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 
 import { authAPI, type LoginPayload, type SignUpPayload } from '../../api/auth/authAPI';
-import { routePaths } from '../../routes/routePaths';
+import useRoutesListMatch from '../../hooks/useRouteListMatch';
+import { publicRoutes, routePaths } from '../../routes/routePaths';
 import { isAuthenticated, removeToken, type JWTPayload } from '../../utils/auth';
 import { AuthContext, type AuthContextType } from './authContext';
 
@@ -13,6 +14,8 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [account, setAccount] = useState<JWTPayload | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { isMatched: isPublicRoute } = useRoutesListMatch(publicRoutes);
 
   const navigate = useNavigate();
 
@@ -32,6 +35,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     initAuth();
   }, []);
+
+  useEffect(() => {
+    if (isPublicRoute && account) navigate(routePaths.home().path);
+  }, [isPublicRoute, account, navigate]);
 
   const login = async (data: LoginPayload) => {
     try {

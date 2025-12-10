@@ -1,9 +1,9 @@
 import type { MovieDialogProps } from './MovieDialog.types';
 // import styles from './MovieDialog.module.css';
-import { mockTitles } from './MovieDialog.stories';
+import { MockMovieData } from './MovieDialog.stories';
 
 const MovieDialog = ({ titleId }: MovieDialogProps) => {
-  const movie = mockTitles.find((t) => t.id === titleId);
+  const movie = MockMovieData.find((t) => t.id === titleId);
   if (!movie) return <div>Movie not found</div>;
 
   return (

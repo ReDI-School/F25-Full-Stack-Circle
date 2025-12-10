@@ -1,4 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import movieCardImg from '../../assets/images/movie-preview-card-2.webp';
+import MovieCards from './MovieCards';
+import type { MovieCardData } from './MovieCards.types';
 // Fallback action helper to avoid depending on '@storybook/addon-actions' in environments
 const action =
   (name: string) =>
@@ -7,9 +11,6 @@ const action =
 
     console.log(`[action:${name}]`, ...args);
   };
-import MovieCards from './MovieCards';
-import type { MovieCardData } from './MovieCards.types';
-import movieCardImg from '../../assets/images/movieCard.png';
 
 const meta: Meta<typeof MovieCards> = {
   title: 'Components/MovieCards',
