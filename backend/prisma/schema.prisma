@@ -130,4 +130,8 @@ enum Genre {
   Music
   Horror
   SciFi
+  Drama
+  Romance
+  Crime
+  Mystery
 }
