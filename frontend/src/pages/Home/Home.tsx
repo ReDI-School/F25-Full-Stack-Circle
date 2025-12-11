@@ -33,27 +33,36 @@ const Home = () => {
   const [useMockData, setUseMockData] = useState(false);
   const [isModalOpen, openModal, closeModal] = useStateToggleHandlers(false);
 
-  const categories: [string, MovieCardData[], MovieCardVariant][] = [];
   const genres = [...new Set(titles?.flatMap((t) => t.genre))];
 
-  if (titles && titles.length > 0 && genres.length > 0) {
-    categories.push(['Matched to you', mapTitleToMovieCard(titles.slice(0, 15)), 'default']);
-    categories.push(['Top 10', mapTitleToMovieCard(titles.slice(0, 10), true), 'top10']);
-    categories.push(['New on Netflix', mapTitleToMovieCard(titles.slice(0, 8)), 'default']);
-
-    genres.forEach((genre) => {
-      const filteredTitle = titles.filter((t) => t.genre.includes(genre));
-      if (filteredTitle.length > 0)
-        categories.push([genre, mapTitleToMovieCard(filteredTitle), 'default']);
-    });
-  }
+  const categories: [string, MovieCardData[], MovieCardVariant][] =
+    titles && titles.length > 0 && genres.length > 0
+      ? [
+          ['Matched to you', mapTitleToMovieCard(titles.slice(0, 15)), 'default'],
+          ['Top 10', mapTitleToMovieCard(titles.slice(0, 10), true), 'top10'],
+          ['New on Netflix', mapTitleToMovieCard(titles.slice(0, 8)), 'default'],
+          ...genres
+            .map((genre) => {
+              const filteredTitle = titles.filter((t) => t.genre.includes(genre));
+              return filteredTitle.length > 0
+                ? ([genre, mapTitleToMovieCard(filteredTitle), 'default'] as [
+                    string,
+                    MovieCardData[],
+                    MovieCardVariant,
+                  ])
+                : null;
+            })
+            .filter((item): item is [string, MovieCardData[], MovieCardVariant] => item !== null),
+        ]
+      : [];
 
   function mapTitleToMovieCard(titles: Title[], ranked: boolean = false) {
     return titles.map((title, idx) => {
       return {
         id: title.id,
-        thumbnail: title.type === 'MOVIE' ? title.video.image : title.season[0].thumbnail,
-        duration: title.type === 'MOVIE' ? formatDuration(title.video.duration) : undefined,
+        thumbnail:
+          title.type === 'MOVIE' ? (title.video?.image ?? '') : (title.season[0]?.thumbnail ?? ''),
+        duration: title.type === 'MOVIE' ? formatDuration(title.video?.duration) : undefined,
         isNew: undefined,
         progress: undefined,
         rank: ranked ? idx + 1 : undefined,
@@ -69,8 +78,9 @@ const Home = () => {
     movieCardData = titles.map((title) => {
       return {
         id: title.id,
-        thumbnail: title.type === 'MOVIE' ? title.video.image : title.season[0].thumbnail,
-        duration: title.type === 'MOVIE' ? formatDuration(title.video.duration) : undefined,
+        thumbnail:
+          title.type === 'MOVIE' ? (title.video?.image ?? '') : (title.season[0]?.thumbnail ?? ''),
+        duration: title.type === 'MOVIE' ? formatDuration(title.video?.duration) : undefined,
         isNew: undefined,
         progress: undefined,
         rank: undefined,

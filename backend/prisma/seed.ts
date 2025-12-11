@@ -9,6 +9,15 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Starting seed...');
 
+  // Clean existing data (keep accounts/users)
+  console.log('🧹 Clearing existing data...');
+  await prisma.userReaction.deleteMany();
+  await prisma.video.deleteMany();
+  await prisma.season.deleteMany();
+  await prisma.title.deleteMany();
+  await prisma.category.deleteMany();
+  console.log('✅ Existing data cleared');
+
   // Create or get test account
   const hashedPassword = await hashPassword('password123');
   const account = await prisma.account.upsert({
