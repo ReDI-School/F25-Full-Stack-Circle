@@ -90,7 +90,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
                   <span className={styles.badgeDuration}>2h 18m</span>
                 );
               })()}
-              <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+              <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
             </button>
 
             {/* Hover play overlay */}
@@ -117,7 +117,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
               aria-label={`Open ${card.title}`}
               onClick={() => onCardClick?.(card.id)}
             >
-              <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+              <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
             </button>
             {/* Hover play overlay */}
             <div className={styles.playOverlay}>
@@ -143,7 +143,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
               aria-label={`Open ${card.title}`}
               onClick={() => onCardClick?.(card.id)}
             >
-              <img src={card.thumbnail} alt={card.title} className={styles.trailerThumbnail} />
+              <img src={thumbnail} alt={card.title} className={styles.trailerThumbnail} />
             </button>
             <div className={styles.trailerMeta}>
               <div className={styles.trailerTitle} title={card.title}>
@@ -163,7 +163,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
               onClick={() => onCardClick?.(card.id)}
               onKeyDown={(e) => activateOnKey(e, () => onCardClick?.(card.id))}
             >
-              <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+              <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
               {/* Bottom-centered time bar */}
               {(() => {
                 const tc = formatTime(card.duration);
@@ -199,7 +199,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
               onKeyDown={(e) => activateOnKey(e, () => onCardClick?.(card.id))}
             >
               <span className={styles.badgeBrand} aria-hidden="true" />
-              <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+              <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
               <span className={styles.badgeRecentlyAdded}>Recently Added</span>
             </button>
           </div>
@@ -215,7 +215,7 @@ const MovieCards: React.FC<MovieCardsProps> = ({
             aria-label={`Open ${card.title}`}
             onClick={() => onCardClick?.(card.id)}
           >
-            <img src={card.thumbnail} alt={card.title} className={styles.thumbnail} />
+            <img src={thumbnail} alt={card.title} className={styles.thumbnail} />
             {card.progress && (
               <div className={styles.progressBar}>
                 <div className={styles.progress} style={{ width: `${card.progress}%` }} />

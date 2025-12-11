@@ -7,6 +7,7 @@ import {
   ShowDetailsDialog,
   type Episode,
   type MovieCardData,
+  type MovieCardVariant,
 } from '../../components';
 
 import { useEffect, useRef, useState } from 'react';
@@ -32,20 +33,60 @@ const Home = () => {
   const [useMockData, setUseMockData] = useState(false);
   const [isModalOpen, openModal, closeModal] = useStateToggleHandlers(false);
 
+  const genres = [...new Set(titles?.flatMap((t) => t.genre))];
+
+  const categories: [string, MovieCardData[], MovieCardVariant][] =
+    titles && titles.length > 0 && genres.length > 0
+      ? [
+          ['Matched to you', mapTitleToMovieCard(titles.slice(0, 15)), 'default'],
+          ['Top 10', mapTitleToMovieCard(titles.slice(0, 10), true), 'top10'],
+          ['New on Netflix', mapTitleToMovieCard(titles.slice(0, 8)), 'default'],
+          ...genres
+            .map((genre) => {
+              const filteredTitle = titles.filter((t) => t.genre.includes(genre));
+              return filteredTitle.length > 0
+                ? ([genre, mapTitleToMovieCard(filteredTitle), 'default'] as [
+                    string,
+                    MovieCardData[],
+                    MovieCardVariant,
+                  ])
+                : null;
+            })
+            .filter((item): item is [string, MovieCardData[], MovieCardVariant] => item !== null),
+        ]
+      : [];
+
+  function mapTitleToMovieCard(titles: Title[], ranked: boolean = false) {
+    return titles.map((title, idx) => {
+      return {
+        id: title.id,
+        thumbnail:
+          title.type === 'MOVIE' ? (title.video?.image ?? '') : (title.season[0]?.thumbnail ?? ''),
+        duration: title.type === 'MOVIE' ? formatDuration(title.video?.duration) : undefined,
+        isNew: undefined,
+        progress: undefined,
+        rank: ranked ? idx + 1 : undefined,
+        seasonInfo: undefined,
+        title: title.name,
+      } as unknown as MovieCardData;
+    });
+  }
+
   let movieCardData: MovieCardData[] = [];
 
   if (titles && titles.length > 0) {
     movieCardData = titles.map((title) => {
       return {
         id: title.id,
-        thumbnail: title.type === 'MOVIE' ? title.video.image : title.season[0].thumbnail,
-        duration: title.type === 'MOVIE' ? formatDuration(title.video.duration) : undefined,
+        thumbnail:
+          title.type === 'MOVIE' ? (title.video?.image ?? '') : (title.season[0]?.thumbnail ?? ''),
+        duration: title.type === 'MOVIE' ? formatDuration(title.video?.duration) : undefined,
         isNew: undefined,
         progress: undefined,
         rank: undefined,
         seasonInfo: undefined,
         title: title.name,
-      } as unknown as MovieCardData;
+      } as MovieCardData;
     });
   } else if (useMockData) {
     // Use mockData when API returns no data
@@ -186,7 +227,6 @@ const Home = () => {
 
   const dialogTitle = title ? title.name : (selectedMockShow?.title ?? '');
   const dialogDescription = title ? title.synopsis : (selectedMockShow?.details?.description ?? '');
-
   return (
     <>
       <section className={styles.intro}>
@@ -242,7 +282,25 @@ const Home = () => {
             }}
             episodes={episodeList}
           />
-          {movieCardData.length > 0 &&
+
+          {!useMockData &&
+            titles &&
+            titles.length > 0 &&
+            categories.map(([title, data, variant], id) => (
+              <ShowsCarousel
+                key={id}
+                title={title}
+                movieCard={{
+                  cards: [...data],
+                  variant,
+                  onCardClick: (id) => handleCardClick(id),
+                }}
+                className={styles.carousel}
+              />
+            ))}
+
+          {useMockData &&
+            movieCardData.length > 0 &&
             mockShows.map((category, index) => {
               // Filter cards based on category IDs, maintaining the order from mockShows
               const filteredCards = category.ids
