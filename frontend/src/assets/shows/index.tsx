@@ -17,7 +17,7 @@ import CaptainsOfTheWorld from './show16.png';
 import LoveOnTheSpectrum from './show17.png';
 import SuperMarioBrosMovie from './show18.png';
 import Pluto from './show19.png';
-import BlackList from './show20.png';
+import Blacklist from './show20.png';
 import SuperMarioBrosMovieDup from './show21.png';
 import LadyBird from './show22.png';
 import KongKingOfTheApes from './show23.png';
@@ -54,7 +54,7 @@ export const SHOWS: Record<string, string> = {
   LoveOnTheSpectrum,
   SuperMarioBrosMovie,
   Pluto,
-  BlackList,
+  Blacklist,
   SuperMarioBrosMovieDup,
   LadyBird,
   KongKingOfTheApes,

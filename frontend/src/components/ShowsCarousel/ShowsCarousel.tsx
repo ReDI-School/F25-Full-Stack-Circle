@@ -4,7 +4,6 @@ import type { ShowsCarouselProps } from './ShowsCarousel.types';
 import { MovieCards } from '../MovieCards';
 
 export const ShowsCarousel: React.FC<ShowsCarouselProps> = ({ title, movieCard, className }) => {
-  console.log('movieCard', movieCard);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [steps, setSteps] = useState(1);
   const [currentStep, setCurrentStep] = useState(0);
