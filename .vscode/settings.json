@@ -1,19 +1,8 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "cSpell.words": ["rediflix", "Rediflix"],
-=======
-  "cSpell.words": ["netflix", "rediflix", "Rediflix"],
->>>>>>> d2172d186a1f499f9594c18bdf9dbcc50da8efd3
-=======
-	"cSpell.words": ["netflix", "rediflix", "Rediflix"],
->>>>>>> cdade83a7d751c67a57e535f8babb419f8d8613d
-
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
-	},
-
-<<<<<<< HEAD
+  "cSpell.words": ["rediflix", "Rediflix", "netflix", "Netflix"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
@@ -38,30 +27,4 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   }
-=======
-	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	},
-	"[javascriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	},
-	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
-	}
->>>>>>> cdade83a7d751c67a57e535f8babb419f8d8613d
 }
