@@ -28,6 +28,11 @@
     &:hover {
       background: var(--grey-400);
     }
+    & p {
+      margin: 0;
+      padding-right: 60px;
+      flex: 1;
+    }
   }
 }
 
@@ -49,6 +54,7 @@
   transform: translateY(-50%);
   right: 24px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .closeLine {
@@ -70,4 +76,31 @@
 
 .accordionContent {
   padding: 24px 16px;
+}
+
+@media (max-width: 768px) {
+  .accordion {
+    padding: 40px 16px;
+    gap: 16px;
+  }
+  .accordionItem summary {
+    padding: 20px 16px;
+
+    & p {
+      font-size: var(--text-lg, 18px);
+      line-height: 1.4;
+      padding-right: 50px;
+    }
+  }
+
+  .close {
+    right: 16px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .accordionContent {
+    padding: 16px;
+    font-size: var(--text-base, 16px);
+  }
 }
