@@ -4,15 +4,15 @@ import Accordion from './Accordion';
 const items = [
   {
     id: '1',
-    title: 'What is Netflix?',
+    title: 'What is Rediflix?',
     content:
-      'Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.',
+      'Rediflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.',
   },
   {
     id: '2',
-    title: 'How much does Netflix cost?',
+    title: 'How much does Rediflix cost?',
     content:
-      'Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee.',
+      'Watch Rediflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee.',
   },
 ];
 
